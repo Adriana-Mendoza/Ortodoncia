@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary Meta Tags -->
+  <title>Ortodoncista en Madrid | Dra. Adriana Mendoza · Barrio de Salamanca</title>
+  <meta name="description" content="Clínica de ortodoncia en Madrid (Barrio de Salamanca). Especialista en alineadores transparentes (Invisalign/Spark), brackets estéticos y de autoligado. Primera consulta y escaneo 3D sin compromiso en Centro Caduceo.">
+  <meta name="keywords" content="Ortodoncia en Madrid, Ortodoncista Barrio de Salamanca, Ortodoncia invisible Madrid, Dra. Adriana Mendoza Orozco, Clínica de ortodoncia Madrid, Alineadores transparentes Barrio Salamanca, Invisalign Madrid, Brackets estéticos Madrid">
+  <meta name="author" content="Dra. Adriana Mendoza Orozco">
+  <link rel="canonical" href="https://adrianamendozaortodoncia.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adrianamendozaortodoncia.com/">
+  <meta property="og:title" content="Dra. Adriana Mendoza · Ortodoncista en Barrio de Salamanca, Madrid">
+  <meta property="og:description" content="Ortodoncia de alta precisión y trato cercano en Madrid. Diagnóstico digital 3D y financiación sin intereses.">
+  <meta property="og:image" content="img/logo.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dra. Adriana Mendoza · Ortodoncista en Madrid">
+  <meta name="twitter:description" content="Ortodoncia invisible y brackets en Barrio de Salamanca, Madrid.">
+  <meta name="twitter:image" content="img/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Three.js CDN for 3D Dental Simulation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Schema.org JSON-LD Structured Data for Local SEO in Madrid -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Dentist", "MedicalBusiness"],
+    "name": "Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid",
+    "image": "https://adrianamendozaortodoncia.com/img/logo.png",
+    "@id": "https://adrianamendozaortodoncia.com/#dentist",
+    "url": "https://adrianamendozaortodoncia.com/",
+    "telephone": "+34679623610",
+    "email": "profesional@adrianamendozaortodoncia.com",
+    "priceRange": "€€-€€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paseo del Marqués de Zafra 15, 1.º izquierda",
+      "addressLocality": "Madrid",
+      "addressRegion": "Comunidad de Madrid",
+      "postalCode": "28028",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.42838,
+      "longitude": -3.66585
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      }
+    ],
+    "medicalSpecialty": "Orthodontics",
+    "founder": {
+      "@type": "Person",
+      "name": "Dra. Adriana Mendoza Orozco",
+      "jobTitle": "Ortodoncista",
+      "alumniOf": "Especialista en Ortodoncia y Ortopedia Dentofacial"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "124"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       Sticky Single Top Header
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco - Ortodoncia Madrid">
+        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
+        <div class="header-brand-info">
+          <span class="header-brand-name">Adriana Mendoza</span>
+          <span class="header-brand-sub">Ortodoncia · Madrid</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <a href="index.html" class="nav-item is-active">Inicio</a>
+        <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+        <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+        <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+        <a href="financiacion-y-primera-visita.html" class="nav-item">Financiación</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contacto.html" class="btn btn-primary header-cta-btn">Pedir Cita ↗</a>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Abrir menú" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <a href="index.html" class="nav-item is-active">Inicio</a>
+      <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+      <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+      <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+      <a href="financiacion-y-primera-visita.html" class="nav-item">Financiación y 1ª Visita</a>
+      <a href="contacto.html" class="nav-item">Contacto y Ubicación en Madrid</a>
+      <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+        <a href="contacto.html" class="btn btn-primary" style="width: 100%;">Reservar Cita</a>
+        <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Hero Section: Split Layout (Zero Dead Space)
+       ======================================================================== -->
+  <section class="hero-split">
+    <div class="container">
+      <div class="hero-grid">
+        
+        <!-- Left Column: Value Prop, Keywords & Dual CTAs -->
+        <div class="hero-content">
+          <div class="badge-location">
+            <span class="pin">📍</span>
+            <span>Ortodoncia Exclusiva en Barrio de Salamanca · Madrid</span>
+          </div>
+
+          <h1 class="h1-title">
+            Cada sonrisa tiene una <span class="gold-italic">historia.</span><br>
+            La tuya merece un cuidado único.
+          </h1>
+
+          <p class="hero-desc">
+            Ortodoncista dedicada a una atención cercana, sin prisas y respaldada por la ciencia. Especialista en <strong>alineadores transparentes</strong> y <strong>brackets de alta precisión</strong> en Centro Médico y Dental Caduceo (Madrid).
+          </p>
+
+          <div class="hero-buttons">
+            <a href="contacto.html" class="btn btn-primary">
+              Reservar Primera Cita ↗
+            </a>
+            <a href="https://wa.me/34679623610?text=Hola%20Dra.%20Adriana%2C%20quisiera%20consultar%20sobre%20una%20valoraci%C3%B3n%20de%20ortodoncia%20en%20Madrid." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+              <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+              <span>Consultar por WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="hero-trust-bar">
+            <div class="trust-item">
+              <span class="icon">✧</span>
+              <span>Atención 100% personalizada</span>
+            </div>
+            <div class="trust-item">
+              <span class="icon">✧</span>
+              <span>Escáner intraoral 3D sin moldes</span>
+            </div>
+            <div class="trust-item">
+              <span class="icon">✧</span>
+              <span>Financiación hasta 36 meses</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Doctor Portrait & Google Reviews Badge -->
+        <div class="hero-image-wrap">
+          <img src="img/dra_adriana_mendoza.jpg" alt="Dra. Adriana Mendoza Orozco - Ortodoncista en Barrio de Salamanca Madrid" class="hero-doctor-img">
+          
+          <div class="hero-floating-card">
+            <div class="google-stars">★★★★★</div>
+            <div>
+              <div class="floating-card-rating">4.9 / 5.0</div>
+              <div class="floating-card-label">Google Reviews (+120 opiniones)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Star Feature: Experiencia 3D Interactiva de Ortodoncia
+       ======================================================================== -->
+  <section class="section-3d-experience" id="experiencia-3d">
+    <div class="container">
+      <div class="experience-header">
+        <span class="overline">E X P E R I E N C I A · 3 D · I N T E R A C T I V A</span>
+        <h2 class="h2-title">
+          Visualiza tu sonrisa: <span class="gold-italic">Antes y Después.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Arrastra el deslizador para simular cómo los movimientos micrométricos digitales alinean progresivamente una arcada con apiñamiento hasta alcanzar una estética y oclusión óptimas.
+        </p>
+      </div>
+
+      <!-- 3D Canvas WebGL Container -->
+      <div class="canvas-3d-container" id="dental3dContainer">
+        <div style="position: absolute; top: 1rem; left: 1.25rem; z-index: 10; background: rgba(255,255,255,0.92); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; color: var(--color-text-muted); border: 1px solid var(--color-border); pointer-events: none;">
+          🖱️ Arrastra con el cursor o dedo para rotar la arcada 3D
+        </div>
+      </div>
+
+      <!-- Progression Slider & Aligner Overlay Control -->
+      <div class="simulation-controls-panel">
+        <div class="slider-top-row">
+          <div class="slider-label">
+            <span>Simulación del Tratamiento Digital:</span>
+            <span class="slider-month-badge" id="orthoMonthValue">Mes 0 de 14</span>
+          </div>
+
+          <label class="aligner-toggle-wrap">
+            <input type="checkbox" id="toggleAlignerCheck">
+            <span>Mostrar Férula / Alineador Transparente 3D</span>
+          </label>
+
+          <button id="btnReset3dView" class="btn btn-secondary" style="padding: 0.4rem 0.85rem; font-size: 0.8rem; min-height: 36px;">
+            ↺ Centrar Vista
+          </button>
+        </div>
+
+        <div class="slider-track-wrap">
+          <input type="range" id="orthoMonthSlider" class="ortho-slider" min="0" max="14" value="0" step="0.1" aria-label="Progreso de ortodoncia de mes 0 a mes 14">
+          <div class="slider-ticks">
+            <span>Mes 0 (Apiñamiento inicial)</span>
+            <span>Mes 4 (Nivelación)</span>
+            <span>Mes 8 (Cierre de espacios)</span>
+            <span>Mes 14 (Sonrisa alineada)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Hotspots Details -->
+      <div class="hotspots-grid">
+        <div class="hotspot-card">
+          <div class="hotspot-num">Paso 1</div>
+          <h3 class="hotspot-title">Escaneo 3D sin moldes</h3>
+          <p class="hotspot-desc">
+            Capturamos la anatomía exacta de tus dientes con un escáner óptico intraoral, eliminando las incómodas pastas tradicionales.
+          </p>
+        </div>
+
+        <div class="hotspot-card">
+          <div class="hotspot-num">Paso 2</div>
+          <h3 class="hotspot-title">Planificación digital milimétrica</h3>
+          <p class="hotspot-desc">
+            Diseñamos la secuencia biomecánica por ordenador, aplicando fuerzas biológicas suaves y controladas en cada diente.
+          </p>
+        </div>
+
+        <div class="hotspot-card">
+          <div class="hotspot-num">Paso 3</div>
+          <h3 class="hotspot-title">Oclusión armónica y estable</h3>
+          <p class="hotspot-desc">
+            Logramos una mordida fisiológica que protege las articulaciones temporomandibulares (ATM) y embellece la sonrisa para siempre.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Categorized Treatments Summary
+       ======================================================================== -->
+  <section class="section-padding bg-warm">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 3rem;">
+        <span class="overline">T R A T A M I E N T O S · M A D R I D</span>
+        <h2 class="h2-title">
+          Un plan a tu medida, <span class="gold-italic">con rigor científico.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Cada caso requiere una técnica específica. Analizamos tu fisonomía y expectativas para recomendarte el sistema más eficaz.
+        </p>
+      </div>
+
+      <div class="treatments-grid">
+        
+        <!-- 01 Alineadores Invisibles -->
+        <article class="treatment-card">
+          <img src="img/alineadores_transparentes.png" alt="Alineadores invisibles transparentes en Madrid" class="treatment-card-img" loading="lazy">
+          <div class="treatment-card-body">
+            <span class="treatment-card-tag">Máxima Discreción</span>
+            <h3 class="treatment-card-title">Alineadores Transparentes</h3>
+            <p class="treatment-card-text">
+              Férulas extraíbles prácticamente invisibles diseñadas mediante software digital para corregir apiñamientos y mordidas sin interferir en tu estilo de vida.
+            </p>
+            <ul class="treatment-card-features">
+              <li><span>✓</span> Removibles para comer y cepillarte con total comodidad</li>
+              <li><span>✓</span> Sin urgencias por llagas ni desprendimiento de piezas</li>
+              <li><span>✓</span> Planificación virtual 3D con predicción exacta del resultado</li>
+            </ul>
+            <a href="tratamientos.html#alineadores" class="link-arrow">
+              Ver detalles de alineadores invisibles ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 02 Brackets Estéticos y de Autoligado -->
+        <article class="treatment-card">
+          <img src="img/brackets_esteticos.png" alt="Brackets estéticos de cerámica y zafiro en Madrid" class="treatment-card-img" loading="lazy">
+          <div class="treatment-card-body">
+            <span class="treatment-card-tag">Precisión Biomecánica</span>
+            <h3 class="treatment-card-title">Brackets Estéticos y de Autoligado</h3>
+            <p class="treatment-card-text">
+              Sistemas de aparatología fija con brackets de zafiro/cerámica que se mimetizan con el tono del diente o de autoligado pasivo con baja fricción.
+            </p>
+            <ul class="treatment-card-features">
+              <li><span>✓</span> Control tridimensional absoluto en maloclusiones complejas</li>
+              <li><span>✓</span> Materiales cerámicos que no se tiñen con café o vino</li>
+              <li><span>✓</span> Movimiento dental suave y progresivo</li>
+            </ul>
+            <a href="tratamientos.html#brackets" class="link-arrow">
+              Ver detalles de brackets estéticos ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 03 Ortodoncia Infantil -->
+        <article class="treatment-card">
+          <img src="img/ortodoncia_infantil.jpg" alt="Ortodoncia infantil y ortopedia dentofacial en Madrid" class="treatment-card-img" loading="lazy">
+          <div class="treatment-card-body">
+            <span class="treatment-card-tag">Prevención e Intercepción</span>
+            <h3 class="treatment-card-title">Ortodoncia Infantil y Ortopedia</h3>
+            <p class="treatment-card-text">
+              Monitoreo del desarrollo de maxilares y dientes temporales para guiar el recambio dentario y corregir mordidas cruzadas antes de que se consoliden.
+            </p>
+            <ul class="treatment-card-features">
+              <li><span>✓</span> Primera revisión recomendada a los 6-7 años</li>
+              <li><span>✓</span> Corrección de hábitos de deglución y respiración bucal</li>
+              <li><span>✓</span> Evita extracciones o cirugías en la edad adulta</li>
+            </ul>
+            <a href="tratamientos.html#infantil" class="link-arrow">
+              Ver ortodoncia infantil ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 04 Retención y Estabilidad -->
+        <article class="treatment-card">
+          <img src="img/casos_clinicos_grid.jpg" alt="Retención y estabilidad post-ortodoncia en Madrid" class="treatment-card-img" loading="lazy">
+          <div class="treatment-card-body">
+            <span class="treatment-card-tag">Garantía a Largo Plazo</span>
+            <h3 class="treatment-card-title">Retención Post-Ortodoncia</h3>
+            <p class="treatment-card-text">
+              La fase decisiva para asegurar que los resultados se mantengan intactos a lo largo de los años mediante retenedores fijos invisibles y férulas nocturnas.
+            </p>
+            <ul class="treatment-card-features">
+              <li><span>✓</span> Retenedores fijos linguales ultra-finos e imperceptibles</li>
+              <li><span>✓</span> Férulas de retención transparentes de alta durabilidad</li>
+              <li><span>✓</span> Revisiones periódicas de mantenimiento incluidas</li>
+            </ul>
+            <a href="tratamientos.html#retencion" class="link-arrow">
+              Conocer protocolos de retención ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Before & After Real Cases Interactive Slider
+       ======================================================================== -->
+  <section class="section-before-after">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 3rem;">
+        <span class="overline">C A S O S · R E A L E S</span>
+        <h2 class="h2-title">
+          Resultados reales: <span class="gold-italic">Armonía facial y dental.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Arrastra el deslizador central para comparar el estado inicial con el resultado final. En nuestra consulta priorizamos tanto la sonrisa en reposo como en expresión plena.
+        </p>
+      </div>
+
+      <!-- Before After Interactive Slider Component -->
+      <div class="ba-slider-container">
+        <div class="ba-image-wrapper">
+          <!-- Before Image (Base) -->
+          <img src="img/brackets_metalicos.jpg" alt="Caso de ortodoncia antes del tratamiento en Madrid" class="ba-img">
+          
+          <!-- After Image (Overlay clipped) -->
+          <div class="ba-img-after-overlay">
+            <img src="img/brackets_esteticos.png" alt="Sonrisa final alineada y estética tras tratamiento de ortodoncia">
+          </div>
+
+          <!-- Drag Handle -->
+          <div class="ba-handle" aria-label="Deslizar para comparar antes y después"></div>
+
+          <!-- Badges -->
+          <span class="ba-badge ba-badge-before">Antes</span>
+          <span class="ba-badge ba-badge-after">Después</span>
+        </div>
+
+        <div class="ba-card-info">
+          <div>
+            <div class="ba-patient-detail">Paciente de 26 años · Apiñamiento moderado y clase II</div>
+            <div class="ba-patient-meta">Tratamiento con alineadores transparentes en 13 meses · Centro Caduceo (Madrid)</div>
+          </div>
+          <a href="casos-reales.html" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+            Ver galería completa de casos ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Social Proof: Google Reviews Verified
+       ======================================================================== -->
+  <section class="section-social-proof">
+    <div class="container">
+      <div class="proof-score-banner">
+        <div class="proof-score-stars">★★★★★</div>
+        <div class="proof-score-text">4.9 / 5 estrellas en Google</div>
+        <div class="proof-score-sub">Más de 120 pacientes satisfechos en el Barrio de Salamanca y toda la Comunidad de Madrid</div>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-card-top">
+            <span class="review-author">Lucía M. R.</span>
+            <span class="review-tag">Alineadores Transparentes</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">
+            «La Dra. Adriana es una profesional excepcional. Desde el primer día me explicó detalladamente cada fase con el escáner 3D. El trato es impecable, puntual y sin sorpresas en el presupuesto. Mi sonrisa ha quedado perfecta.»
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-top">
+            <span class="review-author">Javier G. S.</span>
+            <span class="review-tag">Brackets Estéticos</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">
+            «Tenía mucho reparo en ponerme ortodoncia de adulto. Adriana me transmitió total confianza, buscando siempre la opción más estética y sin dolor. La clínica Caduceo es muy tranquila y céntrica en Marqués de Zafra.»
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-top">
+            <span class="review-author">Carmen B. T.</span>
+            <span class="review-tag">Ortodoncia Infantil</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-body">
+            «Llevamos a nuestro hijo de 8 años por una mordida cruzada. La paciencia, el cariño y la pedagogía de la doctora fueron increíbles. El niño iba feliz a cada revisión. Totalmente recomendable.»
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Financiación y Primera Consulta (Transparencia)
+       ======================================================================== -->
+  <section class="section-financing">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto;">
+        <span class="overline">T R A N S P A R E N C I A · Y · F A C I L I D A D E S</span>
+        <h2 class="h2-title">
+          Tu tratamiento al alcance, <span class="gold-italic">sin letra pequeña.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Creemos en una odontología honesta y transparente. Queremos que el factor económico nunca sea un obstáculo para cuidar de tu salud bucodental.
+        </p>
+      </div>
+
+      <div class="financing-cards-grid">
+        <div class="financing-card">
+          <div class="financing-icon">🔍</div>
+          <h3 class="financing-title">1ª Consulta Diagnóstica</h3>
+          <p class="financing-desc">
+            Valoración clínica completa, exploración articular y escaneo intraoral 3D sin coste ni compromiso. Te entregamos un plan detallado tras la cita.
+          </p>
+        </div>
+
+        <div class="financing-card">
+          <div class="financing-icon">💳</div>
+          <h3 class="financing-title">Financiación sin Intereses</h3>
+          <p class="financing-desc">
+            Planes de financiación a tu medida hasta en 24 o 36 meses sin intereses (0% TAE / TIN) para que abones tu tratamiento en cómodas cuotas mensuales.
+          </p>
+        </div>
+
+        <div class="financing-card">
+          <div class="financing-icon">📋</div>
+          <h3 class="financing-title">Presupuesto Cerrado</h3>
+          <p class="financing-desc">
+            Incluye todas las citas periódicas, urgencias, materiales, refinamientos y el juego completo de retenedores finales sin costes ocultos imprevistos.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 2.5rem;">
+        <a href="financiacion-y-primera-visita.html" class="btn btn-secondary">
+          Conocer condiciones detalladas de financiación ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Appointment Booking Widget & Location in Barrio de Salamanca
+       ======================================================================== -->
+  <section class="section-booking" id="reserva">
+    <div class="container">
+      <div class="booking-grid">
+        
+        <!-- Left: Location & Contact Direct -->
+        <div class="booking-info-box">
+          <span class="overline">U B I C A C I Ó N · E N · M A D R I D</span>
+          <h2 class="h2-title">
+            Ven a conocernos al <span class="gold-italic">Barrio de Salamanca.</span>
+          </h2>
+          <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.7; margin-bottom: 1.5rem;">
+            Atendemos de forma presencial exclusiva en el <strong>Centro Médico y Dental Caduceo</strong>, un espacio moderno y apacible pensado para tu comodidad y bienestar.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.5rem;">
+            <a href="tel:+34679623610" style="font-size: 1.35rem; font-family: var(--font-serif); font-weight: 600; color: var(--color-text-main);">
+              📞 +34 679 62 36 10
+            </a>
+            <a href="mailto:profesional@adrianamendozaortodoncia.com" style="font-size: 0.95rem; color: var(--color-text-muted);">
+              ✉️ profesional@adrianamendozaortodoncia.com
+            </a>
+          </div>
+
+          <div class="clinic-location-card">
+            <h4>Centro Médico y Dental Caduceo</h4>
+            <p>Paseo del Marqués de Zafra 15, 1.º izquierda</p>
+            <p style="color: var(--color-gold); font-weight: 600;">28028 Madrid (Barrio de Salamanca / Ventas)</p>
+            <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem;">
+              🚇 Metro: Manuel Becerra (L2, L6) y Ventas (L2, L5) · 🅿️ Parking público a 50m.
+            </p>
+            <button id="btnShowInteractiveMap" class="btn btn-secondary" style="margin-top: 1rem; width: 100%; font-size: 0.85rem;">
+              Ver ubicación en Google Maps ↗
+            </button>
+            <div id="mapInteractiveContainer" style="display: none; margin-top: 1rem; border-radius: 8px; overflow: hidden; height: 260px;">
+              <iframe id="mapInteractiveFrame" title="Ubicación en Google Maps" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Appointment Selector -->
+        <div class="booking-card">
+          <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.5rem;">R E S E R V A · D I R E C T A</span>
+          <h3 class="h3-title" style="margin-bottom: 0.35rem;">Solicita tu Cita de Valoración</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">
+            Elige tu tratamiento y preferencia horaria. Nos pondremos en contacto para confirmar tu espacio.
+          </p>
+
+          <form id="quickBookingForm" novalidate>
+            <div class="form-group">
+              <label for="bookingName" class="form-label">Nombre y Apellidos *</label>
+              <input type="text" id="bookingName" class="form-control" required placeholder="Tu nombre completo">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="bookingEmail" class="form-label">Correo Electrónico *</label>
+                <input type="email" id="bookingEmail" class="form-control" required placeholder="ejemplo@correo.com">
+              </div>
+              <div class="form-group">
+                <label for="bookingPhone" class="form-label">Teléfono (WhatsApp)</label>
+                <input type="tel" id="bookingPhone" class="form-control" placeholder="+34 600 000 000">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="bookingTreatment" class="form-label">Tratamiento de Interés</label>
+                <select id="bookingTreatment" class="form-control">
+                  <option value="Alineadores Transparentes">Alineadores Transparentes</option>
+                  <option value="Brackets Estéticos / Autoligado">Brackets Estéticos / Autoligado</option>
+                  <option value="Ortodoncia Infantil">Ortodoncia Infantil</option>
+                  <option value="Revisión de Retención">Revisión de Retención</option>
+                  <option value="Primera Valoración General">Primera Valoración General</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="bookingSlot" class="form-label">Franja Horaria Preferida</label>
+                <select id="bookingSlot" class="form-control">
+                  <option value="Mañana (10:00 - 14:00)">Mañana (10:00 - 14:00)</option>
+                  <option value="Tarde (16:00 - 20:00)">Tarde (16:00 - 20:00)</option>
+                  <option value="Sin preferencia">Sin preferencia</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bookingDate" class="form-label">Fecha Orientativa Deseada</label>
+              <input type="date" id="bookingDate" class="form-control">
+            </div>
+
+            <!-- First Layer RGPD Summary Table -->
+            <div class="rgpd-summary-box">
+              <div class="rgpd-summary-title">Información Básica sobre Protección de Datos (RGPD / LOPD-GDD)</div>
+              <table class="rgpd-summary-table">
+                <tr><td class="rgpd-label">Responsable:</td><td>Dra. Adriana Mendoza Orozco.</td></tr>
+                <tr><td class="rgpd-label">Finalidad:</td><td>Gestionar tu solicitud de cita previa y contacto asistencial.</td></tr>
+                <tr><td class="rgpd-label">Legitimación:</td><td>Consentimiento explícito del interesado.</td></tr>
+                <tr><td class="rgpd-label">Destinatarios:</td><td>No se cederán datos a terceros salvo obligación legal sanitaria.</td></tr>
+                <tr><td class="rgpd-label">Derechos:</td><td>Acceso, rectificación y supresión en profesional@adrianamendozaortodoncia.com.</td></tr>
+              </table>
+            </div>
+
+            <label class="form-checkbox-label" for="bookingConsent">
+              <input type="checkbox" id="bookingConsent" required>
+              <span>
+                He leído y acepto la <a href="politica-privacidad.html" target="_blank" style="text-decoration: underline; color: var(--color-gold);">política de privacidad</a> para la gestión de mi cita.
+              </span>
+            </label>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 0.75rem;">
+              Confirmar Cita de Valoración ↗
+            </button>
+
+            <div style="text-align: center; margin: 0.75rem 0; font-size: 0.85rem; color: var(--color-text-muted);">o si prefieres agendar al instante:</div>
+
+            <a id="waFunnelBtn" href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+              Pedir Cita Directa por WhatsApp ↗
+            </a>
+
+            <div id="bookingFeedback" style="display: none; background: #EAF5EE; border: 1px solid #1F7A46; color: #1F7A46; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+              ✓ ¡Gracias! Tu solicitud ha sido registrada. La consulta se pondrá en contacto contigo para confirmar la disponibilidad.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Sanitary & Regulatory Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div>
+          <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco - Ortodoncia en Madrid" class="footer-brand-logo">
+          <p class="footer-bio-text">
+            Ortodoncista dedicada en exclusiva a la armonía facial, oclusión funcional y estética de la sonrisa en Madrid.
+          </p>
+          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+            Centro Médico y Dental Caduceo<br>
+            Paseo del Marqués de Zafra 15, 1.º izq.<br>
+            28028 Madrid · Barrio de Salamanca
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Tratamientos</h4>
+          <ul class="footer-nav-list">
+            <li><a href="tratamientos.html#alineadores">Alineadores Transparentes</a></li>
+            <li><a href="tratamientos.html#brackets">Brackets Estéticos</a></li>
+            <li><a href="tratamientos.html#autoligado">Brackets de Autoligado</a></li>
+            <li><a href="tratamientos.html#infantil">Ortodoncia Infantil</a></li>
+            <li><a href="tratamientos.html#retencion">Retención y Mantenimiento</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Conoce la Clínica</h4>
+          <ul class="footer-nav-list">
+            <li><a href="sobre-la-doctora.html">Sobre la Dra. Adriana Mendoza</a></li>
+            <li><a href="casos-reales.html">Casos Clínicos Reales</a></li>
+            <li><a href="financiacion-y-primera-visita.html">Financiación y 1ª Visita</a></li>
+            <li><a href="contacto.html">Contacto y Citas</a></li>
+            <li><a href="sobre-la-doctora.html#tecnologia">Tecnología 3D iTero</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contacto y Horario</h4>
+          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            Lunes a Viernes: 10:00 - 20:00 h<br>
+            Sábados: Citas concertadas
+          </p>
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.5rem;">
+            Tel: +34 679 62 36 10
+          </p>
+          <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="link-arrow" style="font-size: 0.85rem; color: #1EBE5D;">
+            WhatsApp Consulta Directa ↗
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Mandatory Sanitary Notice in Madrid -->
+      <div class="footer-sanitary-box">
+        <strong>Identificación Sanitaria y Normativa Profesional:</strong><br>
+        Dra. Adriana Mendoza Orozco · Colegiada Nº [XXXXX] del Colegio Oficial de Odontólogos y Estomatólogos de Madrid (COEM).<br>
+        Centro Médico y Dental Caduceo · Inscrito en el Registro de Centros Sanitarios de la Consejería de Sanidad de la Comunidad de Madrid (Nº de Registro Sanitario: CS-[XXXXX]).
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Dra. Adriana Mendoza Orozco · Todos los derechos reservados.
+        </div>
+        <div class="footer-legal-links">
+          <a href="aviso-legal.html">Aviso Legal</a>
+          <a href="politica-privacidad.html">Política de Privacidad</a>
+          <a href="politica-cookies.html">Política de Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Mobile Bottom Fixed Conversion Bar
+       ======================================================================== -->
+  <div class="mobile-bottom-bar" aria-label="Acciones rápidas en móvil">
+    <a href="contacto.html" class="btn btn-primary">
+      Pedir Cita ↗
+    </a>
+    <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+      WhatsApp ↗
+    </a>
+  </div>
+
+  <!-- Floating Desktop WhatsApp Button -->
+  <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/ortho-3d.js"></script>
+  <script src="js/before-after.js"></script>
+  <script src="js/booking-widget.js"></script>
+</body>
+</html>

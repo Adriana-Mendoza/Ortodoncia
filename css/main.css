@@ -1,46 +1,47 @@
 /* ==========================================================================
    Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid (Barrio de Salamanca)
-   Design System, Accessibility (WCAG 2.1 AA) & Responsive Architecture
+   Design System & Responsive Stylesheet (Refactored & Optimized)
    ========================================================================== */
 
 :root {
-  /* Color Palette - WCAG 2.1 AA Compliant */
+  /* Color Palette */
   --color-bg-white: #FFFFFF;
   --color-bg-warm: #FAF8F5;
   --color-bg-alt: #F4EFEB;
   --color-bg-subtle: #F7F4EF;
   
-  --color-text-main: #221F1C;   /* Deep Espresso: High Contrast > 11:1 on white */
-  --color-text-body: #4E4942;   /* Slate Taupe: Contrast > 6.5:1 on white */
-  --color-text-muted: #6B645B;  /* Muted: Contrast > 4.6:1 on white (WCAG AA compliant) */
+  --color-text-main: #221F1C;   /* Deep Espresso */
+  --color-text-body: #4E4942;   /* Slate Taupe */
+  --color-text-muted: #6B645B;  /* Muted */
   --color-text-light: #8A8175;
   
-  /* Calibrated Gold Tone (contrast >= 4.5:1 on dark, strictly used for borders, icons & >=24px headings) */
+  /* Primary Gold Palette (#A88342 base, #8D6B30 hover) */
   --color-gold: #A88342;
   --color-gold-hover: #8D6B30;
-  --color-gold-light: rgba(168, 131, 66, 0.08);
-  --color-gold-border: rgba(168, 131, 66, 0.3);
+  --color-gold-light: rgba(168, 131, 66, 0.09);
+  --color-gold-border: rgba(168, 131, 66, 0.35);
 
   --color-border: #E8E2D8;
   --color-border-subtle: #F0EAE1;
   --color-border-focus: #A88342;
 
-  --color-accent-green: #1F7A46;
-  --color-accent-green-bg: #EAF5EE;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1EBE5D;
   
   /* Shadows */
   --shadow-xs: 0 1px 3px rgba(34, 31, 28, 0.04);
-  --shadow-sm: 0 3px 10px rgba(34, 31, 28, 0.05);
-  --shadow-md: 0 8px 24px rgba(34, 31, 28, 0.07);
-  --shadow-lg: 0 16px 40px rgba(34, 31, 28, 0.09);
-  --shadow-float: 0 12px 32px rgba(168, 131, 66, 0.15);
+  --shadow-sm: 0 3px 10px rgba(34, 31, 28, 0.06);
+  --shadow-md: 0 8px 24px rgba(34, 31, 28, 0.08);
+  --shadow-lg: 0 16px 40px rgba(34, 31, 28, 0.1);
+  --shadow-gold: 0 6px 20px rgba(168, 131, 66, 0.22);
 
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
-  /* Layout */
-  --header-height: 76px;
+  /* Layout Dimensions */
+  --header-height: 94px; /* Taller Header */
+  --header-logo-height: 68px; /* Prominent Logo */
   --max-width: 1200px;
   --max-width-narrow: 900px;
   --radius-sm: 8px;
@@ -50,10 +51,10 @@
 
   /* Transitions */
   --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset & Box Model */
+/* Reset & Box Sizing */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -97,9 +98,31 @@ button {
   transition: var(--transition-fast);
 }
 
-/* ==========================================================================
-   Typography & Helper Classes
-   ========================================================================== */
+/* Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-narrow {
+  max-width: var(--max-width-narrow);
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+.section-padding-sm {
+  padding: 3.5rem 0;
+}
+
+.bg-warm { background-color: var(--color-bg-warm); }
+.bg-white { background-color: var(--color-bg-white); }
+.text-center { text-align: center; }
+
+/* Typography */
 .font-serif { font-family: var(--font-serif); }
 .font-sans { font-family: var(--font-sans); }
 
@@ -110,37 +133,14 @@ button {
   color: var(--color-gold);
 }
 
-.text-gold { color: var(--color-gold); }
-.text-main { color: var(--color-text-main); }
-.text-muted { color: var(--color-text-muted); }
-
 .overline {
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-gold);
   margin-bottom: 0.85rem;
   display: inline-block;
-}
-
-.badge-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--color-bg-warm);
-  border: 1px solid var(--color-gold-border);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: 0.825rem;
-  font-weight: 600;
-  color: var(--color-text-main);
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.02em;
-}
-
-.badge-location span.pin {
-  color: var(--color-gold);
 }
 
 .h1-title {
@@ -149,8 +149,28 @@ button {
   font-weight: 400;
   line-height: 1.15;
   color: var(--color-text-main);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
   letter-spacing: -0.01em;
+}
+
+.hero-subtitle-single {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  font-weight: 400;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
+  white-space: nowrap; /* Forces single line on desktop/tablet */
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 600px) {
+  .hero-subtitle-single {
+    white-space: normal; /* Allows wrap on very small mobile screens */
+    font-size: 1.35rem;
+  }
+  .h1-title {
+    font-size: 2.35rem;
+  }
 }
 
 .h2-title {
@@ -172,55 +192,25 @@ button {
 }
 
 @media (max-width: 768px) {
-  .h1-title { font-size: 2.35rem; }
   .h2-title { font-size: 1.95rem; }
   .h3-title { font-size: 1.45rem; }
 }
 
 .lead-text {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   line-height: 1.7;
   color: var(--color-text-body);
   max-width: 680px;
 }
 
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.container-narrow {
-  max-width: var(--max-width-narrow);
-}
-
-.section-padding {
-  padding: 5rem 0;
-}
-
-.section-padding-sm {
-  padding: 3.5rem 0;
-}
-
-.bg-warm {
-  background-color: var(--color-bg-warm);
-}
-
-.bg-white {
-  background-color: var(--color-bg-white);
-}
-
-.text-center { text-align: center; }
-
 /* ==========================================================================
-   Buttons & CTAs
+   Buttons (All Primary Buttons updated to #A88342 & #8D6B30 hover)
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   padding: 0.9rem 1.85rem;
   font-size: 0.925rem;
   font-weight: 600;
@@ -228,22 +218,23 @@ button {
   transition: var(--transition-smooth);
   cursor: pointer;
   text-align: center;
-  min-height: 48px; /* Touch target >= 44px */
+  min-height: 48px;
 }
 
-.btn-primary {
-  background-color: var(--color-text-main);
+/* Primary Button in #A88342 (Darker gold on hover) */
+.btn-primary, .btn-gold {
+  background-color: var(--color-gold);
   color: #FFFFFF;
-  border: 1px solid var(--color-text-main);
+  border: 1px solid var(--color-gold);
   box-shadow: var(--shadow-sm);
 }
 
-.btn-primary:hover {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
+.btn-primary:hover, .btn-gold:hover {
+  background-color: var(--color-gold-hover);
+  border-color: var(--color-gold-hover);
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn-secondary {
@@ -259,32 +250,19 @@ button {
   transform: translateY(-1px);
 }
 
-.btn-gold {
-  background-color: var(--color-gold);
-  color: #FFFFFF;
-  border: 1px solid var(--color-gold);
-}
-
-.btn-gold:hover {
-  background-color: var(--color-gold-hover);
-  border-color: var(--color-gold-hover);
-  color: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-float);
-}
-
+/* WhatsApp / Call buttons in Green */
 .btn-whatsapp {
-  background-color: #25D366;
+  background-color: var(--color-whatsapp);
   color: #FFFFFF;
-  border: 1px solid #25D366;
+  border: 1px solid var(--color-whatsapp);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .btn-whatsapp:hover {
-  background-color: #1EBE5D;
-  border-color: #1EBE5D;
+  background-color: var(--color-whatsapp-hover);
+  border-color: var(--color-whatsapp-hover);
   color: #FFFFFF;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
@@ -311,7 +289,7 @@ button {
 }
 
 /* ==========================================================================
-   Sticky Header & Subpage Navigation
+   Header & Navigation
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -319,7 +297,7 @@ button {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
@@ -337,13 +315,14 @@ button {
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1.15rem;
 }
 
 .header-logo {
-  height: 48px;
+  height: var(--header-logo-height);
   width: auto;
   object-fit: contain;
+  transition: var(--transition-fast);
 }
 
 .header-brand-info {
@@ -353,7 +332,7 @@ button {
 
 .header-brand-name {
   font-family: var(--font-serif);
-  font-size: 1.18rem;
+  font-size: 1.32rem;
   letter-spacing: 0.12em;
   font-weight: 600;
   color: var(--color-text-main);
@@ -362,8 +341,8 @@ button {
 }
 
 .header-brand-sub {
-  font-size: 0.68rem;
-  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--color-gold);
   font-weight: 600;
@@ -372,15 +351,17 @@ button {
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 1.85rem;
+  gap: 1.75rem;
 }
 
 .nav-item {
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-main);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   position: relative;
-  padding: 0.4rem 0;
+  padding: 0.5rem 0;
 }
 
 .nav-item::after {
@@ -401,35 +382,18 @@ button {
 
 .nav-item.is-active {
   color: var(--color-gold);
-  font-weight: 600;
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-cta-btn {
-  padding: 0.65rem 1.35rem;
-  font-size: 0.85rem;
-  min-height: 42px;
-}
-
-/* Mobile Toggle */
 .mobile-toggle {
   display: none;
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   color: var(--color-text-main);
   padding: 0.5rem;
   cursor: pointer;
-  min-height: 44px;
-  min-width: 44px;
 }
 
-/* Mobile Drawer */
 .mobile-drawer {
   display: none;
   position: fixed;
@@ -461,10 +425,10 @@ button {
 }
 
 /* ==========================================================================
-   Hero Section: Editorial Split Layout (Zero Dead Space)
+   Hero Section (Editorial Split Layout)
    ========================================================================== */
 .hero-split {
-  padding: 4rem 0 3.5rem;
+  padding: 4.5rem 0 3.5rem;
   background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
   border-bottom: 1px solid var(--color-border);
 }
@@ -472,24 +436,27 @@ button {
 .hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 3.5rem;
+  gap: 4rem;
   align-items: center;
 }
 
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 3rem;
   }
 }
 
-.hero-content {
-  text-align: left;
+.hero-brand-emblem {
+  width: 115px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.15));
 }
 
 .hero-desc {
   font-size: 1.08rem;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--color-text-body);
   margin-bottom: 2.25rem;
   max-width: 580px;
@@ -499,36 +466,15 @@ button {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
-}
-
-.hero-trust-bar {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  border-top: 1px solid var(--color-border);
-  padding-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.85rem;
-  color: var(--color-text-body);
-  font-weight: 500;
-}
-
-.trust-item span.icon {
-  color: var(--color-gold);
 }
 
 .hero-image-wrap {
   position: relative;
   max-width: 440px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hero-doctor-img {
@@ -539,54 +485,125 @@ button {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-border);
+  margin-bottom: 1.25rem;
 }
 
-.hero-floating-card {
-  position: absolute;
-  bottom: -1.25rem;
-  left: -1.25rem;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  padding: 0.9rem 1.25rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.google-stars {
-  color: #F4B400;
-  font-size: 1rem;
-}
-
-.floating-card-rating {
-  font-weight: 700;
-  font-size: 1.15rem;
+.hero-doctor-caption {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-style: italic;
   color: var(--color-text-main);
-  line-height: 1;
+  margin-bottom: 0.65rem;
+  line-height: 1.35;
 }
 
-.floating-card-label {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
+.hero-location-pin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  background: #FFFFFF;
+  border: 1px solid var(--color-gold-border);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
 }
 
 /* ==========================================================================
-   Interactive 3D Dental Experience (Star Feature)
+   2nd Block: Tratamientos (2x2 Grid)
+   ========================================================================== */
+.treatments-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.25rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  .treatments-grid-2x2 {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.treatment-card-clean {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.treatment-card-clean:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-md);
+}
+
+.treatment-card-img-wrap {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+  background: var(--color-bg-warm);
+}
+
+.treatment-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.treatment-card-clean:hover .treatment-card-img-wrap img {
+  transform: scale(1.04);
+}
+
+.treatment-card-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.treatment-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.treatment-clean-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: 0.85rem;
+  line-height: 1.2;
+}
+
+.treatment-clean-desc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text-body);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   3rd Block: 3D Experience (Three.js)
    ========================================================================== */
 .section-3d-experience {
   padding: 5rem 0;
   background-color: #FFFFFF;
   border-bottom: 1px solid var(--color-border);
-  position: relative;
-}
-
-.experience-header {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 3rem;
 }
 
 .canvas-3d-container {
@@ -601,9 +618,7 @@ button {
 }
 
 @media (max-width: 768px) {
-  .canvas-3d-container {
-    height: 380px;
-  }
+  .canvas-3d-container { height: 380px; }
 }
 
 #dentalCanvas {
@@ -650,11 +665,6 @@ button {
   font-weight: 700;
 }
 
-.slider-track-wrap {
-  position: relative;
-  width: 100%;
-}
-
 .ortho-slider {
   width: 100%;
   height: 8px;
@@ -679,9 +689,7 @@ button {
   transition: transform 0.15s ease;
 }
 
-.ortho-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.18);
-}
+.ortho-slider::-webkit-slider-thumb:hover { transform: scale(1.18); }
 
 .slider-ticks {
   display: flex;
@@ -691,79 +699,13 @@ button {
   margin-top: 0.4rem;
 }
 
-.aligner-toggle-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.88rem;
-  color: var(--color-text-body);
-  cursor: pointer;
-}
-
-.aligner-toggle-wrap input[type="checkbox"] {
-  accent-color: var(--color-gold);
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-/* Hotspots in 3D scene */
-.hotspots-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-@media (max-width: 768px) {
-  .hotspots-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-.hotspot-card {
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-xs);
-  transition: var(--transition-fast);
-}
-
-.hotspot-card:hover {
-  border-color: var(--color-gold);
-  transform: translateY(-2px);
-}
-
-.hotspot-num {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.35rem;
-}
-
-.hotspot-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-main);
-  margin-bottom: 0.35rem;
-}
-
-.hotspot-desc {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
 /* ==========================================================================
-   Before / After Interactive Slider (Casos Reales)
+   4th Block: Before / After Inverted Slider (Left: ANTES / Right: DESPUÉS)
    ========================================================================== */
 .section-before-after {
   padding: 5rem 0;
   background-color: var(--color-bg-warm);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .ba-slider-container {
@@ -785,11 +727,10 @@ button {
 }
 
 @media (max-width: 768px) {
-  .ba-image-wrapper {
-    height: 320px;
-  }
+  .ba-image-wrapper { height: 320px; }
 }
 
+/* Base image is DESPUÉS (underneath) */
 .ba-img {
   width: 100%;
   height: 100%;
@@ -799,7 +740,8 @@ button {
   left: 0;
 }
 
-.ba-img-after-overlay {
+/* Overlaid image is ANTES (clipped from the left) */
+.ba-img-before-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -810,7 +752,7 @@ button {
   box-shadow: 2px 0 10px rgba(0,0,0,0.3);
 }
 
-.ba-img-after-overlay img {
+.ba-img-before-overlay img {
   position: absolute;
   top: 0;
   left: 0;
@@ -855,18 +797,18 @@ button {
   position: absolute;
   bottom: 1.25rem;
   padding: 0.35rem 0.85rem;
-  background: rgba(34, 31, 28, 0.75);
+  background: rgba(34, 31, 28, 0.8);
   backdrop-filter: blur(4px);
   color: #FFFFFF;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: var(--radius-sm);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.ba-badge-before { right: 1.25rem; }
-.ba-badge-after { left: 1.25rem; z-index: 5; }
+.ba-badge-antes { left: 1.25rem; z-index: 5; }
+.ba-badge-despues { right: 1.25rem; }
 
 .ba-card-info {
   background: var(--color-bg-white);
@@ -881,331 +823,40 @@ button {
   gap: 1rem;
 }
 
-.ba-patient-detail {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-text-main);
-}
-
-.ba-patient-meta {
-  font-size: 0.825rem;
-  color: var(--color-text-muted);
-}
-
 /* ==========================================================================
-   Treatments Grid (Categorized)
+   7th Block: Contact Form & Location
    ========================================================================== */
-.treatments-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-@media (max-width: 768px) {
-  .treatments-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.treatment-card {
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-smooth);
-  display: flex;
-  flex-direction: column;
-}
-
-.treatment-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-gold-border);
-  box-shadow: var(--shadow-md);
-}
-
-.treatment-card-img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.treatment-card:hover .treatment-card-img {
-  transform: scale(1.03);
-}
-
-.treatment-card-body {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.treatment-card-tag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5rem;
-}
-
-.treatment-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
-  font-weight: 500;
-  color: var(--color-text-main);
-  margin-bottom: 0.75rem;
-  line-height: 1.25;
-}
-
-.treatment-card-text {
-  font-size: 0.925rem;
-  color: var(--color-text-body);
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
-}
-
-.treatment-card-features {
-  list-style: none;
-  margin-bottom: 1.5rem;
-  border-top: 1px solid var(--color-border-subtle);
-  padding-top: 1rem;
-}
-
-.treatment-card-features li {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.4rem;
-}
-
-.treatment-card-features li span {
-  color: var(--color-gold);
-}
-
-/* ==========================================================================
-   Prueba Social & Google Reviews
-   ========================================================================== */
-.section-social-proof {
-  padding: 5rem 0;
-  background-color: var(--color-bg-white);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.proof-score-banner {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.proof-score-stars {
-  color: #F4B400;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.proof-score-text {
-  font-size: 1.35rem;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  color: var(--color-text-main);
-}
-
-.proof-score-sub {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-}
-
-@media (max-width: 900px) {
-  .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.review-card {
-  background: var(--color-bg-warm);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  box-shadow: var(--shadow-xs);
-  display: flex;
-  flex-direction: column;
-}
-
-.review-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.review-author {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--color-text-main);
-}
-
-.review-tag {
-  font-size: 0.75rem;
-  color: var(--color-text-light);
-}
-
-.review-stars {
-  color: #F4B400;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-}
-
-.review-body {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--color-text-body);
-  font-style: italic;
-}
-
-/* ==========================================================================
-   Financiación y Primera Cita (Transparencia)
-   ========================================================================== */
-.section-financing {
-  padding: 5rem 0;
-  background: linear-gradient(180deg, var(--color-bg-warm) 0%, #FFFFFF 100%);
-}
-
-.financing-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-@media (max-width: 900px) {
-  .financing-cards-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.financing-card {
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 2.25rem 1.75rem;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: var(--transition-fast);
-}
-
-.financing-card:hover {
-  border-color: var(--color-gold);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.financing-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--color-gold-light);
-  color: var(--color-gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-
-.financing-title {
-  font-family: var(--font-serif);
-  font-size: 1.45rem;
-  font-weight: 500;
-  color: var(--color-text-main);
-  margin-bottom: 0.75rem;
-}
-
-.financing-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--color-text-body);
-}
-
-/* ==========================================================================
-   Appointment Booking Widget & Contact
-   ========================================================================== */
-.section-booking {
-  padding: 5rem 0;
+.section-contact-refined {
+  padding: 5rem 0 6rem;
   background-color: #FFFFFF;
-  border-top: 1px solid var(--color-border);
 }
 
-.booking-grid {
+.contact-refined-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 3.5rem;
 }
 
 @media (max-width: 900px) {
-  .booking-grid {
+  .contact-refined-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 }
 
-.booking-info-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.clinic-location-card {
-  background: var(--color-bg-warm);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  margin-top: 2rem;
-}
-
-.clinic-location-card h4 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--color-text-main);
-  margin-bottom: 0.4rem;
-}
-
-.clinic-location-card p {
-  font-size: 0.9rem;
-  color: var(--color-text-body);
-  line-height: 1.5;
-}
-
-.booking-card {
+.contact-card-refined {
   background: var(--color-bg-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  padding: 2.75rem 2.25rem;
   box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 500px) {
-  .booking-card {
-    padding: 1.5rem 1.25rem;
-  }
+  .contact-card-refined { padding: 1.5rem 1.25rem; }
 }
 
-.form-group {
-  margin-bottom: 1.35rem;
-}
+.form-group { margin-bottom: 1.35rem; }
 
 .form-label {
   display: block;
@@ -1235,41 +886,15 @@ button {
   box-shadow: 0 0 0 3px rgba(168, 131, 66, 0.12);
 }
 
-/* First Layer RGPD Summary Box */
-.rgpd-summary-box {
-  background-color: var(--color-bg-warm);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 1rem;
-  font-size: 0.78rem;
-  line-height: 1.5;
+.form-disclaimer-pdf {
+  font-size: 0.825rem;
+  line-height: 1.55;
   color: var(--color-text-muted);
-  margin: 1.5rem 0 1.25rem;
-}
-
-.rgpd-summary-title {
-  font-weight: 700;
-  color: var(--color-text-main);
-  margin-bottom: 0.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.72rem;
-}
-
-.rgpd-summary-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.rgpd-summary-table td {
-  padding: 0.2rem 0;
-  vertical-align: top;
-}
-
-.rgpd-summary-table td.rgpd-label {
-  font-weight: 600;
-  color: var(--color-text-main);
-  width: 110px;
+  background: var(--color-bg-warm);
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  margin: 1.25rem 0 1.5rem;
 }
 
 .form-checkbox-label {
@@ -1288,11 +913,112 @@ button {
   accent-color: var(--color-gold);
   width: 18px;
   height: 18px;
-  cursor: pointer;
 }
 
 /* ==========================================================================
-   Legal Sanitary Footer
+   FAQ Accordion Component (Preguntas Frecuentes)
+   ========================================================================== */
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faq-card-collapsible {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: var(--transition-fast);
+}
+
+.faq-card-collapsible:hover {
+  border-color: var(--color-gold);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 2rem;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  transition: var(--transition-fast);
+}
+
+.faq-trigger:hover {
+  color: var(--color-gold);
+}
+
+.faq-icon-sign {
+  font-size: 1.4rem;
+  color: var(--color-gold);
+  font-weight: 400;
+  margin-left: 1rem;
+}
+
+.faq-content-body {
+  display: none;
+  padding: 0 2rem 1.6rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  border-top: 1px dashed var(--color-border-subtle);
+  padding-top: 1.25rem;
+}
+
+.faq-content-body.is-open {
+  display: block;
+}
+
+/* ==========================================================================
+   Vertical Clinic Facility Photos
+   ========================================================================== */
+.facilities-vertical-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+@media (max-width: 680px) {
+  .facilities-vertical-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.facility-vertical-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  height: 520px;
+  background: var(--color-bg-warm);
+}
+
+.facility-vertical-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.facility-vertical-card:hover img {
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   Footer (Enlarged Logo x4 & Updated Copy)
    ========================================================================== */
 .site-footer {
   background-color: var(--color-bg-warm);
@@ -1301,37 +1027,44 @@ button {
   color: var(--color-text-body);
 }
 
-.footer-grid {
+.footer-grid-refined {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+  gap: 3.5rem;
   margin-bottom: 3.5rem;
 }
 
 @media (max-width: 900px) {
-  .footer-grid {
+  .footer-grid-refined {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
   }
 }
 
 @media (max-width: 600px) {
-  .footer-grid {
+  .footer-grid-refined {
     grid-template-columns: 1fr;
   }
 }
 
-.footer-brand-logo {
-  height: 52px;
-  width: auto;
-  margin-bottom: 1rem;
+.footer-large-logo {
+  width: 220px; /* ~x4 of standard small icons */
+  height: auto;
+  margin-bottom: 1.25rem;
 }
 
-.footer-bio-text {
-  font-size: 0.88rem;
-  line-height: 1.6;
+.footer-headline {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  margin-bottom: 0.35rem;
+}
+
+.footer-subheadline {
+  font-size: 0.925rem;
   color: var(--color-text-muted);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-heading {
@@ -1370,10 +1103,6 @@ button {
   line-height: 1.6;
 }
 
-.footer-sanitary-box strong {
-  color: var(--color-text-main);
-}
-
 .footer-bottom {
   display: flex;
   align-items: center;
@@ -1393,44 +1122,7 @@ button {
   color: var(--color-gold);
 }
 
-/* ==========================================================================
-   Mobile Fixed Bottom Conversion Bar
-   ========================================================================== */
-.mobile-bottom-bar {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid var(--color-border);
-  padding: 0.65rem 1rem;
-  z-index: 990;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
-}
-
-@media (max-width: 768px) {
-  .mobile-bottom-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  body {
-    padding-bottom: 64px; /* avoid content obscured by bottom bar */
-  }
-}
-
-.mobile-bottom-bar .btn {
-  flex: 1;
-  padding: 0.65rem 1rem;
-  font-size: 0.85rem;
-  min-height: 44px;
-}
-
-/* ==========================================================================
-   Floating WhatsApp Button
-   ========================================================================== */
+/* Floating Desktop WhatsApp Button */
 .floating-whatsapp-btn {
   position: fixed;
   bottom: 2rem;
@@ -1448,12 +1140,6 @@ button {
   font-weight: 600;
   color: var(--color-text-main);
   transition: var(--transition-fast);
-}
-
-@media (max-width: 768px) {
-  .floating-whatsapp-btn {
-    display: none; /* replaced by mobile-bottom-bar on mobile */
-  }
 }
 
 .floating-whatsapp-btn:hover {

@@ -1,7 +1,7 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
  * 3D Interactive Dental Arch, Brackets & Aligner Simulation (Three.js)
- * Fixed High-Detail Geometry, Custom Bracket/Aligner Colors, Dramatic Before/After & 5s Auto-Resume.
+ * Optimized Zero-Allocation Wire Updates, Shared Geometries, Auto-Pause & WebGL Recovery.
  */
 
 (function () {
@@ -13,18 +13,20 @@
   const alignerCheckbox = document.getElementById('toggleAlignerCheck');
   const btnResetView = document.getElementById('btnReset3dView');
 
-  if (!container) return;
+  if (!container || typeof THREE === 'undefined') return;
 
   // =========================================================================
-  // 1. HIGH-RESOLUTION GEOMETRY CONFIGURATION (Opción "Alta" fija)
+  // 1. HIGH-RESOLUTION GEOMETRY CONFIGURATION (Balanceado para estabilidad GPU)
   // =========================================================================
   const DETAIL = {
-    toothU: 28,
-    toothV: 22,
-    gumArch: 120,
-    gumProfile: 18,
-    wireSegs: 76,
-    shadowMap: 2048
+    toothU: 26,
+    toothV: 20,
+    gumArch: 108,
+    gumProfile: 16,
+    wireSegs: 64,
+    wireRadialSegs: 6,
+    wireRadius: 0.048,
+    shadowMap: 1024
   };
 
   // Color Palettes for User Customization
@@ -53,13 +55,14 @@
   // =========================================================================
   // 2. STATE & SCENE VARIABLES
   // =========================================================================
-  let scene, camera, renderer, keyLight;
+  let scene, camera, renderer, keyLight, envRT;
   let modelRoot, lowerJawGroup, hingePivot, upperJawGroup;
   let lowerWireMesh, upperWireMesh;
   let lowerAlignerMesh, upperAlignerMesh;
   let lowerGumMesh, upperGumMesh;
   let teethRecords = [];
   let toothGeometryCache = {};
+  let sharedBracketGeoms = null;
 
   // Active Colors
   let activeBracketColor = 'mix';
@@ -76,6 +79,12 @@
   let holdTimer = 0.0;
   let holdPhase = 'none'; // 'end' | 'start' | 'none'
 
+  // Visibility & Context State
+  let isCanvasVisible = true;
+  let isContextLost = false;
+  let rafId = null;
+  let eventsBound = false;
+
   // Orbit / Drag Interaction
   let isDragging = false;
   let previousMousePosition = { x: 0, y: 0 };
@@ -88,6 +97,16 @@
 
   // Timing
   let lastFrameTime = performance.now();
+
+  // Reusable math temporaries for zero-allocation wire updates
+  const _invJawMat = new THREE.Matrix4();
+  const _tmpVec = new THREE.Vector3();
+  const _tmpPt = new THREE.Vector3();
+  const _wireSinCos = [];
+  for (let j = 0; j <= DETAIL.wireRadialSegs; j++) {
+    const v = (j / DETAIL.wireRadialSegs) * Math.PI * 2;
+    _wireSinCos.push({ sin: Math.sin(v), cos: -Math.cos(v) });
+  }
 
   // Anatomical tooth proportions
   const TOOTH_SPECS = {
@@ -122,7 +141,7 @@
     scene = new THREE.Scene();
 
     const width = container.clientWidth || 800;
-    const height = container.clientHeight || 520;
+    const height = container.clientHeight || 500;
     camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 200);
     camera.position.set(0, 4.4, 26.8);
     camera.lookAt(0, 0.1, 0);
@@ -133,17 +152,21 @@
       powerPreference: 'high-performance'
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.94; // Controlled exposure so teeth never blow out to flat white
+    renderer.toneMappingExposure = 0.94;
 
     if ('outputColorSpace' in renderer && THREE.SRGBColorSpace) {
       renderer.outputColorSpace = THREE.SRGBColorSpace;
     } else if ('outputEncoding' in renderer && THREE.sRGBEncoding) {
       renderer.outputEncoding = THREE.sRGBEncoding;
     }
+
+    // Handle WebGL Context Loss & Restore cleanly
+    renderer.domElement.addEventListener('webglcontextlost', onContextLost, false);
+    renderer.domElement.addEventListener('webglcontextrestored', onContextRestored, false);
 
     container.appendChild(renderer.domElement);
 
@@ -153,16 +176,63 @@
     buildTypodontModel();
     createColorCustomizerUI();
     setupEvents();
+    setupVisibilityObserver();
 
     updateOrthoProgress(0.0, true);
 
     lastFrameTime = performance.now();
-    requestAnimationFrame(animate);
+    scheduleNextFrame();
+  }
+
+  function onContextLost(e) {
+    e.preventDefault();
+    isContextLost = true;
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  function onContextRestored() {
+    isContextLost = false;
+    setupStudioEnvironment();
+    updateOrthoProgress(exactMonth / TOTAL_MONTHS, false);
+    lastFrameTime = performance.now();
+    scheduleNextFrame();
+  }
+
+  function setupVisibilityObserver() {
+    if (typeof IntersectionObserver === 'function') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const nowVisible = entry.isIntersecting;
+          if (nowVisible && !isCanvasVisible) {
+            isCanvasVisible = true;
+            lastFrameTime = performance.now();
+            scheduleNextFrame();
+          } else {
+            isCanvasVisible = nowVisible;
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(container);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && isCanvasVisible && !isContextLost) {
+        lastFrameTime = performance.now();
+        scheduleNextFrame();
+      }
+    });
   }
 
   function setupStudioEnvironment() {
     try {
       if (typeof THREE.PMREMGenerator !== 'function') return;
+      if (envRT) {
+        envRT.dispose();
+        envRT = null;
+      }
       const pmrem = new THREE.PMREMGenerator(renderer);
       const envScene = new THREE.Scene();
       envScene.background = new THREE.Color(0xB8AFA2);
@@ -186,7 +256,7 @@
       leftCool.lookAt(0, 0, 0);
       envScene.add(leftCool);
 
-      const envRT = pmrem.fromScene(envScene, 0.04);
+      envRT = pmrem.fromScene(envScene, 0.04);
       scene.environment = envRT.texture;
 
       topPanel.geometry.dispose();
@@ -202,11 +272,9 @@
   }
 
   function setupLighting() {
-    // Low ambient/hemi ratio preserves rich depth and dark interdental shadows
-    const hemiLight = new THREE.HemisphereLight(0xFFFDF8, 0x8A7A6B, 0.26);
+    const hemiLight = new THREE.HemisphereLight(0xFFFDF8, 0x8A7A6B, 0.28);
     scene.add(hemiLight);
 
-    // Key Light (Warm Clinical Lamp casting defined shadows)
     keyLight = new THREE.DirectionalLight(0xFFF8EC, 1.25);
     keyLight.position.set(10, 15, 13);
     keyLight.castShadow = true;
@@ -221,50 +289,44 @@
     keyLight.shadow.normalBias = 0.02;
     scene.add(keyLight);
 
-    // Subtle cool side fill for 3D sculpting
     const fillLight = new THREE.DirectionalLight(0xCBE2F5, 0.36);
     fillLight.position.set(-14, 5, 7);
     scene.add(fillLight);
 
-    // Warm rim light to separate model silhouette cleanly from cream background
     const rimLight = new THREE.DirectionalLight(0xD4AF37, 0.55);
     rimLight.position.set(-3, 9, -16);
     scene.add(rimLight);
   }
 
   function initMaterials() {
-    // Warm Ivory Porcelain Enamel (distinct from pure white & cream background)
     enamelMat = new THREE.MeshPhysicalMaterial({
       color: 0xF1E8D5,
       roughness: 0.20,
       metalness: 0.0,
-      clearcoat: 0.88,
+      clearcoat: 0.85,
       clearcoatRoughness: 0.12,
       reflectivity: 0.72,
       envMapIntensity: 0.48
     });
 
-    // Rich Anatomical Coral-Pink Gingiva
     gumMat = new THREE.MeshPhysicalMaterial({
       color: 0xC84D56,
       roughness: 0.32,
       metalness: 0.0,
-      clearcoat: 0.48,
+      clearcoat: 0.45,
       clearcoatRoughness: 0.20,
       envMapIntensity: 0.42
     });
 
-    // Subtle Pearl-Stone Acrylic Base (separates cleanly from cream canvas & ivory teeth)
     acrylicMat = new THREE.MeshPhysicalMaterial({
       color: 0xDDD4C6,
       roughness: 0.30,
       metalness: 0.02,
-      clearcoat: 0.45,
+      clearcoat: 0.42,
       clearcoatRoughness: 0.22,
       envMapIntensity: 0.40
     });
 
-    // Crisp Gunmetal / Stainless Steel Brackets (stands out clearly against ivory enamel)
     bracketMat = new THREE.MeshStandardMaterial({
       color: 0x9CA6B2,
       roughness: 0.20,
@@ -272,7 +334,6 @@
       envMapIntensity: 1.05
     });
 
-    // Polished NiTi Archwire
     wireMat = new THREE.MeshStandardMaterial({
       color: 0x8F99A6,
       roughness: 0.16,
@@ -280,7 +341,6 @@
       envMapIntensity: 1.15
     });
 
-    // Customizable Translucent Clear Aligner Polymer
     alignerMat = new THREE.MeshPhysicalMaterial({
       color: new THREE.Color(activeAlignerColor),
       transparent: true,
@@ -345,7 +405,7 @@
   }
 
   // =========================================================================
-  // 5. ANATOMICAL TOOTH SCULPTING (HIGH RESOLUTION)
+  // 5. ANATOMICAL TOOTH SCULPTING
   // =========================================================================
   function createAnatomicalToothGeometry(type) {
     const geom = new THREE.SphereGeometry(1, DETAIL.toothU, DETAIL.toothV);
@@ -418,7 +478,7 @@
   }
 
   // =========================================================================
-  // 6. SCULPTED GUMS, CLEAN ACRYLIC BASE & ALIGNER SHELL
+  // 6. SCULPTED GUMS, ACRYLIC BASE, ALIGNER SHELL & REUSABLE WIRE GEOMETRY
   // =========================================================================
   function createSculptedGumGeometry(scale, toothArcOffsets) {
     const archSegs = DETAIL.gumArch;
@@ -431,7 +491,7 @@
 
     function getProfilePoint(v, festoonOffset) {
       const theta = v * Math.PI;
-      const baseWidth = 1.24; // Wide enough to keep dramatically crooked roots anchored inside gingiva
+      const baseWidth = 1.24;
       const offsetN = -Math.cos(theta) * baseWidth;
       let h = Math.sin(theta) * 1.42 + festoonOffset * Math.pow(Math.sin(theta), 1.5);
       const centerDip = Math.exp(-Math.pow(offsetN, 2) / 0.24) * 0.22;
@@ -630,52 +690,93 @@
     return geom;
   }
 
+  function createReusableWireGeometry() {
+    const tubularSegs = DETAIL.wireSegs;
+    const radialSegs = DETAIL.wireRadialSegs;
+    const vertCount = (tubularSegs + 1) * (radialSegs + 1);
+
+    const positions = new Float32Array(vertCount * 3);
+    const normals = new Float32Array(vertCount * 3);
+    const indices = [];
+
+    const row = radialSegs + 1;
+    for (let i = 0; i < tubularSegs; i++) {
+      for (let j = 0; j < radialSegs; j++) {
+        const a = i * row + j;
+        const b = (i + 1) * row + j;
+        const c = (i + 1) * row + (j + 1);
+        const d = i * row + (j + 1);
+        indices.push(a, b, d);
+        indices.push(b, c, d);
+      }
+    }
+
+    const geom = new THREE.BufferGeometry();
+    const posAttr = new THREE.BufferAttribute(positions, 3);
+    const normAttr = new THREE.BufferAttribute(normals, 3);
+    if (typeof posAttr.setUsage === 'function' && THREE.DynamicDrawUsage) {
+      posAttr.setUsage(THREE.DynamicDrawUsage);
+      normAttr.setUsage(THREE.DynamicDrawUsage);
+    }
+    geom.setAttribute('position', posAttr);
+    geom.setAttribute('normal', normAttr);
+    geom.setIndex(indices);
+    // Generous static bounding sphere so frustum culling never drops the wire
+    geom.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1.5, 0), 12);
+    return geom;
+  }
+
   // =========================================================================
-  // 7. ORTHODONTIC BRACKET BUILDER (Customizable Ligature Color)
+  // 7. ORTHODONTIC BRACKET BUILDER (Shared Geometries)
   // =========================================================================
+  function getSharedBracketGeometries() {
+    if (!sharedBracketGeoms) {
+      sharedBracketGeoms = {
+        pad: new THREE.BoxGeometry(0.42, 0.34, 0.08),
+        tube: new THREE.BoxGeometry(0.46, 0.24, 0.16),
+        wing: new THREE.BoxGeometry(0.12, 0.11, 0.14),
+        molarLig: new THREE.TorusGeometry(0.14, 0.032, 8, 16),
+        lig: new THREE.TorusGeometry(0.155, 0.04, 8, 18)
+      };
+    }
+    return sharedBracketGeoms;
+  }
+
   function createBracketAssembly(defaultLigColorHex, isMolar) {
     const group = new THREE.Group();
+    const g = getSharedBracketGeometries();
 
-    const pad = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.34, 0.08), bracketMat);
-    pad.castShadow = true;
+    const pad = new THREE.Mesh(g.pad, bracketMat);
     group.add(pad);
+
+    const ligMat = new THREE.MeshStandardMaterial({
+      color: defaultLigColorHex,
+      roughness: 0.32,
+      metalness: isMolar ? 0.08 : 0.06
+    });
 
     let ligRing = null;
 
     if (isMolar) {
-      const tube = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.24, 0.16), bracketMat);
+      const tube = new THREE.Mesh(g.tube, bracketMat);
       tube.position.z = 0.08;
-      tube.castShadow = true;
       group.add(tube);
 
-      // Subtle molar band ring accent so color customization reflects cleanly on molars too
-      const ligMat = new THREE.MeshStandardMaterial({
-        color: defaultLigColorHex,
-        roughness: 0.32,
-        metalness: 0.08
-      });
-      ligRing = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.032, 8, 16), ligMat);
+      ligRing = new THREE.Mesh(g.molarLig, ligMat);
       ligRing.position.z = 0.12;
       ligRing.scale.set(1.25, 0.72, 1.0);
       group.add(ligRing);
     } else {
-      const wingGeom = new THREE.BoxGeometry(0.12, 0.11, 0.14);
       [
         [-0.10,  0.09], [0.10,  0.09],
         [-0.10, -0.09], [0.10, -0.09]
       ].forEach(([wx, wy]) => {
-        const w = new THREE.Mesh(wingGeom, bracketMat);
+        const w = new THREE.Mesh(g.wing, bracketMat);
         w.position.set(wx, wy, 0.07);
-        w.castShadow = true;
         group.add(w);
       });
 
-      const ligMat = new THREE.MeshStandardMaterial({
-        color: defaultLigColorHex,
-        roughness: 0.32,
-        metalness: 0.06
-      });
-      ligRing = new THREE.Mesh(new THREE.TorusGeometry(0.155, 0.04, 8, 18), ligMat);
+      ligRing = new THREE.Mesh(g.lig, ligMat);
       ligRing.position.z = 0.09;
       ligRing.scale.set(1.06, 0.94, 1.0);
       group.add(ligRing);
@@ -685,13 +786,12 @@
   }
 
   // =========================================================================
-  // 8. BUILD COMPLETE MODEL (NO BLOCKS, NO FLOATING HINGE BAR)
+  // 8. BUILD COMPLETE MODEL
   // =========================================================================
   function buildTypodontModel() {
     modelRoot = new THREE.Group();
     scene.add(modelRoot);
 
-    // Fixed horizontal ground shadow plane in scene space (won't tilt when dragging)
     const shadowPlane = new THREE.Mesh(
       new THREE.PlaneGeometry(40, 40),
       new THREE.ShadowMaterial({ opacity: 0.13 })
@@ -703,12 +803,10 @@
 
     buildToothGeometryCache();
 
-    // Lower Jaw
     lowerJawGroup = new THREE.Group();
     lowerJawGroup.position.set(0, -2.25, 0);
     modelRoot.add(lowerJawGroup);
 
-    // Upper Jaw articulated cleanly open (~18°)
     hingePivot = new THREE.Group();
     hingePivot.position.set(0, 0.25, -5.4);
     hingePivot.rotation.x = -0.32;
@@ -722,7 +820,6 @@
     const lowerToothS = buildArchSide(lowerJawGroup, false, 0.96);
     const upperToothS = buildArchSide(upperJawGroup, true, 1.04);
 
-    // Sculpted Coral Gums
     lowerGumMesh = new THREE.Mesh(createSculptedGumGeometry(0.96, lowerToothS), gumMat);
     lowerGumMesh.castShadow = true;
     lowerGumMesh.receiveShadow = true;
@@ -733,7 +830,6 @@
     upperGumMesh.receiveShadow = true;
     upperJawGroup.add(upperGumMesh);
 
-    // Clean Pearl-Stone Acrylic Bases (sin cuadros ni piezas sobresalientes)
     const lowerBase = new THREE.Mesh(createAcrylicBaseGeometry(0.96), acrylicMat);
     lowerBase.castShadow = true;
     lowerBase.receiveShadow = true;
@@ -744,16 +840,15 @@
     upperBase.receiveShadow = true;
     upperJawGroup.add(upperBase);
 
-    // Dynamic Orthodontic Archwires
-    lowerWireMesh = new THREE.Mesh(new THREE.BufferGeometry(), wireMat);
-    lowerWireMesh.castShadow = true;
+    // Pre-allocated Dynamic Orthodontic Archwires (Zero per-frame buffer allocation)
+    lowerWireMesh = new THREE.Mesh(createReusableWireGeometry(), wireMat);
+    lowerWireMesh.frustumCulled = false;
     lowerJawGroup.add(lowerWireMesh);
 
-    upperWireMesh = new THREE.Mesh(new THREE.BufferGeometry(), wireMat);
-    upperWireMesh.castShadow = true;
+    upperWireMesh = new THREE.Mesh(createReusableWireGeometry(), wireMat);
+    upperWireMesh.frustumCulled = false;
     upperJawGroup.add(upperWireMesh);
 
-    // Clear Aligners
     lowerAlignerMesh = new THREE.Mesh(createAlignerGeometry(0.96), alignerMat);
     lowerAlignerMesh.visible = false;
     lowerJawGroup.add(lowerAlignerMesh);
@@ -797,7 +892,6 @@
       const sz = spec.depth * 0.56 * archScale;
       mesh.scale.set(sx, sy, sz);
 
-      // Final Ideal Position (Month 14): seated firmly inside sculpted gingiva
       const finalY = 1.48;
       const finalPos = new THREE.Vector3(sample.pos.x, finalY, sample.pos.z);
 
@@ -805,9 +899,6 @@
       const torque = idx <= 1 ? (isUpper ? 0.14 : 0.08) : 0.02;
       const finalRot = new THREE.Euler(torque, yaw, 0, 'YXZ');
 
-      // =====================================================================
-      // DRAMATIC INITIAL MALOCCLUSION (Month 0) para un "Antes/Después" notable
-      // =====================================================================
       let offX = 0, offY = 0, offZ = 0;
       let rPitch = 0, rYaw = 0, rRoll = 0;
       const nx = sample.normal.x;
@@ -815,7 +906,6 @@
 
       if (isUpper) {
         if (idx === 0) {
-          // Upper centrals: notable V-winging & asymmetric overlap
           rYaw = side * 0.46;
           rRoll = -side * 0.20;
           rPitch = side > 0 ? 0.16 : -0.10;
@@ -824,7 +914,6 @@
           offZ += nz * push;
           offY += side > 0 ? 0.12 : -0.14;
         } else if (idx === 1) {
-          // Upper laterals: strongly palatally retruded & rotated behind centrals
           offX -= nx * 0.68;
           offZ -= nz * 0.68;
           offY -= 0.18;
@@ -832,27 +921,23 @@
           rPitch = -0.26;
           rRoll = side * 0.22;
         } else if (idx === 2) {
-          // Upper canines: prominent high ectopic canines ("colmillos montados")
           offX += nx * 0.64;
           offZ += nz * 0.64;
-          offY -= 0.56; // High toward upper gumline
+          offY -= 0.56;
           rRoll = side * 0.34;
           rYaw = side * 0.30;
           rPitch = 0.20;
         } else if (idx === 3) {
-          // 1st premolars: inward tipping & rotation
           offX -= nx * 0.40;
           offZ -= nz * 0.40;
           rYaw = -side * 0.46;
           rRoll = -side * 0.18;
         } else if (idx === 4) {
-          // 2nd premolars: mild rotation
           offX += nx * 0.18;
           offZ += nz * 0.18;
           rYaw = side * 0.26;
         }
       } else {
-        // Severe lower anterior crowding & arch irregularity
         if (idx === 0) {
           const push = side > 0 ? -0.44 : 0.48;
           offX += nx * push;
@@ -925,45 +1010,79 @@
   }
 
   // =========================================================================
-  // 9. REAL-TIME ARCHWIRE & PROGRESSION
+  // 9. ZERO-ALLOCATION IN-PLACE ARCHWIRE UPDATE & PROGRESSION
   // =========================================================================
   function updateDynamicArchwire(jawGroup, wireMesh, isUpper) {
     if (!wireMesh || !wireMesh.visible) return;
 
     jawGroup.updateMatrixWorld(true);
-    const invJawMatrix = new THREE.Matrix4().copy(jawGroup.matrixWorld).invert();
+    _invJawMat.copy(jawGroup.matrixWorld).invert();
 
     const wirePoints = [];
-    teethRecords.forEach((rec) => {
-      if (rec.isUpper !== isUpper) return;
-      const worldPt = rec.slotLocalPos.clone().applyMatrix4(rec.bracketGroup.matrixWorld);
-      wirePoints.push(worldPt.applyMatrix4(invJawMatrix));
-    });
+    for (let k = 0; k < teethRecords.length; k++) {
+      const rec = teethRecords[k];
+      if (rec.isUpper !== isUpper) continue;
+      _tmpVec.copy(rec.slotLocalPos).applyMatrix4(rec.bracketGroup.matrixWorld).applyMatrix4(_invJawMat);
+      wirePoints.push(_tmpVec.clone());
+    }
 
     if (wirePoints.length < 4) return;
 
     const curve = new THREE.CatmullRomCurve3(wirePoints, false, 'centripetal', 0.45);
-    const newGeom = new THREE.TubeGeometry(curve, DETAIL.wireSegs, 0.048, 6, false);
+    const tubularSegs = DETAIL.wireSegs;
+    const radialSegs = DETAIL.wireRadialSegs;
+    const radius = DETAIL.wireRadius;
+    const frames = curve.computeFrenetFrames(tubularSegs, false);
 
-    if (wireMesh.geometry) wireMesh.geometry.dispose();
-    wireMesh.geometry = newGeom;
+    const posAttr = wireMesh.geometry.attributes.position;
+    const normAttr = wireMesh.geometry.attributes.normal;
+    const posArr = posAttr.array;
+    const normArr = normAttr.array;
+
+    let ptr = 0;
+    for (let i = 0; i <= tubularSegs; i++) {
+      curve.getPointAt(i / tubularSegs, _tmpPt);
+      const N = frames.normals[i];
+      const B = frames.binormals[i];
+
+      for (let j = 0; j <= radialSegs; j++) {
+        const sc = _wireSinCos[j];
+        const nx = sc.cos * N.x + sc.sin * B.x;
+        const ny = sc.cos * N.y + sc.sin * B.y;
+        const nz = sc.cos * N.z + sc.sin * B.z;
+
+        posArr[ptr]     = _tmpPt.x + radius * nx;
+        posArr[ptr + 1] = _tmpPt.y + radius * ny;
+        posArr[ptr + 2] = _tmpPt.z + radius * nz;
+
+        normArr[ptr]     = nx;
+        normArr[ptr + 1] = ny;
+        normArr[ptr + 2] = nz;
+
+        ptr += 3;
+      }
+    }
+
+    posAttr.needsUpdate = true;
+    normAttr.needsUpdate = true;
   }
 
   function updateOrthoProgress(t, syncSliderUI) {
     const clampedT = THREE.MathUtils.clamp(t, 0, 1);
 
-    teethRecords.forEach((rec) => {
+    for (let i = 0; i < teethRecords.length; i++) {
+      const rec = teethRecords[i];
       rec.mesh.position.lerpVectors(rec.initialPos, rec.finalPos, clampedT);
       rec.mesh.rotation.x = THREE.MathUtils.lerp(rec.initialRot.x, rec.finalRot.x, clampedT);
       rec.mesh.rotation.y = THREE.MathUtils.lerp(rec.initialRot.y, rec.finalRot.y, clampedT);
       rec.mesh.rotation.z = THREE.MathUtils.lerp(rec.initialRot.z, rec.finalRot.z, clampedT);
-    });
+    }
 
     const showAligner = Boolean(alignerCheckbox && alignerCheckbox.checked);
 
-    teethRecords.forEach((rec) => {
-      rec.bracketGroup.visible = !showAligner;
-    });
+    for (let i = 0; i < teethRecords.length; i++) {
+      teethRecords[i].bracketGroup.visible = !showAligner;
+    }
     if (lowerWireMesh) lowerWireMesh.visible = !showAligner;
     if (upperWireMesh) upperWireMesh.visible = !showAligner;
     if (lowerAlignerMesh) lowerAlignerMesh.visible = showAligner;
@@ -1008,7 +1127,6 @@
     if (typeof customOpacity === 'number') {
       activeAlignerOpacity = customOpacity;
     } else {
-      // Subtle translucent tint for custom colors
       activeAlignerOpacity = colorHex.toUpperCase() === '#E2F5FC' ? 0.34 : 0.44;
     }
 
@@ -1087,7 +1205,6 @@
         grp.appendChild(btn);
       });
 
-      // Custom Color Picker (+)
       const customWrap = document.createElement('label');
       customWrap.title = 'Color personalizado';
       customWrap.style.cssText = 'position:relative;width:17px;height:17px;border-radius:50%;border:1px dashed #A88342;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;font-weight:700;color:#A88342;background:#FAF8F5;overflow:hidden;';
@@ -1114,18 +1231,15 @@
       return grp;
     }
 
-    // 1. Brackets Color Group
     const bracketGrp = createGroup('Brackets:', BRACKET_PALETTE, activeBracketColor, (hex) => {
       setBracketColor(hex, true);
     });
     bar.appendChild(bracketGrp);
 
-    // Divider
     const divider = document.createElement('span');
     divider.style.cssText = 'width:1px;height:16px;background:#E2D9C8;';
     bar.appendChild(divider);
 
-    // 2. Clear Aligner Color Group
     const alignerGrp = createGroup('Alineador:', ALIGNER_PALETTE, activeAlignerColor, (hex, opacity) => {
       setAlignerColor(hex, opacity, true);
     });
@@ -1153,6 +1267,9 @@
   }
 
   function setupEvents() {
+    if (eventsBound) return;
+    eventsBound = true;
+
     if (slider) {
       slider.min = '0';
       slider.max = String(TOTAL_MONTHS);
@@ -1203,6 +1320,7 @@
 
     if (btnResetView) {
       btnResetView.addEventListener('click', () => {
+        if (!modelRoot || !camera) return;
         modelRoot.rotation.set(DEFAULT_MODEL_ROT.x, DEFAULT_MODEL_ROT.y, 0);
         camera.position.set(0, 4.4, 26.8);
         camera.lookAt(0, 0.1, 0);
@@ -1230,7 +1348,7 @@
     });
 
     window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
+      if (!isDragging || !modelRoot) return;
       const dx = e.clientX - previousMousePosition.x;
       const dy = e.clientY - previousMousePosition.y;
 
@@ -1258,7 +1376,7 @@
     });
 
     dom.addEventListener('touchmove', (e) => {
-      if (!isDragging || e.touches.length !== 1) return;
+      if (!isDragging || e.touches.length !== 1 || !modelRoot) return;
       const dx = e.touches[0].clientX - previousMousePosition.x;
       const dy = e.touches[0].clientY - previousMousePosition.y;
 
@@ -1279,48 +1397,64 @@
     if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(w, h);
   }
 
   // =========================================================================
-  // 12. MAIN RENDER & AUTO-TIMELINE LOOP (1 MONTH / SECOND)
+  // 12. MAIN RENDER & AUTO-TIMELINE LOOP (SAFE & AUTO-PAUSED OFFSCREEN)
   // =========================================================================
+  function scheduleNextFrame() {
+    if (rafId === null && !isContextLost && isCanvasVisible && !document.hidden) {
+      rafId = requestAnimationFrame(animate);
+    }
+  }
+
   function animate(now) {
-    requestAnimationFrame(animate);
+    rafId = null;
 
-    const dt = Math.min((now - lastFrameTime) / 1000, 0.1);
-    lastFrameTime = now;
+    if (isContextLost || !isCanvasVisible || document.hidden) {
+      return;
+    }
 
-    // Continuous 1 month / second progression unless paused by timeline interaction
-    if (isAutoPlaying) {
-      if (holdTimer > 0) {
-        holdTimer -= dt;
-        if (holdTimer <= 0) {
-          if (holdPhase === 'end') {
-            exactMonth = 0.0;
-            updateOrthoProgress(0.0, true);
-            holdPhase = 'start';
-            holdTimer = 0.6;
-          } else {
-            holdPhase = 'none';
+    try {
+      const dt = Math.max(0, Math.min((now - lastFrameTime) / 1000, 0.1));
+      lastFrameTime = now;
+
+      if (isAutoPlaying) {
+        if (holdTimer > 0) {
+          holdTimer -= dt;
+          if (holdTimer <= 0) {
+            if (holdPhase === 'end') {
+              exactMonth = 0.0;
+              updateOrthoProgress(0.0, true);
+              holdPhase = 'start';
+              holdTimer = 0.6;
+            } else {
+              holdPhase = 'none';
+            }
           }
+        } else {
+          exactMonth += dt * 1.0;
+          if (exactMonth >= TOTAL_MONTHS) {
+            exactMonth = TOTAL_MONTHS;
+            holdPhase = 'end';
+            holdTimer = 1.8;
+          }
+          updateOrthoProgress(exactMonth / TOTAL_MONTHS, true);
         }
-      } else {
-        exactMonth += dt * 1.0;
-        if (exactMonth >= TOTAL_MONTHS) {
-          exactMonth = TOTAL_MONTHS;
-          holdPhase = 'end';
-          holdTimer = 1.8;
-        }
-        updateOrthoProgress(exactMonth / TOTAL_MONTHS, true);
       }
-    }
 
-    if (!isUserRotating && modelRoot) {
-      modelRoot.rotation.y += dt * 0.15;
-    }
+      if (!isUserRotating && modelRoot) {
+        modelRoot.rotation.y += dt * 0.15;
+      }
 
-    renderer.render(scene, camera);
+      renderer.render(scene, camera);
+      scheduleNextFrame();
+    } catch (err) {
+      // Stop loop cleanly instead of freezing the tab with infinite exceptions
+      console.error('Ortho3D render error:', err);
+    }
   }
 
   // Optional external API

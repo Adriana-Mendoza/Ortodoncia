@@ -1,21 +1,20 @@
 /* ==========================================================================
    Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid (Barrio de Salamanca)
-   Design System & Responsive Stylesheet (PC, Tablet & Móvil)
+   Design System & Responsive Stylesheet (Refactored & Optimized)
    ========================================================================== */
 
 :root {
   /* Color Palette */
   --color-bg-white: #FFFFFF;
   --color-bg-warm: #FAF8F5;
-  --color-bg-header: #F5F0E7;
   --color-bg-alt: #F4EFEB;
   --color-bg-subtle: #F7F4EF;
-
+  
   --color-text-main: #221F1C;   /* Deep Espresso */
   --color-text-body: #4E4942;   /* Slate Taupe */
   --color-text-muted: #6B645B;  /* Muted */
   --color-text-light: #8A8175;
-
+  
   /* Primary Gold Palette (#A88342 base, #8D6B30 hover) */
   --color-gold: #A88342;
   --color-gold-hover: #8D6B30;
@@ -28,7 +27,7 @@
 
   --color-whatsapp: #25D366;
   --color-whatsapp-hover: #1EBE5D;
-
+  
   /* Shadows */
   --shadow-xs: 0 1px 3px rgba(34, 31, 28, 0.04);
   --shadow-sm: 0 3px 10px rgba(34, 31, 28, 0.06);
@@ -39,10 +38,10 @@
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
+  
   /* Layout Dimensions */
-  --header-height: 88px;
-  --header-logo-height: 54px;
+  --header-height: 94px; /* Taller Header */
+  --header-logo-height: 68px; /* Prominent Logo */
   --max-width: 1200px;
   --max-width-narrow: 900px;
   --radius-sm: 8px;
@@ -119,22 +118,11 @@ button {
   padding: 3.5rem 0;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-  .section-padding {
-    padding: 3.75rem 0;
-  }
-}
-
 .bg-warm { background-color: var(--color-bg-warm); }
 .bg-white { background-color: var(--color-bg-white); }
 .text-center { text-align: center; }
 
-/* ==========================================================================
-   Typography & Formato "Título Personal"
-   ========================================================================== */
+/* Typography */
 .font-serif { font-family: var(--font-serif); }
 .font-sans { font-family: var(--font-sans); }
 
@@ -145,60 +133,53 @@ button {
   color: var(--color-gold);
 }
 
-/* 1ra parte (título): Plus Jakarta Sans, 12px, 19.8px, 2.9px, #A88342 */
-.overline,
-.tp-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  line-height: 19.8px;
-  letter-spacing: 2.9px;
-  font-weight: 600;
+.overline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #A88342;
-  margin-bottom: 0.75rem;
+  color: var(--color-gold);
+  margin-bottom: 0.85rem;
   display: inline-block;
 }
 
-/* 2da parte (slogan): Cormorant Garamond, 40px, 48px, 0px, #221F1C / #A88342 */
-.h2-title,
-.tp-title {
+.h1-title {
   font-family: var(--font-serif);
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: 0px;
+  font-size: 3.25rem;
   font-weight: 400;
-  color: #221F1C;
-  margin-bottom: 1.1rem;
+  line-height: 1.15;
+  color: var(--color-text-main);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
 }
 
-.h2-title .gold-italic,
-.tp-title .gold-italic {
-  color: #A88342;
-}
-
-/* 3ra parte (sub-título): Plus Jakarta Sans, 17px, 29.4px, 0px, #4E4942 */
-.lead-text,
-.tp-subtitle {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 29.4px;
-  letter-spacing: 0px;
+.hero-subtitle-single {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
   font-weight: 400;
-  color: #4E4942;
-  max-width: 680px;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
+  white-space: nowrap; /* Forces single line on desktop/tablet */
+  letter-spacing: 0.01em;
 }
 
-@media (max-width: 768px) {
-  .h2-title,
-  .tp-title {
-    font-size: clamp(30px, 7.5vw, 40px);
-    line-height: 1.2;
+@media (max-width: 600px) {
+  .hero-subtitle-single {
+    white-space: normal; /* Allows wrap on very small mobile screens */
+    font-size: 1.35rem;
   }
-  .lead-text,
-  .tp-subtitle {
-    font-size: 16px;
-    line-height: 27px;
+  .h1-title {
+    font-size: 2.35rem;
   }
+}
+
+.h2-title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
 }
 
 .h3-title {
@@ -211,18 +192,26 @@ button {
 }
 
 @media (max-width: 768px) {
+  .h2-title { font-size: 1.95rem; }
   .h3-title { font-size: 1.45rem; }
 }
 
+.lead-text {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  max-width: 680px;
+}
+
 /* ==========================================================================
-   Buttons
+   Buttons (All Primary Buttons updated to #A88342 & #8D6B30 hover)
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.9rem 1.75rem;
+  padding: 0.9rem 1.85rem;
   font-size: 0.925rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
@@ -232,6 +221,7 @@ button {
   min-height: 48px;
 }
 
+/* Primary Button in #A88342 (Darker gold on hover) */
 .btn-primary, .btn-gold {
   background-color: var(--color-gold);
   color: #FFFFFF;
@@ -260,6 +250,7 @@ button {
   transform: translateY(-1px);
 }
 
+/* WhatsApp / Call buttons in Green */
 .btn-whatsapp {
   background-color: var(--color-whatsapp);
   color: #FFFFFF;
@@ -281,7 +272,6 @@ button {
   width: 19px;
   height: 19px;
   fill: currentColor;
-  flex-shrink: 0;
 }
 
 .link-arrow {
@@ -299,7 +289,7 @@ button {
 }
 
 /* ==========================================================================
-   Bloque 1: Header & Navigation (#F5F0E7)
+   Header & Navigation
    ========================================================================== */
 .site-header {
   position: sticky;
@@ -307,7 +297,7 @@ button {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(245, 240, 231, 0.98);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
@@ -319,15 +309,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
   height: 100%;
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  flex-shrink: 0;
+  gap: 1.15rem;
 }
 
 .header-logo {
@@ -340,48 +328,40 @@ button {
 .header-brand-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.22rem;
 }
 
 .header-brand-name {
   font-family: var(--font-serif);
-  font-size: 1.28rem;
-  letter-spacing: 0.08em;
+  font-size: 1.32rem;
+  letter-spacing: 0.12em;
   font-weight: 600;
   color: var(--color-text-main);
   text-transform: uppercase;
-  line-height: 1.05;
-  white-space: nowrap;
+  line-height: 1.1;
 }
 
 .header-brand-sub {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--color-text-body);
-  font-weight: 500;
-  line-height: 1.1;
-  white-space: nowrap;
+  color: var(--color-gold);
+  font-weight: 600;
 }
 
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .nav-item {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--color-text-main);
-  letter-spacing: 0.01em;
-  text-transform: none;
-  white-space: nowrap;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   position: relative;
-  padding: 0.45rem 0;
+  padding: 0.5rem 0;
 }
 
 .nav-item::after {
@@ -402,18 +382,16 @@ button {
 
 .nav-item.is-active {
   color: var(--color-gold);
-  font-weight: 600;
 }
 
 .mobile-toggle {
   display: none;
   background: none;
   border: none;
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   color: var(--color-text-main);
-  padding: 0.4rem 0.5rem;
+  padding: 0.5rem;
   cursor: pointer;
-  line-height: 1;
 }
 
 .mobile-drawer {
@@ -422,12 +400,12 @@ button {
   top: var(--header-height);
   left: 0;
   right: 0;
-  background: var(--color-bg-header);
+  background: var(--color-bg-white);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
-  padding: 1.5rem 1.5rem 2rem;
+  padding: 1.75rem 1.5rem 2.25rem;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1.25rem;
   z-index: 999;
 }
 
@@ -436,260 +414,106 @@ button {
 }
 
 .mobile-drawer .nav-item {
-  font-size: 1.02rem;
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--color-border);
-  white-space: normal;
+  font-size: 1.05rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-@media (max-width: 1120px) {
-  .nav-desktop {
-    gap: 1.1rem;
-  }
-  .nav-item {
-    font-size: 0.86rem;
-  }
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .nav-desktop { display: none; }
   .mobile-toggle { display: block; }
 }
 
-@media (max-width: 520px) {
-  :root {
-    --header-height: 76px;
-    --header-logo-height: 44px;
-  }
-  .header-brand {
-    gap: 0.65rem;
-  }
-  .header-brand-name {
-    font-size: 1.02rem;
-    letter-spacing: 0.06em;
-  }
-  .header-brand-sub {
-    font-size: 0.58rem;
-    letter-spacing: 0.16em;
-  }
-}
-
 /* ==========================================================================
-   Bloque 2: Hero Section (#FFFFFF)
+   Hero Section (Editorial Split Layout)
    ========================================================================== */
 .hero-split {
-  padding: 3.75rem 0 4.25rem;
-  background: #FFFFFF;
+  padding: 4.5rem 0 3.5rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF8F5 100%);
   border-bottom: 1px solid var(--color-border);
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
-  gap: 3.75rem;
-  align-items: stretch;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: center;
 }
 
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.hero-seo-h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 2.25vw, 1.9rem);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: 0.02em;
-  color: var(--color-text-main);
-  text-align: center;
-  margin-bottom: 1.25rem;
-  position: relative;
-  padding-bottom: 0.85rem;
-}
-
-.hero-seo-h1::after {
-  content: '';
-  display: block;
-  width: 64px;
-  height: 1.5px;
-  background-color: var(--color-gold);
-  margin: 0.7rem auto 0;
-  opacity: 0.75;
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
 
 .hero-brand-emblem {
-  width: 210px;
+  width: 115px;
   height: auto;
-  margin: 0 auto 1.6rem;
-  filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.12));
-}
-
-.hero-h2-slogan {
-  font-family: var(--font-serif);
-  font-size: clamp(2.15rem, 3.3vw, 2.9rem);
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--color-text-main);
-  margin-bottom: 0.55rem;
-  letter-spacing: -0.01em;
-}
-
-.hero-subtitle-single {
-  font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-  font-weight: 400;
-  line-height: 1.25;
-  color: var(--color-text-main);
-  margin-bottom: 1.35rem;
-  white-space: nowrap;
-  letter-spacing: 0.005em;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.15));
 }
 
 .hero-desc {
-  font-family: var(--font-sans);
-  font-size: 1.02rem;
-  line-height: 1.72;
+  font-size: 1.08rem;
+  line-height: 1.75;
   color: var(--color-text-body);
-  text-align: justify;
-  text-align-last: left;
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
+  max-width: 580px;
 }
 
 .hero-buttons {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
-  margin-top: auto;
-  margin-bottom: 0;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
 .hero-image-wrap {
   position: relative;
-  width: 100%;
-  max-width: 450px;
+  max-width: 440px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
   text-align: center;
 }
 
 .hero-doctor-img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1.08;
+  aspect-ratio: 1/1.1;
   object-fit: cover;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-border);
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.25rem;
 }
 
 .hero-doctor-caption {
   font-family: var(--font-serif);
-  font-size: 1.22rem;
+  font-size: 1.25rem;
   font-weight: 500;
   font-style: italic;
   color: var(--color-text-main);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.65rem;
   line-height: 1.35;
-}
-
-.hero-location-pin-wrap {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .hero-location-pin {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--color-gold);
   background: #FFFFFF;
   border: 1px solid var(--color-gold-border);
-  padding: 0 1.15rem;
-  min-height: 48px;
+  padding: 0.4rem 1rem;
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-xs);
 }
 
-@media (max-width: 1024px) {
-  .hero-grid {
-    gap: 2.5rem;
-  }
-  .hero-brand-emblem {
-    width: 180px;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero-split {
-    padding: 2.75rem 0 3.25rem;
-  }
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.75rem;
-    align-items: start;
-  }
-  .hero-content {
-    justify-content: flex-start;
-  }
-  .hero-buttons {
-    margin-top: 0;
-  }
-  .hero-image-wrap {
-    max-width: 420px;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-split {
-    padding: 2.25rem 0 2.75rem;
-  }
-  .hero-seo-h1 {
-    font-size: 1.38rem;
-    margin-bottom: 1rem;
-  }
-  .hero-brand-emblem {
-    width: 155px;
-    margin-bottom: 1.25rem;
-  }
-  .hero-h2-slogan {
-    font-size: 1.95rem;
-  }
-  .hero-subtitle-single {
-    white-space: normal;
-    font-size: 1.32rem;
-  }
-  .hero-desc {
-    font-size: 0.96rem;
-    text-align: justify;
-  }
-  .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.85rem;
-  }
-  .hero-buttons .btn {
-    width: 100%;
-  }
-  .hero-location-pin {
-    font-size: 0.8rem;
-    padding: 0.55rem 0.95rem;
-    min-height: 42px;
-  }
-}
-
 /* ==========================================================================
-   Bloque 3: Tratamientos (#FAF8F5 · 2x2 Grid)
+   2nd Block: Tratamientos (2x2 Grid)
    ========================================================================== */
 .treatments-grid-2x2 {
   display: grid;
@@ -702,7 +526,6 @@ button {
   .treatments-grid-2x2 {
     grid-template-columns: 1fr;
     gap: 1.75rem;
-    margin-top: 2.25rem;
   }
 }
 
@@ -749,15 +572,6 @@ button {
   flex-grow: 1;
 }
 
-@media (max-width: 600px) {
-  .treatment-card-content {
-    padding: 1.5rem;
-  }
-  .treatment-card-img-wrap {
-    height: 215px;
-  }
-}
-
 .treatment-num {
   font-family: var(--font-serif);
   font-style: italic;
@@ -784,18 +598,12 @@ button {
 }
 
 /* ==========================================================================
-   Bloque 4: Experiencia 3D Interactiva (#FFFFFF)
+   3rd Block: 3D Experience (Three.js)
    ========================================================================== */
 .section-3d-experience {
   padding: 5rem 0;
   background-color: #FFFFFF;
   border-bottom: 1px solid var(--color-border);
-}
-
-@media (max-width: 768px) {
-  .section-3d-experience {
-    padding: 3.75rem 0;
-  }
 }
 
 .canvas-3d-container {
@@ -831,12 +639,6 @@ button {
   gap: 1.25rem;
 }
 
-@media (max-width: 600px) {
-  .simulation-controls-panel {
-    padding: 1.25rem;
-  }
-}
-
 .slider-top-row {
   display: flex;
   align-items: center;
@@ -852,7 +654,6 @@ button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .slider-month-badge {
@@ -896,28 +697,15 @@ button {
   font-size: 0.75rem;
   color: var(--color-text-muted);
   margin-top: 0.4rem;
-  gap: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .slider-ticks {
-    font-size: 0.68rem;
-  }
 }
 
 /* ==========================================================================
-   Bloque 5: Casos Reales (#FAF8F5 · Before / After Slider)
+   4th Block: Before / After Inverted Slider (Left: ANTES / Right: DESPUÉS)
    ========================================================================== */
 .section-before-after {
   padding: 5rem 0;
   background-color: var(--color-bg-warm);
   border-bottom: 1px solid var(--color-border);
-}
-
-@media (max-width: 768px) {
-  .section-before-after {
-    padding: 3.75rem 0;
-  }
 }
 
 .ba-slider-container {
@@ -939,9 +727,10 @@ button {
 }
 
 @media (max-width: 768px) {
-  .ba-image-wrapper { height: 300px; }
+  .ba-image-wrapper { height: 320px; }
 }
 
+/* Base image is DESPUÉS (underneath) */
 .ba-img {
   width: 100%;
   height: 100%;
@@ -951,6 +740,7 @@ button {
   left: 0;
 }
 
+/* Overlaid image is ANTES (clipped from the left) */
 .ba-img-before-overlay {
   position: absolute;
   top: 0;
@@ -1033,31 +823,18 @@ button {
   gap: 1rem;
 }
 
-@media (max-width: 600px) {
-  .ba-card-info {
-    padding: 1.25rem;
-  }
-}
-
 /* ==========================================================================
-   Bloque 6: Contacto (#FFFFFF · Columnas 1fr / 1fr)
+   7th Block: Contact Form & Location
    ========================================================================== */
 .section-contact-refined {
-  padding: 5rem 0 5.5rem;
+  padding: 5rem 0 6rem;
   background-color: #FFFFFF;
-}
-
-@media (max-width: 768px) {
-  .section-contact-refined {
-    padding: 3.75rem 0 4rem;
-  }
 }
 
 .contact-refined-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: 3.5rem;
-  align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -1067,59 +844,16 @@ button {
   }
 }
 
-.contact-channels-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 1.75rem;
-  margin-bottom: 2.25rem;
-}
-
-.contact-phone-link {
-  font-family: var(--font-sans);
-  font-size: 1.32rem;
-  font-weight: 600;
-  color: var(--color-text-main);
-  letter-spacing: -0.01em;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.contact-phone-link:hover {
-  color: var(--color-gold);
-}
-
-.contact-email-link {
-  font-family: var(--font-sans);
-  font-size: 0.96rem;
-  color: var(--color-gold);
-  font-weight: 600;
-  word-break: break-word;
-}
-
-.contact-clinic-box {
-  background: var(--color-bg-warm);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-}
-
 .contact-card-refined {
   background: var(--color-bg-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 2.5rem 2.25rem;
+  padding: 2.75rem 2.25rem;
   box-shadow: var(--shadow-md);
-}
-
-.contact-card-refined .tp-subtitle {
-  margin-bottom: 1.75rem;
 }
 
 @media (max-width: 500px) {
   .contact-card-refined { padding: 1.5rem 1.25rem; }
-  .contact-clinic-box { padding: 1.35rem; }
 }
 
 .form-group { margin-bottom: 1.35rem; }
@@ -1179,7 +913,6 @@ button {
   accent-color: var(--color-gold);
   width: 18px;
   height: 18px;
-  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1285,87 +1018,73 @@ button {
 }
 
 /* ==========================================================================
-   Bloque 7: Footer (#FAF8F5 · Compacto, Equilibrado y con Logo 2)
+   Footer (Enlarged Logo x4 & Updated Copy)
    ========================================================================== */
 .site-footer {
   background-color: var(--color-bg-warm);
   border-top: 1px solid var(--color-border);
-  padding: 2.75rem 0 1.75rem;
+  padding: 4.5rem 0 2.5rem;
   color: var(--color-text-body);
 }
 
 .footer-grid-refined {
   display: grid;
-  grid-template-columns: 1.45fr 1fr 1fr 1.15fr;
-  gap: 2.25rem;
-  align-items: start;
-  margin-bottom: 2rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+  gap: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 
 @media (max-width: 900px) {
   .footer-grid-refined {
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 2rem;
+    gap: 2.25rem;
   }
 }
 
 @media (max-width: 600px) {
-  .site-footer {
-    padding: 2.25rem 0 1.5rem;
-  }
   .footer-grid-refined {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
   }
 }
 
 .footer-large-logo {
-  width: 175px;
+  width: 220px; /* ~x4 of standard small icons */
   height: auto;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
 }
 
 .footer-headline {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--color-text-main);
-  margin-bottom: 0.2rem;
-  line-height: 1.25;
+  margin-bottom: 0.35rem;
 }
 
 .footer-subheadline {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   color: var(--color-text-muted);
-  margin-bottom: 0.85rem;
-}
-
-.footer-address {
-  font-size: 0.84rem;
-  color: var(--color-text-main);
-  font-weight: 600;
-  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
 .footer-heading {
-  font-size: 0.78rem;
+  font-size: 0.825rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
   color: var(--color-gold);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.15rem;
 }
 
 .footer-nav-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.65rem;
 }
 
 .footer-nav-list a {
-  font-size: 0.87rem;
+  font-size: 0.88rem;
   color: var(--color-text-body);
 }
 
@@ -1376,28 +1095,27 @@ button {
 .footer-sanitary-box {
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding: 1rem 0;
-  margin-bottom: 1.25rem;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.825rem;
   color: var(--color-text-muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.825rem;
   color: var(--color-text-light);
   flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
+  gap: 1rem;
 }
 
 .footer-legal-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .footer-legal-links a:hover {
@@ -1407,18 +1125,18 @@ button {
 /* Floating Desktop WhatsApp Button */
 .floating-whatsapp-btn {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 2rem;
+  right: 2rem;
   z-index: 995;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.25rem;
+  padding: 0.75rem 1.35rem;
   background: #FFFFFF;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-md);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-text-main);
   transition: var(--transition-fast);
@@ -1435,13 +1153,4 @@ button {
   width: 20px;
   height: 20px;
   fill: #25D366;
-}
-
-@media (max-width: 600px) {
-  .floating-whatsapp-btn {
-    bottom: 1rem;
-    right: 1rem;
-    padding: 0.6rem 1rem;
-    font-size: 0.82rem;
-  }
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO Primary Meta Tags (Madrid Local SEO Focus) -->
   <title>Preguntas Frecuentes | Ortodoncia en Madrid · Dra. Adriana Mendoza</title>
   <meta name="description" content="Resolvemos tus dudas sobre tratamientos de ortodoncia, citas, alineadores y brackets en Barrio de Salamanca, Madrid. Dra. Adriana Mendoza Orozco en Centro Caduceo.">
@@ -16,13 +16,13 @@
   <meta property="og:url" content="https://adrianamendozaortodoncia.com/preguntas-frecuentes.html">
   <meta property="og:title" content="Preguntas Frecuentes sobre Ortodoncia en Madrid · Dra. Adriana Mendoza">
   <meta property="og:description" content="Información clara sobre tu primera visita, opciones de tratamiento y cómo contactar con la consulta en Madrid.">
-  <meta property="og:image" content="img/logo.png">
+  <meta property="og:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Preguntas Frecuentes · Ortodoncia Dra. Adriana Mendoza Madrid">
   <meta name="twitter:description" content="Resolvemos tus dudas antes de tu primera consulta de ortodoncia en Barrio de Salamanca, Madrid.">
-  <meta name="twitter:image" content="img/logo.png">
+  <meta name="twitter:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -88,12 +88,12 @@
 <body>
 
   <!-- ========================================================================
-       Header / Navbar (Taller, Prominent Logo, Clean Menu Order)
+       Bloque 1: Header / Navbar
        ======================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-container">
       <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco - Inicio">
-        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
+        <img src="img/logo-1.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
         <div class="header-brand-info">
           <span class="header-brand-name">Adriana Mendoza</span>
           <span class="header-brand-sub">Ortodoncia · Madrid</span>
@@ -115,47 +115,51 @@
       </button>
     </div>
 
-    <!-- Mobile Drawer Navigation -->
-    <div class="mobile-drawer" id="mobileDrawer">
-      <a href="index.html" class="mobile-nav-link">Inicio</a>
-      <a href="tratamientos.html" class="mobile-nav-link">Tratamientos</a>
-      <a href="casos-reales.html" class="mobile-nav-link">Casos Reales</a>
-      <a href="sobre-la-doctora.html" class="mobile-nav-link">Sobre la Doctora</a>
-      <a href="contacto.html" class="mobile-nav-link">Contacto</a>
-      <a href="preguntas-frecuentes.html" class="mobile-nav-link is-active">Preguntas Frecuentes</a>
-      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <a href="index.html" class="nav-item">Inicio</a>
+      <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+      <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+      <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+      <a href="contacto.html" class="nav-item">Contacto</a>
+      <a href="preguntas-frecuentes.html" class="nav-item is-active">Preguntas Frecuentes</a>
+      <div style="margin-top: 1rem;">
         <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
-          WhatsApp Directo
+          Consultar por WhatsApp
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Page Hero Banner -->
-    <section class="section" style="padding-top: 4rem; padding-bottom: 3rem; background: var(--color-bg-alt); border-bottom: 1px solid var(--color-border-subtle);">
-      <div class="container text-center">
-        <span class="eyebrow">ANTES DE VENIR</span>
-        <h1 class="h1" style="margin-bottom: 1.25rem;">Resolvemos tus <em>dudas</em>.</h1>
-        <p class="hero-lead" style="max-width: 720px; margin: 0 auto; color: var(--color-text-body);">
-          Queremos que comiences tu tratamiento de ortodoncia con absoluta tranquilidad, transparencia y comprensión de cada paso en nuestra consulta de Madrid.
+    <!-- ========================================================================
+         Bloque 2: Encabezado de Página (#FAF8F5)
+         ======================================================================== -->
+    <section class="section-padding-sm bg-warm" style="border-bottom: 1px solid var(--color-border);">
+      <div class="container text-center" style="max-width: 760px; margin: 0 auto;">
+        <span class="overline">A N T E S &nbsp;&nbsp; D E &nbsp;&nbsp; V E N I R</span>
+        <h1 class="h2-title">
+          Resolvemos tus <span class="gold-italic">dudas.</span>
+        </h1>
+        <p class="lead-text" style="margin: 0 auto;">
+          Queremos que comiences tu tratamiento de ortodoncia con absoluta tranquilidad, transparencia y comprensión de cada paso en nuestra consulta <span style="font-weight: 600; color: var(--color-text-main);">en Madrid</span>.
         </p>
       </div>
     </section>
 
     <!-- FAQ Accordions Section -->
-    <section class="section" style="padding-top: 4rem; padding-bottom: 5rem;">
+    <section class="section-padding bg-white">
       <div class="container">
-        
+
         <div class="faq-accordion-list">
-          
+
           <!-- Item 1 -->
           <div class="faq-card-collapsible">
             <button class="faq-trigger" type="button" aria-expanded="false">
               <span>No sé qué tratamiento necesito</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>No tienes que decidir antes de venir. La valoración clínica y el estudio digital permiten evaluar detalladamente tu situación, la alineación de tus dientes y la oclusión de tus maxilares para explicarte con honestidad todas las alternativas posibles (alineadores transparentes, brackets estéticos o metálicos) y ayudarte a elegir la más idónea para tu caso.</p>
             </div>
           </div>
@@ -166,7 +170,7 @@
               <span>¿Solicitar información confirma mi cita?</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>No. El envío de la solicitud de contacto o tu consulta por WhatsApp no reserva de forma automática la cita. El equipo de la consulta se pondrá en contacto contigo a la mayor brevedad para coordinar disponibilidad mutua y confirmar formalmente la fecha y hora de tu visita.</p>
             </div>
           </div>
@@ -177,7 +181,7 @@
               <span>¿Puedo pedir que me llamen?</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>Sí. En el formulario de contacto puedes seleccionar la opción «Solicitar una llamada» e indicarnos la franja horaria en la que prefieres ser contactado (mañana o tarde), o bien solicitarlo directamente mediante un mensaje en nuestro WhatsApp de atención al paciente.</p>
             </div>
           </div>
@@ -188,7 +192,7 @@
               <span>¿Puedo enviar fotos o informes?</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>No los envíes por este formulario de la web ni por WhatsApp. Para garantizar la confidencialidad de tus datos de salud de acuerdo con el Reglamento General de Protección de Datos (RGPD), solicita primero a la consulta un canal seguro y adecuado para la recepción de documentación e historial clínico.</p>
             </div>
           </div>
@@ -199,7 +203,7 @@
               <span>¿Dónde está ubicada la consulta en Madrid y cómo llegar?</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>La consulta presencial de la Dra. Adriana Mendoza se realiza de forma exclusiva en el <strong>Centro Médico y Dental Caduceo</strong>, ubicado en el <strong>Paseo del Marqués de Zafra 15, 1.º izquierda, 28028 Madrid (Barrio de Salamanca)</strong>.</p>
               <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--color-text-muted);">
                 Puedes llegar cómodamente en transporte público: estaciones de metro <strong>Manuel Becerra (L2, L6)</strong> y <strong>Ventas (L2, L5)</strong>, o mediante múltiples líneas de autobús EMT.
@@ -213,7 +217,7 @@
               <span>¿A qué edad se recomienda la primera revisión de ortodoncia infantil?</span>
               <span class="faq-icon-sign">＋</span>
             </button>
-            <div class="faq-content-body">
+            <div class="faq-content-body font-sans">
               <p>Se recomienda llevar a los niños a su primera revisión de ortodoncia preventiva en torno a los <strong>6 o 7 años</strong>. A esta edad comienzan a erupcionar los primeros molares definitivos y es el momento oportuno para detectar posibles discrepancias esqueléticas o hábitos funcionales, evitando tratamientos más complejos en la adolescencia o edad adulta.</p>
             </div>
           </div>
@@ -221,13 +225,15 @@
         </div>
 
         <!-- Call to Action Box -->
-        <div style="max-width: 860px; margin: 3.5rem auto 0; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center;">
-          <h3 class="h3" style="margin-bottom: 0.75rem;">¿Tienes alguna otra consulta sobre tu sonrisa?</h3>
-          <p style="color: var(--color-text-body); max-width: 600px; margin: 0 auto 1.75rem; font-size: 0.95rem;">
+        <div style="max-width: 860px; margin: 3.5rem auto 0; background: var(--color-bg-warm); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2.75rem 2rem; text-align: center;">
+          <h2 class="h3-title" style="font-size: 1.85rem; margin-bottom: 0.75rem;">
+            ¿Tienes alguna otra consulta sobre <span class="gold-italic">tu sonrisa?</span>
+          </h2>
+          <p class="lead-text" style="max-width: 600px; margin: 0 auto 1.75rem;">
             Estamos a tu disposición para orientarte personalmente antes de tu cita presencial en Barrio de Salamanca.
           </p>
           <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="contacto.html" class="btn btn-primary">Formulario de Contacto</a>
+            <a href="contacto.html" class="btn btn-primary">Formulario de Contacto ↗</a>
             <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">Escribir por WhatsApp</a>
           </div>
         </div>
@@ -237,19 +243,17 @@
   </main>
 
   <!-- ========================================================================
-       Pie de Página (Footer con Logo x4 y Textos Actualizados)
+       Pie de Página (Footer)
        ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid-refined">
-        
+
         <div>
-          <!-- Logo agrandado x4 -->
           <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco" class="footer-large-logo">
-          <!-- Textos solicitados -->
           <p class="footer-headline">Cercanía, confianza y cuidado.</p>
           <p class="footer-subheadline">Tu sonrisa, acompañada en cada paso.</p>
-          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+          <div class="footer-address">
             Centro Médico y Dental Caduceo<br>
             Paseo del Marqués de Zafra 15, 1.º izq.<br>
             28028 Madrid · Barrio de Salamanca
@@ -259,7 +263,7 @@
         <div>
           <h4 class="footer-heading">Tratamientos</h4>
           <ul class="footer-nav-list">
-            <li><a href="tratamientos.html#brackets">Brackets Metálicos</a></li>
+            <li><a href="tratamientos.html#brackets-metalicos">Brackets Metálicos</a></li>
             <li><a href="tratamientos.html#brackets">Brackets Estéticos</a></li>
             <li><a href="tratamientos.html#alineadores">Alineadores Transparentes</a></li>
             <li><a href="tratamientos.html#infantil">Ortodoncia Infantil</a></li>
@@ -317,9 +321,9 @@
     </div>
   </footer>
 
-  <!-- Floating Desktop WhatsApp Button (Mobile bottom bar is removed) -->
+  <!-- Floating Desktop WhatsApp Button -->
   <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
     <span>WhatsApp</span>
   </a>
 

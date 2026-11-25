@@ -1,296 +1,590 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>Cookie check</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        color-scheme: light dark;
-      }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary Meta Tags (Madrid Local SEO Focus) -->
+  <title>Ortodoncia en Madrid | Dra. Adriana Mendoza · Barrio de Salamanca</title>
+  <meta name="description" content="Clínica de ortodoncia en Madrid (Barrio de Salamanca). Especialista en alineadores transparentes, brackets estéticos y de autoligado. Atención cercana, personalizada y con rigor científico en Centro Médico y Dental Caduceo.">
+  <meta name="keywords" content="Ortodoncia en Madrid, Ortodoncista Barrio de Salamanca, Ortodoncia invisible Madrid, Dra. Adriana Mendoza Orozco, Clínica de ortodoncia Madrid, Alineadores transparentes Barrio Salamanca, Brackets estéticos Madrid, Brackets autoligado pasivo Madrid">
+  <meta name="author" content="Dra. Adriana Mendoza Orozco">
+  <link rel="canonical" href="https://adrianamendozaortodoncia.com/">
 
-      body {
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
-        background: light-dark(#F8F8F7, #191919);
-        color: light-dark(#1f1f1f, #e3e3e3);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        min-height: 100vh;
-        margin: 0;
-        padding: 20px;
-        text-align: center;
-      }
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adrianamendozaortodoncia.com/">
+  <meta property="og:title" content="Dra. Adriana Mendoza · Ortodoncia en Barrio de Salamanca, Madrid">
+  <meta property="og:description" content="Atención cercana, explicaciones claras y una ortodoncia que cuida cada detalle de tu sonrisa en Madrid.">
+  <meta property="og:image" content="img/logo.png">
 
-      .container {
-        background: light-dark(#FFFFFF, #1F1F1F);
-        padding: 32px;
-        border-radius: 16px;
-        border: 1px solid light-dark(#E2E3E4, #3E3E3E);
-        max-width: min(80%, 500px);
-        width: 100%;
-        color: light-dark(#2B2D31, #D4D4D4);
-      }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dra. Adriana Mendoza · Ortodoncista en Madrid">
+  <meta name="twitter:description" content="Ortodoncia exclusiva en Barrio de Salamanca, Madrid. Centro Médico y Dental Caduceo.">
+  <meta name="twitter:image" content="img/logo.png">
 
-      h1 {
-        font-size: 20px;
-        font-weight: 500;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        color: light-dark(#2B2D31, #D4D4D4);
-      }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
 
-      p {
-        font-size: 14px;
-        color: light-dark(#2B2D31, #D4D4D4);
-        line-height: 21px;
-        margin: 0 0 1.5rem 0;
-      }
+  <!-- Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-      .icon {
-        margin-bottom: 1rem;
-        line-height: 0;
-      }
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/main.css">
 
-      .button-container {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-top: 2rem;
-      }
+  <!-- Three.js CDN for 3D Dental Arch Experience -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-      button {
-        background-color: light-dark(#fff, #323232);
-        color: light-dark(#2B2D31, #FCFCFC);
-        border: 1px solid light-dark(#E2E3E4, #3E3E3E);
-        border-radius: 12px;
-        padding: 8px 12px;
-        font-size: 14px;
-        line-height: 21px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        font-weight: 400;
-        font-family: 'Inter', Helvetica, Arial, sans-serif;
-        width: 100%;
+  <!-- Schema.org JSON-LD Structured Data for Local SEO (Google Madrid) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Dentist", "MedicalBusiness"],
+    "name": "Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid",
+    "image": "https://adrianamendozaortodoncia.com/img/logo.png",
+    "@id": "https://adrianamendozaortodoncia.com/#dentist",
+    "url": "https://adrianamendozaortodoncia.com/",
+    "telephone": "+34679623610",
+    "email": "citas@adrianamendozaortodoncia.com",
+    "priceRange": "€€-€€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Paseo del Marqués de Zafra 15, 1.º izquierda",
+      "addressLocality": "Madrid",
+      "addressRegion": "Comunidad de Madrid",
+      "postalCode": "28028",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 40.42838,
+      "longitude": -3.66585
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "20:00"
       }
+    ],
+    "medicalSpecialty": "Orthodontics",
+    "founder": {
+      "@type": "Person",
+      "name": "Dra. Adriana Mendoza Orozco",
+      "jobTitle": "Ortodoncista"
+    }
+  }
+  </script>
+</head>
+<body>
 
-      button:hover {
-        background-color: light-dark(#EAEAEB, #424242);
-      }
+  <!-- ========================================================================
+       Header / Navbar (Taller, Prominent Logo, Clean Menu Order)
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco - Inicio">
+        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
+        <div class="header-brand-info">
+          <span class="header-brand-name">Adriana Mendoza</span>
+          <span class="header-brand-sub">Ortodoncia · Madrid</span>
+        </div>
+      </a>
 
-      .hidden {
-        display: none;
-      }
+      <!-- Desktop Navigation Menu in Strict Requested Order -->
+      <nav class="nav-desktop" aria-label="Navegación principal">
+        <a href="index.html" class="nav-item is-active">Inicio</a>
+        <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+        <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+        <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+        <a href="contacto.html" class="nav-item">Contacto</a>
+        <a href="preguntas-frecuentes.html" class="nav-item">Preguntas Frecuentes</a>
+      </nav>
 
-      /* Loading Spinner Animation */
-      .spinner {
-        margin: 0 auto 1.5rem auto;
-        width: 40px;
-        height: 40px;
-        border: 4px solid light-dark(#f0f0f0, #262626);
-        border-top: 4px solid light-dark(#076eff, #87a9ff); /* Blue color */
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
+      <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Abrir menú" aria-expanded="false">
+        ☰
+      </button>
+    </div>
 
-      .logo {
-        border-radius: 10px;
-        display: block;
-        margin: 0 auto 2rem auto;
-      }
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <a href="index.html" class="nav-item is-active">Inicio</a>
+      <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+      <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+      <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+      <a href="contacto.html" class="nav-item">Contacto</a>
+      <a href="preguntas-frecuentes.html" class="nav-item">Preguntas Frecuentes</a>
+      <div style="margin-top: 1rem;">
+        <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
 
-      .logo.hidden {
-        display: none;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
-  </head>
-  <body>
+  <!-- ========================================================================
+       1er Bloque: Hero Section (Split Layout con Emblema Dorado)
+       ======================================================================== -->
+  <section class="hero-split">
     <div class="container">
-      <img
-        class="logo"
-        src="https://www.gstatic.com/images/branding/productlogos/ai_studio/v1/web-512dp/logo_ai_studio_color_1x_web_512dp.png"
-        alt="AI Studio Logo"
-        width="256"
-        height="256"
-      />
-      <div class="spinner"></div>
-      <div id="error-ui" class="hidden">
-        <div class="icon">
-          <svg
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="48px"
-            height="48px"
-            fill="#D73A49"
-          >
-            <path
-              d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M13,17h-2v-2h2V17z M13,13h-2V7h2V13z"
-            />
-          </svg>
-        </div>
-        <div id="stepOne" class="text-container">
-          <h1>Action required to load your app</h1>
-          <p>
-            It looks like your browser is blocking a required security cookie, which is common on
-            older versions of iOS and Safari.
+      <div class="hero-grid">
+        
+        <!-- Left Column: Brand Emblem, Slogan, Subtitle & Dual CTAs -->
+        <div class="hero-content">
+          <!-- Logo gráfico en el Hero (Opción A) -->
+          <img src="img/logo.png" alt="Emblema Dra. Adriana Mendoza" class="hero-brand-emblem">
+
+          <h1 class="h1-title">
+            Cada sonrisa tiene una <span class="gold-italic">historia.</span>
+          </h1>
+
+          <!-- Subtítulo en una sola línea -->
+          <h2 class="hero-subtitle-single">
+            La tuya merece un cuidado único.
+          </h2>
+
+          <p class="hero-desc">
+            Queremos que te sientas escuchado desde el primer día. Un plan pensado para ti, explicaciones claras y una atención que cuida cada detalle de tu sonrisa. Ortodoncia de alta precisión en el Centro Médico y Dental Caduceo (Madrid).
           </p>
-          <div class="button-container">
-            <button id="authInSeparateWindowButton" onclick="redirectToReturnUrl(true)">Authenticate in new window</button>
+
+          <div class="hero-buttons">
+            <a href="#contacto" class="btn btn-primary">
+              Solicitar una valoración ↗
+            </a>
+            <a href="https://wa.me/34679623610?text=Hola%20Dra.%20Adriana%2C%20quisiera%20solicitar%20informaci%C3%B3n%20sobre%20una%20valoraci%C3%B3n%20de%20ortodoncia." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+              <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+              <span>Consultar por WhatsApp</span>
+            </a>
           </div>
         </div>
-        <div id="stepTwo" class="text-container hidden">
-          <h1>Action required to load your app</h1>
-          <p>
-            It looks like your browser is blocking a required security cookie, which is common on
-            older versions of iOS and Safari.
+
+        <!-- Right Column: Doctor Photo, Caption & Location Pin -->
+        <div class="hero-image-wrap">
+          <img src="img/dra_adriana_mendoza.jpg" alt="Dra. Adriana Mendoza Orozco - Ortodoncista en Barrio de Salamanca Madrid" class="hero-doctor-img">
+          
+          <!-- Texto solicitado bajo la foto -->
+          <p class="hero-doctor-caption">
+            «Una atención que cuida cada detalle de tu sonrisa»
           </p>
-          <div class="button-container">
-            <button id="interactButton" onclick="redirectToReturnUrl(false)">Close and continue</button>
+
+          <!-- Pin solicitado bajo la foto -->
+          <div>
+            <span class="hero-location-pin">
+              <span>📍</span> <span>Ortodoncia Exclusiva en Barrio de Salamanca · Madrid</span>
+            </span>
           </div>
         </div>
-        <div id="stepThree" class="text-container hidden">
-          <h1>Almost there!</h1>
-          <p>
-            Grant permission for the required security cookie below.
-          </p>
-          <div class="button-container">
-            <button id="grantPermissionButton" onclick="grantStorageAccess()">Grant permission</button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       2do Bloque: Tratamientos (Cuadrícula 2x2)
+       ======================================================================== -->
+  <section class="section-padding bg-warm" id="tratamientos">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto;">
+        <span class="overline">T R A T A M I E N T O S</span>
+        <h2 class="h2-title">
+          Una Sonrisa Propia.<br>
+          <span class="gold-italic">Un plan para ti.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          La mejor opción empieza por conocerte. Te explicamos cada alternativa con claridad para decidir juntos tras una valoración.
+        </p>
+      </div>
+
+      <div class="treatments-grid-2x2">
+        
+        <!-- 1) Arriba Izquierda: Brackets Metálicos -->
+        <article class="treatment-card-clean">
+          <div class="treatment-card-img-wrap">
+            <img src="img/brackets_metalicos.jpg" alt="Brackets metálicos en Madrid" loading="lazy">
+          </div>
+          <div class="treatment-card-content">
+            <span class="treatment-num">01</span>
+            <h3 class="treatment-clean-title">Brackets metálicos</h3>
+            <p class="treatment-clean-desc">
+              Sistema fijo de brackets y arco para acompañar el movimiento progresivo de los dientes con máxima precisión biomecánica y control tridimensional.
+            </p>
+            <a href="tratamientos.html#brackets" class="link-arrow">
+              Más información ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 2) Arriba Derecha: Brackets Estéticos -->
+        <article class="treatment-card-clean">
+          <div class="treatment-card-img-wrap">
+            <img src="img/brackets_esteticos.png" alt="Brackets estéticos de zafiro en Madrid" loading="lazy">
+          </div>
+          <div class="treatment-card-content">
+            <span class="treatment-num">02</span>
+            <h3 class="treatment-clean-title">Brackets estéticos</h3>
+            <p class="treatment-clean-desc">
+              Una opción fija con brackets de aspecto discreto y tonos próximos al color del diente, fabricados en zafiro o cerámica de alta resistencia.
+            </p>
+            <a href="tratamientos.html#brackets" class="link-arrow">
+              Más información ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 3) Abajo Izquierda: Alineadores Transparentes -->
+        <article class="treatment-card-clean">
+          <div class="treatment-card-img-wrap">
+            <img src="img/alineadores_transparentes.png" alt="Alineadores transparentes invisibles en Madrid" loading="lazy">
+          </div>
+          <div class="treatment-card-content">
+            <span class="treatment-num">03</span>
+            <h3 class="treatment-clean-title">Alineadores transparentes</h3>
+            <p class="treatment-clean-desc">
+              Férulas removibles y transparentes, diseñadas para una secuencia de movimientos planificados digitalmente. Máxima comodidad e higiene.
+            </p>
+            <a href="tratamientos.html#alineadores" class="link-arrow">
+              Más información ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- 4) Abajo Derecha: Ortodoncia Infantil -->
+        <article class="treatment-card-clean">
+          <div class="treatment-card-img-wrap">
+            <img src="img/ortodoncia_infantil.jpg" alt="Ortodoncia infantil en Madrid" loading="lazy">
+          </div>
+          <div class="treatment-card-content">
+            <span class="treatment-num">04</span>
+            <h3 class="treatment-clean-title">Ortodoncia infantil</h3>
+            <p class="treatment-clean-desc">
+              Seguimos el desarrollo de los dientes y los maxilares para valorar el momento óptimo de actuar, guiando el crecimiento óseo y previniendo asimetrías.
+            </p>
+            <a href="tratamientos.html#infantil" class="link-arrow">
+              Más información ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3er Bloque: Experiencia 3D Interactiva
+       ======================================================================== -->
+  <section class="section-3d-experience" id="experiencia-3d">
+    <div class="container">
+      <div class="text-center" style="max-width: 760px; margin: 0 auto 3rem;">
+        <span class="overline">E X P E R I E N C I A · 3 D · I N T E R A C T I V A</span>
+        <h2 class="h2-title">
+          Visualiza tu sonrisa: <span class="gold-italic">Antes y Después.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Arrastra el deslizador para simular cómo los movimientos micrométricos digitales alinean progresivamente una arcada con apiñamiento hasta alcanzar una estética y oclusión óptimas.
+        </p>
+      </div>
+
+      <!-- Canvas 3D -->
+      <div class="canvas-3d-container" id="dental3dContainer">
+        <div style="position: absolute; top: 1rem; left: 1.25rem; z-index: 10; background: rgba(255,255,255,0.92); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; color: var(--color-text-muted); border: 1px solid var(--color-border); pointer-events: none;">
+          🖱️ Arrastra con el cursor o dedo para rotar la arcada 3D
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="simulation-controls-panel">
+        <div class="slider-top-row">
+          <div class="slider-label">
+            <span>Simulación del Tratamiento Digital:</span>
+            <span class="slider-month-badge" id="orthoMonthValue">Mes 0 de 14</span>
+          </div>
+
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer;">
+            <input type="checkbox" id="toggleAlignerCheck" style="accent-color: var(--color-gold); width: 17px; height: 17px;">
+            <span>Mostrar Férula / Alineador Transparente 3D</span>
+          </label>
+
+          <button id="btnReset3dView" class="btn btn-secondary" style="padding: 0.4rem 0.85rem; font-size: 0.8rem; min-height: 36px;">
+            ↺ Centrar Vista
+          </button>
+        </div>
+
+        <div class="slider-track-wrap">
+          <input type="range" id="orthoMonthSlider" class="ortho-slider" min="0" max="14" value="0" step="0.1" aria-label="Progreso de ortodoncia de mes 0 a mes 14">
+          <div class="slider-ticks">
+            <span>Mes 0 (Apiñamiento inicial)</span>
+            <span>Mes 4 (Nivelación)</span>
+            <span>Mes 8 (Cierre de espacios)</span>
+            <span>Mes 14 (Sonrisa alineada)</span>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      const AUTH_FLOW_TEST_COOKIE_NAME = '__SECURE-aistudio_auth_flow_may_set_cookies';
-      const COOKIE_VALUE = 'true';
+  </section>
 
-      function getCookie(name) {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          let cookie = cookies[i].trim();
-          if (cookie.startsWith(name + '=')) {
-            return cookie.substring(name.length + 1);
-          }
-        }
-        return null;
-      }
+  <!-- ========================================================================
+       4to Bloque: Casos Reales (Invertido: Izquierda ANTES, Derecha DESPUÉS)
+       ======================================================================== -->
+  <section class="section-before-after" id="casos-reales">
+    <div class="container">
+      <div class="text-center" style="max-width: 720px; margin: 0 auto 3rem;">
+        <span class="overline">C A S O S · R E A L E S</span>
+        <h2 class="h2-title">
+          Resultados reales: <span class="gold-italic">Armonía facial y dental.</span>
+        </h2>
+        <p class="lead-text" style="margin: 0 auto;">
+          Arrastra el deslizador central para comparar el estado inicial (izquierda) con el resultado final (derecha). Cada plan se valora de forma individual.
+        </p>
+      </div>
 
-      function setAuthFlowTestCookie() {
-        // Set the cookie's TTL to 1 minute. This is a short lived cookie because it is only used
-        // when the user does not have an auth token or their auth token needs to be reset.
-        // Making this cookie too long-lived allows the user to get into a state where they can't
-        // mint a new auth token.
-        document.cookie = `${AUTH_FLOW_TEST_COOKIE_NAME}=${COOKIE_VALUE}; Path=/; Secure; SameSite=None; Domain=${window.location.hostname}; Partitioned; Max-Age=60;`;
-      }
+      <!-- Inverted Before/After Slider Component -->
+      <div class="ba-slider-container">
+        <div class="ba-image-wrapper">
+          <!-- Base Underneath Image: DESPUÉS (final aesthetic smile) -->
+          <img src="img/brackets_esteticos.png" alt="Sonrisa final estética y alineada tras tratamiento de ortodoncia" class="ba-img">
+          
+          <!-- Overlaid Clipped Image on the Left: ANTES (initial state with brackets) -->
+          <div class="ba-img-before-overlay">
+            <img src="img/brackets_metalicos.jpg" alt="Caso de ortodoncia antes del tratamiento en Madrid">
+          </div>
 
-      /**
-       * Returns true if the test cookie is set, false otherwise.
-       */
-      function authFlowTestCookieIsSet() {
-        return getCookie(AUTH_FLOW_TEST_COOKIE_NAME) === COOKIE_VALUE;
-      }
+          <!-- Drag Handle -->
+          <div class="ba-handle" aria-label="Deslizar para comparar antes y después"></div>
 
-      /**
-       * Redirects to the return url. If autoClose is true, then the return url will be opened in a
-       * new window, and it will be closed automatically when the page loads.
-       * Options:
-       *   storageAccessGranted: if true, appends __storage_access_granted=1 to
-       *   the return url so the Lua auth script can set the test cookie
-       *   server-side (needed for Safari/iOS where document.cookie is blocked).
-       */
-      async function redirectToReturnUrl(autoClose, storageAccessGranted = false) {
-        const initialReturnUrlStr = new URLSearchParams(window.location.search).get('return_url');
-        const returnUrl = initialReturnUrlStr ? new URL(initialReturnUrlStr) : null;
+          <!-- Badges: Antes on Left, Después on Right -->
+          <span class="ba-badge ba-badge-antes">Antes</span>
+          <span class="ba-badge ba-badge-despues">Después</span>
+        </div>
 
-        // Prevent potentially malicious URLs from being used
-        if (returnUrl.protocol.toLowerCase() === 'javascript:') {
-          console.error('Potentially malicious return URL blocked');
-          return;
-        }
+        <div class="ba-card-info">
+          <div>
+            <div style="font-weight: 600; font-size: 0.95rem; color: var(--color-text-main);">
+              Tratamiento de ortodoncia · Corrección de apiñamiento y alineación oclusal
+            </div>
+            <div style="font-size: 0.85rem; color: var(--color-text-muted);">
+              Fotografías de casos reales tratados en la consulta de Madrid · Centro Médico y Dental Caduceo
+            </div>
+          </div>
+          <a href="casos-reales.html" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+            Ver galería de casos clínicos ↗
+          </a>
+        </div>
+      </div>
 
-        if (storageAccessGranted) {
-          returnUrl.searchParams.set('__storage_access_granted', '1');
-        }
+    </div>
+  </section>
 
-        if (autoClose) {
-          returnUrl.searchParams.set('__auto_close', '1');
-          const url = new URL(window.location.href);
-          url.searchParams.set('return_url', returnUrl.toString());
-          // Land on the cookie check page first, so the user can interact with it before proceeding
-          // to the return url where cookies can be set.
-          window.open(url.toString(), '_blank');
-          const hasAccess = await document.hasStorageAccess();
-          document.querySelector('#stepOne').classList.add('hidden');
-          if (!hasAccess) {
-            document.querySelector('#stepThree').classList.remove('hidden');
-          } else {
-            window.location.reload();
-          }
-        } else {
-          window.location.href = returnUrl.toString();
-        }
-      }
+  <!-- ========================================================================
+       7mo Bloque: Contacto y Formulario Actualizado
+       ======================================================================== -->
+  <section class="section-contact-refined" id="contacto">
+    <div class="container">
+      <div class="contact-refined-grid">
+        
+        <!-- Left Column: Clinic Location & Contact Channels -->
+        <div>
+          <span class="overline">C O N T A C T O</span>
+          <h2 class="h2-title">
+            Hablemos de <span class="gold-italic">tu sonrisa.</span>
+          </h2>
+          <p style="font-size: 1rem; color: var(--color-text-body); line-height: 1.7; margin-bottom: 2rem;">
+            Solicita información o una llamada. Te responderemos para acordar el siguiente paso en Centro Médico y Dental Caduceo.
+          </p>
 
-      /**
-       * Grants the browser permission to set cookies. If successful, then it redirects to the
-       * return url.
-       */
-      async function grantStorageAccess() {
-        try {
-          await document.requestStorageAccess();
-          // Recent Safari/iOS versions block document.cookie entirely in
-          // cross-site iframes, even after requestStorageAccess(). Only
-          // server-side Set-Cookie headers work. Signal to the Lua auth script
-          // via query param so it can set the test cookie server-side.
-          redirectToReturnUrl(false, /* storageAccessGranted= */ true);
-        } catch (err) {
-          console.log('error after button click: ', err);
-        }
-      }
+          <div style="display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.25rem;">
+            <a href="tel:+34679623610" style="font-size: 1.45rem; font-family: var(--font-serif); font-weight: 600; color: var(--color-text-main);">
+              📞 +34 679 62 36 10 ↗
+            </a>
+            <a href="mailto:citas@adrianamendozaortodoncia.com" style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600;">
+              ✉️ citas@adrianamendozaortodoncia.com
+            </a>
+          </div>
 
-      /**
-       * Verifies that the browser can set cookies. If it can, then it redirects to the return url.
-       * If it can't, then it shows the error UI.
-       */
-      function verifyCanSetCookies() {
-        setAuthFlowTestCookie();
-        if (authFlowTestCookieIsSet()) {
-          // Check if we are on the auto-close flow, and if so show the interact button.
-          const returnUrl = new URLSearchParams(window.location.search).get('return_url');
-          const autoClose = new URL(returnUrl).searchParams.has('__auto_close');
-          if (autoClose) {
-            document.querySelector('#stepOne').classList.add('hidden');
-            document.querySelector('#stepTwo').classList.remove('hidden');
-          } else {
-            redirectToReturnUrl(false);
-            return;
-          }
-        }
-        // The cookie could not be set, so initiate the recovery flow.
-        document.querySelector('.logo').classList.add('hidden');
-        document.querySelector('.spinner').classList.add('hidden');
-        document.querySelector('#error-ui').classList.remove('hidden');
-      }
+          <div style="background: var(--color-bg-warm); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem;">
+            <h3 class="h3-title" style="font-size: 1.15rem; margin-bottom: 0.35rem;">Centro Médico y Dental Caduceo</h3>
+            <p style="font-size: 0.925rem; color: var(--color-text-body); margin-bottom: 0.25rem;">Paseo del Marqués de Zafra 15, 1.º izquierda</p>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1.25rem;">Salamanca · 28028 Madrid</p>
 
-      // Start the cookie verification process.
-      verifyCanSetCookies();
-    </script>
-  </body>
+            <button id="btnShowInteractiveMap" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem;">
+              Ver ubicación en Google Maps ↗
+            </button>
+            <div id="mapInteractiveContainer" style="display: none; margin-top: 1rem; border-radius: 8px; overflow: hidden; height: 260px;">
+              <iframe id="mapInteractiveFrame" title="Ubicación en Google Maps" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Refined Contact Form -->
+        <div class="contact-card-refined">
+          <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.5rem;">E S T A M O S · P A R A · E S C U C H A R T E</span>
+          <h3 class="h3-title" style="margin-bottom: 0.35rem;">Da el primer paso</h3>
+          <p style="font-size: 0.925rem; color: var(--color-text-muted); margin-bottom: 1.75rem;">
+            Déjanos tus datos y nos pondremos en contacto contigo. Tu solicitud llegará a citas@adrianamendozaortodoncia.com.
+          </p>
+
+          <form id="adrimendozaContactForm" method="POST" action="https://formspree.io/f/placeholder" novalidate>
+            <div class="form-group">
+              <label for="formNombre" class="form-label">Nombre *</label>
+              <input type="text" id="formNombre" name="nombre" class="form-control" required placeholder="Tu nombre completo">
+            </div>
+
+            <div class="form-group">
+              <label for="formEmail" class="form-label">Correo electrónico *</label>
+              <input type="email" id="formEmail" name="email" class="form-control" required placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="form-group">
+              <label for="formTelefono" class="form-label">Teléfono (opcional)</label>
+              <input type="tel" id="formTelefono" name="telefono" class="form-control" placeholder="+34 600 000 000">
+            </div>
+
+            <!-- ¿Cómo prefieres que respondamos? (2 opciones) -->
+            <div class="form-group">
+              <label for="formPreferenciaRespuesta" class="form-label">¿Cómo prefieres que respondamos?</label>
+              <select id="formPreferenciaRespuesta" name="preferencia_respuesta" class="form-control">
+                <option value="Por correo">Por correo</option>
+                <option value="Solicitar una llamada">Solicitar una llamada</option>
+              </select>
+            </div>
+
+            <!-- Franja Horaria Preferida (3 opciones) -->
+            <div class="form-group">
+              <label for="formFranjaLlamada" class="form-label">Franja preferida para una llamada</label>
+              <select id="formFranjaLlamada" name="franja_llamada" class="form-control">
+                <option value="Sin preferencia">Sin preferencia</option>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+            </div>
+
+            <!-- Texto exacto legal del PDF -->
+            <div class="form-disclaimer-pdf">
+              Solo gestionamos tu solicitud de contacto. No se recogen mensajes, fotografías ni información médica por este formulario.
+            </div>
+
+            <label class="form-checkbox-label" for="formConsent">
+              <input type="checkbox" id="formConsent" name="consentimiento" required>
+              <span>
+                He leído la <a href="politica-privacidad.html" target="_blank" style="text-decoration: underline; color: var(--color-gold);">política de privacidad</a> y consiento el uso de mis datos para responder a esta solicitud.
+              </span>
+            </label>
+
+            <!-- Botón con texto exacto solicitado -->
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 0.75rem;">
+              <span>Enviar Solicitud</span> <span>↗</span>
+            </button>
+
+            <div style="text-align: center; margin: 0.75rem 0; font-size: 0.85rem; color: var(--color-text-muted);">o consulta al instante:</div>
+
+            <a id="waDirectBtn" href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+              Contactar directamente por WhatsApp ↗
+            </a>
+
+            <div id="formFeedbackMsg" style="display: none; background: #EAF5EE; border: 1px solid #1F7A46; color: #1F7A46; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+              ✓ ¡Gracias! Tu solicitud ha sido registrada correctamente. Te contactaremos a la brevedad.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Pie de Página (Footer con Logo x4 y Textos Actualizados)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid-refined">
+        
+        <div>
+          <!-- Logo agrandado x4 -->
+          <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco" class="footer-large-logo">
+          <!-- Textos solicitados -->
+          <p class="footer-headline">Cercanía, confianza y cuidado.</p>
+          <p class="footer-subheadline">Tu sonrisa, acompañada en cada paso.</p>
+          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+            Centro Médico y Dental Caduceo<br>
+            Paseo del Marqués de Zafra 15, 1.º izq.<br>
+            28028 Madrid · Barrio de Salamanca
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Tratamientos</h4>
+          <ul class="footer-nav-list">
+            <li><a href="tratamientos.html#brackets">Brackets Metálicos</a></li>
+            <li><a href="tratamientos.html#brackets">Brackets Estéticos</a></li>
+            <li><a href="tratamientos.html#alineadores">Alineadores Transparentes</a></li>
+            <li><a href="tratamientos.html#infantil">Ortodoncia Infantil</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Navegación</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tratamientos.html">Tratamientos</a></li>
+            <li><a href="casos-reales.html">Casos Reales</a></li>
+            <li><a href="sobre-la-doctora.html">Sobre la Doctora</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contacto y Horario</h4>
+          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.75rem;">
+            Lunes a Viernes: 10:00 - 20:00 h<br>
+            Citas concertadas
+          </p>
+          <p style="font-size: 0.9rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.35rem;">
+            Tel: +34 679 62 36 10
+          </p>
+          <p style="font-size: 0.85rem; color: var(--color-gold); margin-bottom: 0.75rem;">
+            citas@adrianamendozaortodoncia.com
+          </p>
+          <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="link-arrow" style="font-size: 0.85rem; color: #1EBE5D;">
+            WhatsApp Consulta Directa ↗
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Mandatory Sanitary Notice in Madrid -->
+      <div class="footer-sanitary-box">
+        <strong>Identificación Sanitaria y Normativa Profesional:</strong><br>
+        Dra. Adriana Mendoza Orozco · Colegiada Nº [XXXXX] del Colegio Oficial de Odontólogos y Estomatólogos de Madrid (COEM).<br>
+        Centro Médico y Dental Caduceo · Inscrito en el Registro de Centros Sanitarios de la Consejería de Sanidad de la Comunidad de Madrid (Nº de Registro Sanitario: CS-[XXXXX]).
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Dra. Adriana Mendoza Orozco · Todos los derechos reservados.
+        </div>
+        <div class="footer-legal-links">
+          <a href="aviso-legal.html">Aviso Legal</a>
+          <a href="politica-privacidad.html">Política de Privacidad</a>
+          <a href="politica-cookies.html">Política de Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Desktop WhatsApp Button (Mobile bottom bar is removed) -->
+  <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- Core Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/ortho-3d.js"></script>
+  <script src="js/before-after.js"></script>
+  <script src="js/booking-widget.js"></script>
+</body>
 </html>

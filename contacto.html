@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO Primary Meta Tags (Madrid Local SEO Focus) -->
   <title>Contacto y Cita en Madrid | Dra. Adriana Mendoza · Barrio de Salamanca</title>
   <meta name="description" content="Pide tu cita de ortodoncia en Madrid con la Dra. Adriana Mendoza. Centro Médico y Dental Caduceo (Paseo del Marqués de Zafra 15, Barrio de Salamanca). Teléfono, WhatsApp y formulario directo.">
@@ -16,13 +16,13 @@
   <meta property="og:url" content="https://adrianamendozaortodoncia.com/contacto.html">
   <meta property="og:title" content="Contacto y Citas · Dra. Adriana Mendoza Ortodoncia Madrid">
   <meta property="og:description" content="Atención presencial en Barrio de Salamanca, Madrid (Centro Médico y Dental Caduceo).">
-  <meta property="og:image" content="img/logo.png">
+  <meta property="og:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contacto y Citas · Dra. Adriana Mendoza Madrid">
   <meta name="twitter:description" content="Reserva tu cita de ortodoncia en Barrio de Salamanca, Madrid.">
-  <meta name="twitter:image" content="img/logo.png">
+  <meta name="twitter:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -34,6 +34,32 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    .contact-page-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.12fr;
+      gap: 3.75rem;
+      align-items: start;
+    }
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .contact-page-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+    @media (max-width: 560px) {
+      .form-row-2col {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
 
   <!-- Schema.org JSON-LD Structured Data for Local SEO (Google Madrid) -->
   <script type="application/ld+json">
@@ -75,12 +101,12 @@
 <body>
 
   <!-- ========================================================================
-       Header / Navbar (Taller, Prominent Logo, Clean Menu Order)
+       Bloque 1: Header / Navbar
        ======================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-container">
       <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco - Inicio">
-        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
+        <img src="img/logo-1.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
         <div class="header-brand-info">
           <span class="header-brand-name">Adriana Mendoza</span>
           <span class="header-brand-sub">Ortodoncia · Madrid</span>
@@ -103,77 +129,81 @@
     </div>
 
     <!-- Mobile Drawer Menu -->
-    <div class="mobile-drawer" id="mobileNavDrawer">
-      <a href="index.html" class="mobile-nav-link">Inicio</a>
-      <a href="tratamientos.html" class="mobile-nav-link">Tratamientos</a>
-      <a href="casos-reales.html" class="mobile-nav-link">Casos Reales</a>
-      <a href="sobre-la-doctora.html" class="mobile-nav-link">Sobre la Doctora</a>
-      <a href="contacto.html" class="mobile-nav-link is-active">Contacto</a>
-      <a href="preguntas-frecuentes.html" class="mobile-nav-link">Preguntas Frecuentes</a>
-      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <a href="index.html" class="nav-item">Inicio</a>
+      <a href="tratamientos.html" class="nav-item">Tratamientos</a>
+      <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+      <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+      <a href="contacto.html" class="nav-item is-active">Contacto</a>
+      <a href="preguntas-frecuentes.html" class="nav-item">Preguntas Frecuentes</a>
+      <div style="margin-top: 1rem;">
         <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
-          WhatsApp Directo
+          Consultar por WhatsApp
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Page Header Banner -->
-    <section class="section" style="padding-top: 4rem; padding-bottom: 3rem; background: var(--color-bg-alt); border-bottom: 1px solid var(--color-border-subtle);">
-      <div class="container text-center">
-        <span class="eyebrow">AGENDA Y UBICACIÓN</span>
-        <h1 class="h1" style="margin-bottom: 1.25rem;">Hablemos de tu Sonrisa</h1>
-        <p class="hero-lead" style="max-width: 720px; margin: 0 auto; color: var(--color-text-body);">
+    <!-- ========================================================================
+         Bloque 2: Encabezado de Página (#FAF8F5)
+         ======================================================================== -->
+    <section class="section-padding-sm bg-warm" style="border-bottom: 1px solid var(--color-border);">
+      <div class="container text-center" style="max-width: 760px; margin: 0 auto;">
+        <span class="overline">A G E N D A &nbsp;&nbsp; Y &nbsp;&nbsp; U B I C A C I Ó N</span>
+        <h1 class="h2-title">
+          Hablemos de <span class="gold-italic">tu Sonrisa.</span>
+        </h1>
+        <p class="lead-text" style="margin: 0 auto;">
           Estamos en el corazón de Madrid. Elige el canal que te resulte más cómodo para solicitar tu cita presencial o resolver cualquier consulta.
         </p>
       </div>
     </section>
 
     <!-- Contact & Form Section -->
-    <section class="section" style="padding-top: 4.5rem; padding-bottom: 5.5rem;">
+    <section class="section-padding bg-white">
       <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: start;">
-          
+        <div class="contact-page-grid">
+
           <!-- Left Column: Direct Access & Clinic Info -->
           <div>
-            <span class="eyebrow">ATENCIÓN PRESENCIAL EXCLUSIVA</span>
-            <h2 class="h2" style="margin-bottom: 1rem;">Centro Médico y Dental Caduceo</h2>
-            
-            <p style="font-size: 1.05rem; color: var(--color-text-body); line-height: 1.7; margin-bottom: 1.75rem;">
+            <span class="overline">A T E N C I Ó N &nbsp;&nbsp; P R E S E N C I A L &nbsp;&nbsp; E X C L U S I V A</span>
+            <h2 class="h2-title">Centro Médico y Dental <span class="gold-italic">Caduceo</span></h2>
+
+            <p class="lead-text" style="margin-bottom: 1.75rem;">
               La consulta de la Dra. Adriana Mendoza se ubica en el Paseo del Marqués de Zafra, en una zona distinguida y de fácil acceso en el Barrio de Salamanca (Madrid).
             </p>
 
-            <div style="background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem; margin-bottom: 2rem;">
-              <h3 class="h3" style="font-size: 1.25rem; margin-bottom: 1rem;">Canales de Contacto Directo</h3>
-              
-              <div style="display: flex; flex-direction: column; gap: 1.15rem;">
+            <div class="contact-clinic-box" style="margin-bottom: 2rem;">
+              <h3 class="h3-title" style="font-size: 1.35rem; margin-bottom: 1rem;">Canales de Contacto Directo</h3>
+
+              <div class="font-sans" style="display: flex; flex-direction: column; gap: 1.15rem;">
                 <div>
-                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Teléfono de Consulta</div>
-                  <a href="tel:+34679623610" style="font-size: 1.35rem; font-family: var(--font-serif); font-weight: 600; color: var(--color-text-main); text-decoration: none;">
-                    +34 679 62 36 10
+                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 0.2rem;">Teléfono de Consulta</div>
+                  <a href="tel:+34679623610" class="contact-phone-link">
+                    +34 679 62 36 10 ↗
                   </a>
                 </div>
 
                 <div>
-                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.2rem;">WhatsApp Consulta Rápida</div>
-                  <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" style="font-size: 1rem; font-weight: 600; color: #1EBE5D; display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none;">
+                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 0.2rem;">WhatsApp Consulta Rápida</div>
+                  <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" style="font-size: 0.98rem; font-weight: 600; color: #1EBE5D; display: inline-flex; align-items: center; gap: 0.4rem;">
                     💬 Chatear con la consulta ↗
                   </a>
                 </div>
 
                 <div>
-                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Correo Electrónico</div>
-                  <a href="mailto:citas@adrianamendozaortodoncia.com" style="font-size: 0.95rem; color: var(--color-text-body); text-decoration: none;">
+                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 0.2rem;">Correo Electrónico</div>
+                  <a href="mailto:citas@adrianamendozaortodoncia.com" class="contact-email-link">
                     ✉️ citas@adrianamendozaortodoncia.com
                   </a>
                 </div>
 
                 <div>
-                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.2rem;">Horario de Atención</div>
-                  <p style="font-size: 0.9rem; color: var(--color-text-body); margin: 0; line-height: 1.5;">
+                  <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 0.2rem;">Horario de Atención</div>
+                  <p style="font-size: 0.92rem; color: var(--color-text-body); margin: 0; line-height: 1.55;">
                     Lunes a Viernes: 10:00 - 20:00 h<br>
-                    <span style="font-size: 0.82rem; color: var(--color-text-muted);">(Atención presencial bajo cita concertada)</span>
+                    <span style="font-size: 0.84rem; color: var(--color-text-muted);">(Atención presencial bajo cita concertada)</span>
                   </p>
                 </div>
               </div>
@@ -181,8 +211,8 @@
 
             <!-- How to get there details -->
             <div style="background: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.75rem; box-shadow: var(--shadow-xs);">
-              <h4 style="font-size: 1.05rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.75rem;">¿Cómo llegar a la consulta?</h4>
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem; color: var(--color-text-body);">
+              <h4 class="h3-title" style="font-size: 1.25rem; margin-bottom: 0.75rem;">¿Cómo llegar a la consulta?</h4>
+              <ul class="font-sans" style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.92rem; color: var(--color-text-body);">
                 <li>🚇 <strong>Metro Manuel Becerra:</strong> Líneas 2 y 6 (a 5 minutos a pie).</li>
                 <li>🚇 <strong>Metro Ventas:</strong> Líneas 2 y 5 (a 6 minutos a pie).</li>
                 <li>🚌 <strong>Autobuses EMT:</strong> Líneas 12, 21, 38, 53, 106, 110 y 146.</li>
@@ -192,7 +222,7 @@
               <button id="btnShowInteractiveMap" type="button" class="btn btn-secondary" style="margin-top: 1.25rem; width: 100%; font-size: 0.85rem;">
                 Ver ubicación en Google Maps ↗
               </button>
-              
+
               <div id="mapInteractiveContainer" style="display: none; margin-top: 1rem; border-radius: 8px; overflow: hidden; height: 260px; border: 1px solid var(--color-border);">
                 <iframe id="mapInteractiveFrame" title="Ubicación Centro Caduceo Madrid" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
               </div>
@@ -200,20 +230,20 @@
           </div>
 
           <!-- Right Column: Interactive Appointment Booking Form -->
-          <div style="background: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);">
-            <span class="eyebrow">SOLICITUD DE CITA</span>
-            <h3 class="h3" style="margin-bottom: 0.5rem;">Reserva tu Primera Visita</h3>
-            <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1.75rem;">
+          <div class="contact-card-refined">
+            <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.5rem;">S O L I C I T U D &nbsp;&nbsp; D E &nbsp;&nbsp; C I T A</span>
+            <h3 class="h3-title" style="margin-bottom: 0.35rem;">Reserva tu Primera Visita</h3>
+            <p class="tp-subtitle" style="font-size: 0.925rem; line-height: 1.6; color: var(--color-text-muted);">
               Envíanos tus datos de contacto y coordinaremos contigo la fecha y hora más adecuada.
             </p>
 
             <form id="adrimendozaContactForm" action="send-mail.php" method="POST" novalidate>
-              <div class="form-group" style="margin-bottom: 1.25rem;">
+              <div class="form-group">
                 <label for="formNombre" class="form-label">Nombre y Apellidos *</label>
                 <input type="text" id="formNombre" name="nombre" class="form-control" required placeholder="Tu nombre completo">
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <div class="form-row-2col">
                 <div class="form-group">
                   <label for="formEmail" class="form-label">Correo Electrónico *</label>
                   <input type="email" id="formEmail" name="email" class="form-control" required placeholder="tu@correo.com">
@@ -224,7 +254,7 @@
                 </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <div class="form-row-2col">
                 <div class="form-group">
                   <label for="formPreferenciaRespuesta" class="form-label">¿Cómo prefieres que respondamos?</label>
                   <select id="formPreferenciaRespuesta" name="preferencia_respuesta" class="form-control">
@@ -243,15 +273,15 @@
                 </div>
               </div>
 
-              <!-- Mandatory Clarification Notice from PDF -->
-              <div class="form-disclaimer-box" style="margin-bottom: 1.25rem;">
+              <!-- Mandatory Clarification Notice -->
+              <div class="form-disclaimer-pdf">
                 Solo gestionamos tu solicitud de contacto. No se recogen mensajes, fotografías ni información médica por este formulario.
               </div>
 
-              <label class="form-checkbox-label" for="formConsent" style="margin-bottom: 1.5rem;">
+              <label class="form-checkbox-label" for="formConsent">
                 <input type="checkbox" id="formConsent" name="consentimiento" required>
                 <span>
-                  He leído la <a href="politica-privacidad.html" target="_blank" style="color: var(--color-gold); text-decoration: underline;">política de privacidad</a> y consiento el uso de mis datos para responder a esta solicitud.
+                  He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">política de privacidad</a> y consiento el uso de mis datos para responder a esta solicitud.
                 </span>
               </label>
 
@@ -278,19 +308,17 @@
   </main>
 
   <!-- ========================================================================
-       Pie de Página (Footer con Logo x4 y Textos Actualizados)
+       Pie de Página (Footer)
        ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid-refined">
-        
+
         <div>
-          <!-- Logo agrandado x4 -->
           <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco" class="footer-large-logo">
-          <!-- Textos solicitados -->
           <p class="footer-headline">Cercanía, confianza y cuidado.</p>
           <p class="footer-subheadline">Tu sonrisa, acompañada en cada paso.</p>
-          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+          <div class="footer-address">
             Centro Médico y Dental Caduceo<br>
             Paseo del Marqués de Zafra 15, 1.º izq.<br>
             28028 Madrid · Barrio de Salamanca
@@ -358,9 +386,9 @@
     </div>
   </footer>
 
-  <!-- Floating Desktop WhatsApp Button (Mobile bottom bar is removed) -->
+  <!-- Floating Desktop WhatsApp Button -->
   <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
     <span>WhatsApp</span>
   </a>
 

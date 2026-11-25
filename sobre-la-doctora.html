@@ -13,14 +13,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    .doctor-profile-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+    @media (max-width: 960px) {
+      .doctor-profile-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header / Navbar -->
+  <!-- ========================================================================
+       Bloque 1: Header / Navbar
+       ======================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-container">
       <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco">
-        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza" class="header-logo">
+        <img src="img/logo-1.png" alt="Logotipo Dra. Adriana Mendoza" class="header-logo">
         <div class="header-brand-info">
           <span class="header-brand-name">Adriana Mendoza</span>
           <span class="header-brand-sub">Ortodoncia · Madrid</span>
@@ -47,14 +65,23 @@
       <a href="sobre-la-doctora.html" class="nav-item is-active">Sobre la Doctora</a>
       <a href="contacto.html" class="nav-item">Contacto</a>
       <a href="preguntas-frecuentes.html" class="nav-item">Preguntas Frecuentes</a>
+      <div style="margin-top: 1rem;">
+        <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
+          Consultar por WhatsApp
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- Page Header Banner -->
+  <!-- ========================================================================
+       Bloque 2: Encabezado de Página (#FAF8F5)
+       ======================================================================== -->
   <section class="section-padding-sm bg-warm" style="border-bottom: 1px solid var(--color-border);">
-    <div class="container text-center">
-      <span class="overline">V O C A C I Ó N · Y · C I E N C I A</span>
-      <h1 class="h1-title">Dra. Adriana Mendoza Orozco</h1>
+    <div class="container text-center" style="max-width: 760px; margin: 0 auto;">
+      <span class="overline">V O C A C I Ó N &nbsp;&nbsp; Y &nbsp;&nbsp; C I E N C I A</span>
+      <h1 class="h2-title">
+        Dra. Adriana <span class="gold-italic">Mendoza Orozco</span>
+      </h1>
       <p class="lead-text" style="margin: 0 auto;">
         «La ortodoncia va mucho más allá de alinear tus dientes».
       </p>
@@ -62,15 +89,15 @@
   </section>
 
   <main class="container section-padding">
-    
+
     <!-- Profile & Philosophy Grid -->
-    <div style="display: grid; grid-template-columns: 420px 1fr; gap: 4rem; align-items: start; margin-bottom: 5rem;">
+    <div class="doctor-profile-grid">
       <div>
         <img src="img/dra_adriana_mendoza.jpg" alt="Dra. Adriana Mendoza Orozco - Ortodoncista colegiada en Madrid" style="width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--color-border);">
-        
+
         <div style="background: var(--color-bg-warm); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1.5rem;">
-          <h4 style="font-size: 0.9rem; text-transform: uppercase; color: var(--color-gold); font-weight: 700; margin-bottom: 0.75rem;">Acreditaciones Oficiales</h4>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; color: var(--color-text-body);">
+          <h4 class="font-sans" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-gold); font-weight: 700; margin-bottom: 0.75rem;">Acreditaciones Oficiales</h4>
+          <ul class="font-sans" style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem; color: var(--color-text-body);">
             <li>🏛️ <strong>Colegiada COEM:</strong> Nº [XXXXX] (Madrid)</li>
             <li>💎 <strong>Certificación:</strong> Ortodoncia Invisible y Autoligado</li>
             <li>🔬 <strong>Membresía Científica:</strong> Sociedad Española de Ortodoncia (SEDO)</li>
@@ -82,21 +109,20 @@
       <div>
         <span class="overline">C O N Ó C E N O S</span>
         <h2 class="h2-title">Tiempo para escuchar.<br>Vocación para <span class="gold-italic">cuidar.</span></h2>
-        
-        <!-- Texto editado según solicitud exacta -->
-        <p style="font-size: 1.05rem; line-height: 1.75; color: var(--color-text-body); margin-bottom: 1.25rem;">
+
+        <p class="lead-text" style="margin-bottom: 1.25rem;">
           Soy odontóloga dedicada a la ortodoncia. Concibo mi profesión desde una perspectiva profundamente humana: creo en una atención donde la paciencia, la empatía y la confianza sean el corazón de cada consulta.
         </p>
 
-        <p style="font-size: 1rem; line-height: 1.75; color: var(--color-text-body); margin-bottom: 1.25rem;">
+        <p class="lead-text" style="margin-bottom: 1.25rem;">
           Entender tu historia y explicarte cada paso forma parte del cuidado. Juntos buscaremos una sonrisa sana y natural, de acuerdo con tus necesidades.
         </p>
 
-        <p style="font-size: 1rem; line-height: 1.75; color: var(--color-text-body); margin-bottom: 2rem;">
+        <p class="lead-text" style="margin-bottom: 2rem;">
           En nuestra consulta de Madrid te dedicamos todo el tiempo necesario para resolver tus dudas antes, durante y después del tratamiento, con honestidad y rigor científico.
         </p>
 
-        <div style="border-left: 3px solid var(--color-gold); padding-left: 1.25rem; font-style: italic; color: var(--color-text-main); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+        <div class="font-sans" style="border-left: 3px solid var(--color-gold); padding-left: 1.25rem; font-style: italic; color: var(--color-text-main); font-size: 1.05rem; line-height: 1.65; margin-bottom: 2rem;">
           «La ortodoncia va mucho más allá de alinear tus dientes: es devolver la armonía, la función y la seguridad al sonreír.»
         </div>
 
@@ -106,25 +132,24 @@
 
     <!-- Scientific Publication Block with Direct Link -->
     <section style="background: var(--color-bg-warm); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--color-border); margin-bottom: 5rem;">
-      <span class="overline">C I E N C I A · A L · S E R V I C I O · D E · T U · S O N R I S A</span>
-      <h2 class="h2-title">Conocimiento que acompaña</h2>
-      <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-body); margin-bottom: 1.75rem;">
+      <span class="overline">C I E N C I A &nbsp;&nbsp; A L &nbsp;&nbsp; S E R V I C I O &nbsp;&nbsp; D E &nbsp;&nbsp; T U &nbsp;&nbsp; S O N R I S A</span>
+      <h2 class="h2-title">Conocimiento que <span class="gold-italic">acompaña</span></h2>
+      <p class="lead-text" style="margin-bottom: 1.75rem;">
         Estudiar, comprender y seguir aprendiendo también forma parte de cuidar.
       </p>
 
       <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2.25rem; margin-bottom: 2rem; box-shadow: var(--shadow-xs);">
-        <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.35rem;">P U B L I C A C I Ó N · 2 0 1 1</span>
+        <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.35rem;">P U B L I C A C I Ó N &nbsp;&nbsp; 2 0 1 1</span>
         <h3 class="h3-title" style="font-size: 1.55rem; margin-bottom: 0.5rem;">
           Fuerza friccional en Brackets de Autoligado Pasivo
         </h3>
-        <p style="font-size: 0.95rem; color: var(--color-text-main); font-weight: 500; margin-bottom: 0.75rem;">
+        <p class="font-sans" style="font-size: 0.95rem; color: var(--color-text-main); font-weight: 500; margin-bottom: 0.75rem;">
           Adriana Mendoza Orozco y Roberto Silva Meza.
         </p>
-        <p style="font-size: 0.925rem; line-height: 1.65; color: var(--color-text-muted); margin-bottom: 1.5rem;">
+        <p class="font-sans" style="font-size: 0.95rem; line-height: 1.65; color: var(--color-text-muted); margin-bottom: 1.5rem;">
           Estudio de laboratorio sobre la fricción en dos sistemas de brackets de autoligado pasivo. Investigación experimental sobre biomecánica dental y resistencia por fricción.
         </p>
 
-        <!-- Direct Link requested by user -->
         <a href="https://www.ortodoncia.ws/publicaciones/2011/art-7" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.88rem; padding: 0.75rem 1.4rem;">
           Leer la publicación científica original ↗
         </a>
@@ -132,11 +157,11 @@
 
       <!-- International Trajectory Subsection -->
       <div style="border-top: 1px dashed var(--color-gold-border); padding-top: 1.75rem;">
-        <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.25rem;">T R A Y E C T O R I A · E · H I S T O R I A</span>
-        <h3 class="h3-title" style="font-size: 1.25rem; margin-bottom: 0.5rem;">
+        <span class="overline" style="font-size: 0.72rem; margin-bottom: 0.25rem;">T R A Y E C T O R I A &nbsp;&nbsp; E &nbsp;&nbsp; H I S T O R I A</span>
+        <h3 class="h3-title" style="font-size: 1.35rem; margin-bottom: 0.5rem;">
           Trayectoria y Experiencia Internacional
         </h3>
-        <p style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-body);">
+        <p class="font-sans" style="font-size: 0.95rem; line-height: 1.7; color: var(--color-text-body);">
           <em>Experiencia clínica internacional en Venezuela y ejercicio profesional presencial exclusivo en Madrid (Centro Médico y Dental Caduceo).</em> Formación y colaboraciones continuadas en el ámbito de la ortodoncia clínica avanzada.
         </p>
       </div>
@@ -145,15 +170,14 @@
     <!-- Clinic Facilities Gallery (Vertical Format Photos) -->
     <section>
       <div class="text-center" style="max-width: 760px; margin: 0 auto 2.5rem;">
-        <span class="overline">N U E S T R A · C O N S U L T A</span>
-        <h2 class="h2-title">Centro Médico y Dental Caduceo (Madrid)</h2>
-        <!-- Texto actualizado solicitado -->
+        <span class="overline">N U E S T R A &nbsp;&nbsp; C O N S U L T A</span>
+        <h2 class="h2-title">Centro Médico y Dental Caduceo <span class="gold-italic">(Madrid)</span></h2>
         <p class="lead-text" style="margin: 0 auto;">
           Un entorno cercano para hablar de tu sonrisa, y resolver tus dudas, diseñado con estrictos protocolos de esterilización y tecnología de vanguardia.
         </p>
       </div>
 
-      <!-- Vertical Photos Grid to show the complete image -->
+      <!-- Vertical Photos Grid -->
       <div class="facilities-vertical-grid">
         <div class="facility-vertical-card">
           <img src="img/clinica_gabinete.jpg" alt="Gabinete con sillón dental y techo de cielo relajante en Centro Caduceo Madrid" loading="lazy">
@@ -166,7 +190,7 @@
 
   </main>
 
-  <!-- Footer con Logo x4 y Enlaces Sincronizados -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid-refined">
@@ -174,7 +198,7 @@
           <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco" class="footer-large-logo">
           <p class="footer-headline">Cercanía, confianza y cuidado.</p>
           <p class="footer-subheadline">Tu sonrisa, acompañada en cada paso.</p>
-          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+          <div class="footer-address">
             Centro Médico y Dental Caduceo<br>
             Paseo del Marqués de Zafra 15, 1.º izq.<br>
             28028 Madrid · Barrio de Salamanca
@@ -184,7 +208,7 @@
         <div>
           <h4 class="footer-heading">Tratamientos</h4>
           <ul class="footer-nav-list">
-            <li><a href="tratamientos.html#brackets">Brackets Metálicos</a></li>
+            <li><a href="tratamientos.html#brackets-metalicos">Brackets Metálicos</a></li>
             <li><a href="tratamientos.html#brackets">Brackets Estéticos</a></li>
             <li><a href="tratamientos.html#alineadores">Alineadores Transparentes</a></li>
             <li><a href="tratamientos.html#infantil">Ortodoncia Infantil</a></li>
@@ -215,6 +239,9 @@
           <p style="font-size: 0.85rem; color: var(--color-gold); margin-bottom: 0.75rem;">
             citas@adrianamendozaortodoncia.com
           </p>
+          <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="link-arrow" style="font-size: 0.85rem; color: #1EBE5D;">
+            WhatsApp Consulta Directa ↗
+          </a>
         </div>
       </div>
 
@@ -234,6 +261,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Desktop WhatsApp Button -->
+  <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <span>WhatsApp</span>
+  </a>
 
   <script src="js/main.js"></script>
 </body>

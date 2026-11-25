@@ -222,8 +222,9 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.9rem 1.75rem;
+  padding: 0.85rem 1.75rem;
   font-size: 0.925rem;
+  line-height: 1.2;
   font-weight: 600;
   border-radius: var(--radius-sm);
   transition: var(--transition-smooth);
@@ -520,7 +521,7 @@ button {
 }
 
 .hero-brand-emblem {
-  width: 210px;
+  width: 273px;
   height: auto;
   margin: 0 auto 1.6rem;
   filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.12));
@@ -626,7 +627,7 @@ button {
     gap: 2.5rem;
   }
   .hero-brand-emblem {
-    width: 180px;
+    width: 234px;
   }
 }
 
@@ -659,7 +660,7 @@ button {
     margin-bottom: 1rem;
   }
   .hero-brand-emblem {
-    width: 155px;
+    width: 202px;
     margin-bottom: 1.25rem;
   }
   .hero-h2-slogan {

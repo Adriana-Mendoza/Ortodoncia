@@ -9,7 +9,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     // 1. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobileMenuToggle');
-    const mobileDrawer = document.getElementById('mobileNavDrawer');
+    const mobileDrawer = document.getElementById('mobileNavDrawer') || document.getElementById('mobileDrawer');
 
     if (mobileToggle && mobileDrawer) {
       mobileToggle.addEventListener('click', () => {
@@ -47,20 +47,23 @@
       });
     }
 
-    // 3. FAQ Accordions
-    const accordionTriggers = document.querySelectorAll('.faq-accordion-trigger');
-    accordionTriggers.forEach((btn) => {
+    // 3. FAQ Collapsible Accordions (Preguntas Frecuentes)
+    const faqTriggers = document.querySelectorAll('.faq-trigger');
+    faqTriggers.forEach((btn) => {
       btn.addEventListener('click', () => {
         const body = btn.nextElementSibling;
-        const icon = btn.querySelector('.accordion-icon');
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        const icon = btn.querySelector('.faq-icon-sign');
+        const isOpen = body.classList.contains('is-open');
 
-        btn.setAttribute('aria-expanded', !isOpen);
-        if (body) {
-          body.style.display = isOpen ? 'none' : 'block';
-        }
-        if (icon) {
-          icon.textContent = isOpen ? '＋' : '－';
+        // Toggle state
+        if (isOpen) {
+          body.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+          if (icon) icon.textContent = '＋';
+        } else {
+          body.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          if (icon) icon.textContent = '－';
         }
       });
     });

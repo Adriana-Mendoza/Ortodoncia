@@ -1,6 +1,6 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
- * Reusable Before & After Comparison Slider (Touch & Mouse Support)
+ * Reusable Before & After Comparison Slider (Left: ANTES / Right: DESPUÉS)
  */
 
 (function () {
@@ -11,7 +11,7 @@
 
     sliders.forEach((container) => {
       const handle = container.querySelector('.ba-handle');
-      const overlay = container.querySelector('.ba-img-after-overlay');
+      const overlay = container.querySelector('.ba-img-before-overlay');
       const overlayImg = overlay ? overlay.querySelector('img') : null;
 
       if (!handle || !overlay) return;

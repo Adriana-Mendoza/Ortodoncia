@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO Primary Meta Tags (Madrid Local SEO Focus) -->
   <title>Tratamientos de Ortodoncia en Madrid | Alineadores y Brackets · Dra. Adriana Mendoza</title>
   <meta name="description" content="Tratamientos de ortodoncia de alta precisión en Barrio de Salamanca, Madrid: alineadores transparentes, brackets metálicos y estéticos, y ortodoncia infantil con la Dra. Adriana Mendoza.">
@@ -16,13 +16,13 @@
   <meta property="og:url" content="https://adrianamendozaortodoncia.com/tratamientos.html">
   <meta property="og:title" content="Tratamientos de Ortodoncia en Madrid · Dra. Adriana Mendoza">
   <meta property="og:description" content="Alineadores invisibles, brackets estéticos y metálicos, y ortodoncia infantil en Centro Médico y Dental Caduceo.">
-  <meta property="og:image" content="img/logo.png">
+  <meta property="og:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tratamientos de Ortodoncia en Madrid · Dra. Adriana Mendoza">
   <meta name="twitter:description" content="Tratamientos personalizados de ortodoncia en Barrio de Salamanca, Madrid.">
-  <meta name="twitter:image" content="img/logo.png">
+  <meta name="twitter:image" content="https://adrianamendozaortodoncia.com/img/logo.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png">
@@ -34,6 +34,27 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/main.css">
+
+  <style>
+    .treatment-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .treatment-detail-grid .order-text-right { order: 2; }
+    .treatment-detail-grid .order-img-left { order: 1; }
+    @media (max-width: 900px) {
+      .treatment-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .treatment-detail-grid .order-text-right,
+      .treatment-detail-grid .order-img-left {
+        order: initial;
+      }
+    }
+  </style>
 
   <!-- Schema.org JSON-LD Structured Data for Local SEO (Google Madrid) -->
   <script type="application/ld+json">
@@ -67,12 +88,12 @@
 <body>
 
   <!-- ========================================================================
-       Header / Navbar (Taller, Prominent Logo, Clean Menu Order)
+       Bloque 1: Header / Navbar
        ======================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-container">
       <a href="index.html" class="header-brand" aria-label="Dra. Adriana Mendoza Orozco - Inicio">
-        <img src="img/logo.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
+        <img src="img/logo-1.png" alt="Logotipo Dra. Adriana Mendoza Ortodoncia" class="header-logo">
         <div class="header-brand-info">
           <span class="header-brand-name">Adriana Mendoza</span>
           <span class="header-brand-sub">Ortodoncia · Madrid</span>
@@ -95,47 +116,53 @@
     </div>
 
     <!-- Mobile Drawer Menu -->
-    <div class="mobile-drawer" id="mobileDrawer">
-      <a href="index.html" class="mobile-nav-link">Inicio</a>
-      <a href="tratamientos.html" class="mobile-nav-link is-active">Tratamientos</a>
-      <a href="casos-reales.html" class="mobile-nav-link">Casos Reales</a>
-      <a href="sobre-la-doctora.html" class="mobile-nav-link">Sobre la Doctora</a>
-      <a href="contacto.html" class="mobile-nav-link">Contacto</a>
-      <a href="preguntas-frecuentes.html" class="mobile-nav-link">Preguntas Frecuentes</a>
-      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+    <div class="mobile-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <a href="index.html" class="nav-item">Inicio</a>
+      <a href="tratamientos.html" class="nav-item is-active">Tratamientos</a>
+      <a href="casos-reales.html" class="nav-item">Casos Reales</a>
+      <a href="sobre-la-doctora.html" class="nav-item">Sobre la Doctora</a>
+      <a href="contacto.html" class="nav-item">Contacto</a>
+      <a href="preguntas-frecuentes.html" class="nav-item">Preguntas Frecuentes</a>
+      <div style="margin-top: 1rem;">
         <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%;">
-          WhatsApp Directo
+          Consultar por WhatsApp
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Page Header Banner -->
-    <section class="section" style="padding-top: 4rem; padding-bottom: 3rem; background: var(--color-bg-alt); border-bottom: 1px solid var(--color-border-subtle);">
-      <div class="container text-center">
-        <span class="eyebrow">ESPECIALIDADES CLÍNICAS</span>
-        <h1 class="h1" style="margin-bottom: 1.25rem;">Tratamientos de Ortodoncia en Madrid</h1>
-        <p class="hero-lead" style="max-width: 760px; margin: 0 auto; color: var(--color-text-body);">
+    <!-- ========================================================================
+         Bloque 2: Encabezado de Página (#FAF8F5)
+         ======================================================================== -->
+    <section class="section-padding-sm bg-warm" style="border-bottom: 1px solid var(--color-border);">
+      <div class="container text-center" style="max-width: 760px; margin: 0 auto;">
+        <span class="overline">E S P E C I A L I D A D E S &nbsp;&nbsp; C L Í N I C A S</span>
+        <h1 class="h2-title">
+          Tratamientos de Ortodoncia <span class="gold-italic">en Madrid.</span>
+        </h1>
+        <p class="lead-text" style="margin: 0 auto;">
           Tecnología digital avanzada, diagnóstico riguroso y una solución biomecánica individualizada para cada tipo de mordida en Centro Caduceo (Barrio de Salamanca).
         </p>
       </div>
     </section>
 
-    <!-- Main Content: Categorized Treatments -->
-    <section class="section-padding bg-warm" style="padding-top: 4.5rem; padding-bottom: 5rem;">
+    <!-- ========================================================================
+         Bloque 3: Detalle de Tratamientos
+         ======================================================================== -->
+    <section class="section-padding bg-white">
       <div class="container">
-        
+
         <!-- 1. Brackets Metálicos -->
         <article id="brackets-metalicos" style="margin-bottom: 5rem; scroll-margin-top: 110px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+          <div class="treatment-detail-grid">
             <div>
-              <span class="eyebrow">EFICACIA COMPROBADA</span>
-              <h2 class="h2" style="margin-bottom: 1rem;">Brackets Metálicos</h2>
-              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--color-text-body);">
+              <span class="overline">E F I C A C I A &nbsp;&nbsp; C O M P R O B A D A</span>
+              <h2 class="h2-title">Brackets <span class="gold-italic">Metálicos</span></h2>
+              <p class="lead-text" style="margin-bottom: 1.25rem;">
                 La aparatología metálica convencional y de autoligado continúa siendo el método de máxima solidez biomecánica para casos complejos, discrepancias óseas severas y maloclusiones tridimensionales. Su diseño actual es significativamente más compacto y suave que en el pasado.
               </p>
-              <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <ul class="font-sans" style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
                 <li style="display: flex; gap: 0.5rem; font-size: 0.95rem;">
                   <span style="color: var(--color-gold); font-weight: bold;">✓</span>
                   <span><strong>Máxima resistencia mecánica:</strong> Sin riesgo de rotura de piezas ante fuerzas intensas o hábitos masticatorios específicos.</span>
@@ -159,14 +186,14 @@
 
         <!-- 2. Brackets Estéticos -->
         <article id="brackets" style="margin-bottom: 5rem; scroll-margin-top: 110px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
-            <div style="order: 2;">
-              <span class="eyebrow">DISCRECIÓN Y PRECISIÓN</span>
-              <h2 class="h2" style="margin-bottom: 1rem;">Brackets Estéticos (Zafiro)</h2>
-              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--color-text-body);">
+          <div class="treatment-detail-grid">
+            <div class="order-text-right">
+              <span class="overline">D I S C R E C I Ó N &nbsp;&nbsp; Y &nbsp;&nbsp; P R E C I S I Ó N</span>
+              <h2 class="h2-title">Brackets Estéticos <span class="gold-italic">(Zafiro)</span></h2>
+              <p class="lead-text" style="margin-bottom: 1.25rem;">
                 Para quienes precisan la fuerza biomecánica de los brackets fijos pero prefieren una apariencia natural y armónica. Empleamos brackets cerámicos y de zafiro translúcido que se mimetizan ópticamente con el tono del diente sin teñirse con el paso de los meses.
               </p>
-              <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <ul class="font-sans" style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
                 <li style="display: flex; gap: 0.5rem; font-size: 0.95rem;">
                   <span style="color: var(--color-gold); font-weight: bold;">✓</span>
                   <span><strong>Zafiro monocristalino:</strong> Brackets transparentes que no absorben pigmentos de café, té o vino.</span>
@@ -182,7 +209,7 @@
               </ul>
               <a href="contacto.html" class="btn btn-primary">Consultar Brackets Estéticos ↗</a>
             </div>
-            <div style="order: 1;">
+            <div class="order-img-left">
               <img src="img/brackets_esteticos.png" alt="Brackets estéticos de zafiro en Barrio de Salamanca Madrid" style="width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md); border: 1px solid var(--color-border); aspect-ratio: 4/3; object-fit: cover;">
             </div>
           </div>
@@ -190,14 +217,14 @@
 
         <!-- 3. Alineadores Transparentes -->
         <article id="alineadores" style="margin-bottom: 5rem; scroll-margin-top: 110px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+          <div class="treatment-detail-grid">
             <div>
-              <span class="eyebrow">ORTODONCIA INVISIBLE</span>
-              <h2 class="h2" style="margin-bottom: 1rem;">Alineadores Transparentes</h2>
-              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--color-text-body);">
+              <span class="overline">O R T O D O N C I A &nbsp;&nbsp; I N V I S I B L E</span>
+              <h2 class="h2-title">Alineadores <span class="gold-italic">Transparentes</span></h2>
+              <p class="lead-text" style="margin-bottom: 1.25rem;">
                 Los alineadores transparentes representan la vanguardia estética de la ortodoncia digital. Mediante férulas secuenciales y extraíbles, planificadas por ordenador tras un escaneo 3D sin moldes molestos, corregimos apiñamientos y mordidas de forma casi imperceptible.
               </p>
-              <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <ul class="font-sans" style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
                 <li style="display: flex; gap: 0.5rem; font-size: 0.95rem;">
                   <span style="color: var(--color-gold); font-weight: bold;">✓</span>
                   <span><strong>100% Removibles:</strong> Disfruta de tus comidas habituales sin restricciones y realiza el cepillado dental con total comodidad.</span>
@@ -221,14 +248,14 @@
 
         <!-- 4. Ortodoncia Infantil -->
         <article id="infantil" style="margin-bottom: 5rem; scroll-margin-top: 110px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
-            <div style="order: 2;">
-              <span class="eyebrow">PREVENCIÓN E INTERCEPCIÓN</span>
-              <h2 class="h2" style="margin-bottom: 1rem;">Ortodoncia Infantil</h2>
-              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--color-text-body);">
+          <div class="treatment-detail-grid">
+            <div class="order-text-right">
+              <span class="overline">P R E V E N C I Ó N &nbsp;&nbsp; E &nbsp;&nbsp; I N T E R C E P C I Ó N</span>
+              <h2 class="h2-title">Ortodoncia <span class="gold-italic">Infantil</span></h2>
+              <p class="lead-text" style="margin-bottom: 1.25rem;">
                 La infancia y el recambio dentario entre los 6 y 10 años ofrecen una oportunidad única: los huesos maxilares están en desarrollo y son sumamente receptivos. Corregir precozmente la compresión maxilar o las mordidas cruzadas previene cirugías o extracciones en la edad adulta.
               </p>
-              <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <ul class="font-sans" style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
                 <li style="display: flex; gap: 0.5rem; font-size: 0.95rem;">
                   <span style="color: var(--color-gold); font-weight: bold;">✓</span>
                   <span><strong>Primera revisión recomendada a los 6-7 años:</strong> Detección precoz de hábitos de deglución atípica y respiración oral.</span>
@@ -244,7 +271,7 @@
               </ul>
               <a href="contacto.html" class="btn btn-primary">Pedir Cita Infantil en Madrid ↗</a>
             </div>
-            <div style="order: 1;">
+            <div class="order-img-left">
               <img src="img/ortodoncia_infantil.jpg" alt="Ortodoncia infantil en Barrio de Salamanca Madrid" style="width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-md); border: 1px solid var(--color-border); aspect-ratio: 4/3; object-fit: cover;">
             </div>
           </div>
@@ -252,14 +279,14 @@
 
         <!-- 5. Retención Post-Ortodoncia -->
         <article id="retencion" style="margin-bottom: 5rem; scroll-margin-top: 110px;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+          <div class="treatment-detail-grid">
             <div>
-              <span class="eyebrow">ESTABILIDAD PERMANENTE</span>
-              <h2 class="h2" style="margin-bottom: 1rem;">Retención Post-Ortodoncia y Mantenimiento</h2>
-              <p style="font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; color: var(--color-text-body);">
+              <span class="overline">E S T A B I L I D A D &nbsp;&nbsp; P E R M A N E N T E</span>
+              <h2 class="h2-title">Retención Post-Ortodoncia <span class="gold-italic">y Mantenimiento</span></h2>
+              <p class="lead-text" style="margin-bottom: 1.25rem;">
                 Los tejidos periodontales necesitan un periodo biológico de consolidación. La fase de retención es tan decisiva como el tratamiento activo: garantiza que los resultados obtenidos permanezcan inalterables con el paso de los años.
               </p>
-              <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <ul class="font-sans" style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
                 <li style="display: flex; gap: 0.5rem; font-size: 0.95rem;">
                   <span style="color: var(--color-gold); font-weight: bold;">✓</span>
                   <span><strong>Retenedores fijos linguales:</strong> Hilos de acero o titanio biocompatible adheridos en la cara interna, imperceptibles desde el exterior.</span>
@@ -282,17 +309,17 @@
         </article>
 
         <!-- Treatment Comparison Matrix Table -->
-        <section style="background: var(--color-bg-alt); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--color-border); margin-top: 3rem;">
-          <div class="text-center" style="margin-bottom: 2.5rem;">
-            <span class="eyebrow">TABLA COMPARATIVA</span>
-            <h2 class="h2" style="margin-bottom: 0.75rem;">¿Qué tratamiento se adapta mejor a tu día a día?</h2>
-            <p class="hero-lead" style="max-width: 650px; margin: 0 auto; color: var(--color-text-body); font-size: 1rem;">
+        <section style="background: var(--color-bg-warm); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--color-border); margin-top: 3rem;">
+          <div class="text-center" style="max-width: 720px; margin: 0 auto 2.5rem;">
+            <span class="overline">T A B L A &nbsp;&nbsp; C O M P A R A T I V A</span>
+            <h2 class="h2-title">¿Qué tratamiento se adapta mejor <span class="gold-italic">a tu día a día?</span></h2>
+            <p class="lead-text" style="margin: 0 auto;">
               En la primera consulta analizaremos tu oclusión y expectativas para recomendarte la opción clínicamente más adecuada.
             </p>
           </div>
 
           <div style="overflow-x: auto;">
-            <table style="width: 100%; border-collapse: collapse; min-width: 650px; text-align: left; font-size: 0.925rem;">
+            <table class="font-sans" style="width: 100%; border-collapse: collapse; min-width: 650px; text-align: left; font-size: 0.925rem;">
               <thead>
                 <tr style="border-bottom: 2px solid var(--color-gold); color: var(--color-text-main);">
                   <th style="padding: 1rem 0.75rem;">Característica</th>
@@ -346,19 +373,17 @@
   </main>
 
   <!-- ========================================================================
-       Pie de Página (Footer con Logo x4 y Textos Actualizados)
+       Pie de Página (Footer)
        ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid-refined">
-        
+
         <div>
-          <!-- Logo agrandado x4 -->
           <img src="img/logo.png" alt="Dra. Adriana Mendoza Orozco" class="footer-large-logo">
-          <!-- Textos solicitados -->
           <p class="footer-headline">Cercanía, confianza y cuidado.</p>
           <p class="footer-subheadline">Tu sonrisa, acompañada en cada paso.</p>
-          <div style="font-size: 0.85rem; color: var(--color-text-main); font-weight: 600;">
+          <div class="footer-address">
             Centro Médico y Dental Caduceo<br>
             Paseo del Marqués de Zafra 15, 1.º izq.<br>
             28028 Madrid · Barrio de Salamanca
@@ -426,9 +451,9 @@
     </div>
   </footer>
 
-  <!-- Floating Desktop WhatsApp Button (Mobile bottom bar is removed) -->
+  <!-- Floating Desktop WhatsApp Button -->
   <a href="https://wa.me/34679623610" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" aria-label="Escríbenos por WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.077-2.124-.515-1.745-.724-2.871-2.493-2.958-2.609-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.609-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.25.04.391.377.145.348.493 1.202.536 1.29.043.087.072.188.014.304-.058.116-.087.188-.174.289l-.26.304c-.087.087-.179.181-.077.355.101.174.449.741.964 1.2 0.662.59 1.221.774 1.395.861.174.087.276.072.377-.043.101-.116.435-.507.551-.681.116-.174.232-.145.391-.087.16.058 1.014.478 1.188.565.174.087.29.13.333.203.043.072.043.42-.101.825z"/></svg>
     <span>WhatsApp</span>
   </a>
 

@@ -99,6 +99,14 @@ button {
   transition: var(--transition-fast);
 }
 
+/* Responsive Break Helpers */
+.br-mobile { display: none; }
+.br-all { display: inline; }
+
+@media (max-width: 768px) {
+  .br-mobile { display: inline; }
+}
+
 /* Containers */
 .container {
   width: 100%;
@@ -152,7 +160,7 @@ button {
   color: var(--color-gold);
 }
 
-/* 1ra parte (título): Plus Jakarta Sans, 12px, espaciado controlado sin partir palabras */
+/* 1ra parte (título): Plus Jakarta Sans, 12px */
 .overline,
 .tp-eyebrow {
   font-family: var(--font-sans);
@@ -168,7 +176,7 @@ button {
   max-width: 100%;
 }
 
-/* 2da parte (slogan): Cormorant Garamond, 40px, 48px, 0px, #221F1C / #A88342 */
+/* 2da parte (slogan): Cormorant Garamond, 40px, 48px */
 .h2-title,
 .tp-title {
   font-family: var(--font-serif);
@@ -185,7 +193,7 @@ button {
   color: #A88342;
 }
 
-/* 3ra parte (sub-título): Plus Jakarta Sans, 17px, 29.4px, 0px, #4E4942 */
+/* 3ra parte (sub-título): Plus Jakarta Sans, 17px, 29.4px */
 .lead-text,
 .tp-subtitle {
   font-family: var(--font-sans);
@@ -231,6 +239,39 @@ button {
 
 @media (max-width: 768px) {
   .h3-title { font-size: 1.45rem; }
+}
+
+/* Specific Responsive Text Helpers (PC & Móvil) */
+.justify-desktop-mobile {
+  text-align: justify;
+  text-align-last: left;
+}
+
+@media (max-width: 768px) {
+  .lead-text.lead-mobile-13,
+  .lead-mobile-13 {
+    font-size: 13px;
+    line-height: 22px;
+  }
+  .text-mobile-13 {
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+  }
+  .text-mobile-11 {
+    font-size: 11px !important;
+  }
+  .justify-mobile {
+    text-align: justify;
+    text-align-last: left;
+  }
+  .h2-title.doctor-name-single-mobile {
+    white-space: nowrap;
+    font-size: clamp(1.38rem, 6.2vw, 2.2rem);
+  }
+  .h3-title.pub-title-mobile-18 {
+    font-size: 18px !important;
+    line-height: 1.3;
+  }
 }
 
 /* ==========================================================================
@@ -316,6 +357,30 @@ button {
 .link-arrow:hover {
   color: var(--color-gold);
   gap: 0.65rem;
+}
+
+/* FAQ Equal-Width Centered Buttons (PC & Móvil) */
+.faq-cta-buttons {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.faq-cta-buttons .btn {
+  width: 100%;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .faq-cta-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+  }
 }
 
 /* ==========================================================================
@@ -524,9 +589,9 @@ button {
   letter-spacing: 0.02em;
   color: var(--color-text-main);
   text-align: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.7rem;
   position: relative;
-  padding-bottom: 0.85rem;
+  padding-bottom: 0.55rem;
 }
 
 .hero-seo-h1::after {
@@ -535,14 +600,15 @@ button {
   width: 64px;
   height: 1.5px;
   background-color: var(--color-gold);
-  margin: 0.7rem auto 0;
+  margin: 0.5rem auto 0;
   opacity: 0.75;
 }
 
+/* PC: +30% más grande (273px -> 355px) aprovechando el espacio vertical */
 .hero-brand-emblem {
-  width: 273px;
+  width: 355px;
   height: auto;
-  margin: 0 auto 1.6rem;
+  margin: 0 auto 0.95rem;
   filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.12));
 }
 
@@ -552,16 +618,19 @@ button {
   font-weight: 400;
   line-height: 1.15;
   color: var(--color-text-main);
+  text-align: center;
   margin-bottom: 0.55rem;
   letter-spacing: -0.01em;
 }
 
+/* PC: +2 puntos más grande y centrado */
 .hero-subtitle-single {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.57rem, 2.38vw, 2.02rem);
   font-weight: 400;
   line-height: 1.25;
   color: var(--color-text-main);
+  text-align: center;
   margin-bottom: 1.35rem;
   white-space: nowrap;
   letter-spacing: 0.005em;
@@ -577,13 +646,20 @@ button {
   margin-bottom: 2rem;
 }
 
+/* PC: Botones centrados y del mismo ancho */
 .hero-buttons {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.15rem;
-  margin-top: auto;
-  margin-bottom: 0;
-  flex-wrap: wrap;
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: auto auto 0;
+}
+
+.hero-buttons .btn {
+  width: 100%;
+  white-space: nowrap;
 }
 
 .hero-image-wrap {
@@ -646,7 +722,7 @@ button {
     gap: 2.5rem;
   }
   .hero-brand-emblem {
-    width: 234px;
+    width: 304px;
   }
 }
 
@@ -670,36 +746,57 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  /* Punto 1 Móvil: quitar espacio antes y después del logo */
+  .hero-seo-h1 {
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.45rem;
+  }
+  .hero-seo-h1::after {
+    margin: 0.4rem auto 0;
+  }
+  .hero-brand-emblem {
+    width: 215px;
+    margin: 0 auto 0.55rem;
+  }
+  /* Punto 2 Móvil: centrado, negrita, lo más grande posible en 1 sola línea */
+  .hero-h2-slogan {
+    text-align: center;
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: clamp(1.12rem, 5.4vw, 1.85rem);
+  }
+  /* Punto 3 Móvil: centrado y siempre 1 sola línea */
+  .hero-subtitle-single {
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(1.05rem, 5.1vw, 1.5rem);
+  }
+  /* Punto 4 Móvil: mismo tamaño, centrado en 2 líneas */
+  .hero-doctor-caption {
+    text-align: center;
+    font-size: clamp(1.05rem, 4.7vw, 1.22rem);
+  }
+}
+
 @media (max-width: 600px) {
   .hero-split {
     padding: 2.25rem 0 2.75rem;
   }
   .hero-seo-h1 {
     font-size: 1.38rem;
-    margin-bottom: 1rem;
   }
   .hero-brand-emblem {
     width: 202px;
-    margin-bottom: 1.25rem;
-  }
-  .hero-h2-slogan {
-    font-size: 1.95rem;
-  }
-  .hero-subtitle-single {
-    white-space: normal;
-    font-size: 1.32rem;
   }
   .hero-desc {
     font-size: 0.96rem;
     text-align: justify;
   }
   .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.85rem;
-  }
-  .hero-buttons .btn {
+    grid-template-columns: 1fr;
     width: 100%;
+    gap: 0.85rem;
   }
   .hero-location-pin {
     font-size: 0.8rem;
@@ -1118,6 +1215,15 @@ button {
   word-break: break-word;
 }
 
+@media (max-width: 768px) {
+  .contact-email-link {
+    white-space: nowrap;
+    word-break: normal;
+    font-size: clamp(0.7rem, 3.45vw, 0.96rem);
+    display: inline-block;
+  }
+}
+
 .contact-clinic-box {
   background: var(--color-bg-warm);
   border: 1px solid var(--color-border);
@@ -1143,6 +1249,31 @@ button {
 }
 
 .form-group { margin-bottom: 1.35rem; }
+
+/* Punto 28: Alinear cuadros desplegables izquierda/derecha en PC */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+.form-row-2col .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+@media (max-width: 560px) {
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .form-row-2col .form-group {
+    height: auto;
+  }
+}
 
 .form-label {
   display: block;
@@ -1306,87 +1437,82 @@ button {
 }
 
 /* ==========================================================================
-   Bloque 7: Footer (#FAF8F5 · Compacto, Equilibrado y con Logo 2)
+   Bloque 7: Footer (#FAF8F5 · Compacto, Equilibrado, Redes Sociales y Móvil 2 Columnas)
    ========================================================================== */
 .site-footer {
   background-color: var(--color-bg-warm);
   border-top: 1px solid var(--color-border);
-  padding: 2.75rem 0 1.75rem;
+  padding: 2rem 0 1.25rem;
   color: var(--color-text-body);
 }
 
 .footer-grid-refined {
   display: grid;
-  grid-template-columns: 1.45fr 1fr 1fr 1.15fr;
-  gap: 2.25rem;
+  grid-template-columns: 1.45fr 0.9fr 0.9fr 1.25fr;
+  gap: 2rem;
   align-items: start;
-  margin-bottom: 2rem;
+  margin-bottom: 1.35rem;
 }
 
-@media (max-width: 900px) {
-  .footer-grid-refined {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 2rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .site-footer {
-    padding: 2.25rem 0 1.5rem;
-  }
-  .footer-grid-refined {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .footer-large-logo {
-  width: 175px;
+  width: 145px;
   height: auto;
-  margin-bottom: 0.85rem;
+  margin: 0 auto 0.55rem;
 }
 
 .footer-headline {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.18rem;
   font-weight: 500;
   color: var(--color-text-main);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.15rem;
   line-height: 1.25;
 }
 
 .footer-subheadline {
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   color: var(--color-text-muted);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.55rem;
 }
 
 .footer-address {
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   color: var(--color-text-main);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.footer-links-col,
+.footer-contact-col {
+  padding-top: 0.65rem;
 }
 
 .footer-heading {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: var(--color-gold);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.65rem;
 }
 
 .footer-nav-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.4rem;
 }
 
 .footer-nav-list a {
-  font-size: 0.87rem;
+  font-size: 0.85rem;
   color: var(--color-text-body);
 }
 
@@ -1394,15 +1520,87 @@ button {
   color: var(--color-gold);
 }
 
+.footer-schedule {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.footer-phone {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+}
+
+.footer-email {
+  font-size: 0.84rem;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+}
+
+.footer-wa-link {
+  font-size: 0.84rem;
+  color: #1EBE5D;
+  margin-bottom: 0.75rem;
+}
+
+/* Redes Sociales en Footer */
+.footer-social-box {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.7rem;
+  margin-top: 0.25rem;
+}
+
+.footer-social-text {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--color-text-body);
+  margin-bottom: 0.55rem;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.footer-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xs);
+  transition: var(--transition-fast);
+}
+
+.footer-social-btn:hover {
+  background-color: var(--color-gold-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.footer-social-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
 .footer-sanitary-box {
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding: 1rem 0;
-  margin-bottom: 1.25rem;
+  padding: 0.75rem 0;
+  margin-bottom: 1rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--color-text-muted);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .footer-bottom {
@@ -1423,6 +1621,89 @@ button {
 
 .footer-legal-links a:hover {
   color: var(--color-gold);
+}
+
+@media (max-width: 960px) and (min-width: 641px) {
+  .footer-grid-refined {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    padding: 1.75rem 0 1.25rem;
+  }
+  .footer-grid-refined {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer-brand-col {
+    grid-column: 1 / -1;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+  .footer-large-logo {
+    width: 125px;
+    margin-bottom: 0.4rem;
+  }
+  .footer-headline {
+    font-size: 1.12rem;
+  }
+  .footer-subheadline {
+    font-size: 0.82rem;
+    margin-bottom: 0.45rem;
+  }
+  .footer-address {
+    font-size: 0.78rem;
+  }
+  .footer-links-col {
+    padding-top: 0.15rem;
+  }
+  .footer-links-col .footer-heading {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-links-col .footer-nav-list {
+    gap: 0.35rem;
+  }
+  .footer-links-col .footer-nav-list a {
+    font-size: 0.82rem;
+  }
+  .footer-contact-col {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+  .footer-wa-link {
+    justify-content: center;
+  }
+  .footer-social-box {
+    border-top: none;
+    padding-top: 0.35rem;
+    margin-top: 0.15rem;
+  }
+  .footer-social-icons {
+    justify-content: center;
+  }
+  .footer-sanitary-box {
+    font-size: 0.72rem;
+    line-height: 1.45;
+    padding: 0.65rem 0;
+  }
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.75rem;
+    gap: 0.5rem;
+  }
+  .footer-legal-links {
+    justify-content: center;
+    gap: 0.9rem;
+  }
 }
 
 /* Floating Desktop WhatsApp Button */

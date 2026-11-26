@@ -1,7 +1,7 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
  * 3D Interactive Dental Arch, Brackets & Aligner Simulation (Three.js)
- * Optimized Zero-Allocation Wire Updates, Shared Geometries, Auto-Pause & WebGL Recovery.
+ * Optimized Zero-Allocation Wire Updates, Shared Geometries, Auto-Pause, Responsive Mobile Framing & WebGL Recovery.
  */
 
 (function () {
@@ -131,6 +131,49 @@
   };
 
   // =========================================================================
+  // RESPONSIVE CAMERA DISTANCE CALCULATION (PC vs MOBILE OPTIMAL SIZE)
+  // =========================================================================
+  function getOptimalCameraConfig() {
+    const w = container.clientWidth || 800;
+    const h = container.clientHeight || 500;
+    const aspect = w / h;
+
+    // En PC se mantiene exactamente igual que el original
+    if (window.innerWidth >= 768 && w >= 600) {
+      return {
+        x: 0,
+        y: 4.4,
+        z: 26.8,
+        lookY: 0.1
+      };
+    }
+
+    // En Móvil: calculamos la distancia óptima para que el ancho rotado (~13u)
+    // ocupe ~57% del lienzo (~30-35% más pequeño que antes) sin tocar bordes
+    // ni quedar tapado por la barra inferior de colores.
+    const vFovRad = THREE.MathUtils.degToRad(35);
+    const tanHalfFov = Math.tan(vFovRad / 2);
+    const targetHorizontalSpan = 22.8;
+    const neededDist = targetHorizontalSpan / (2 * tanHalfFov * Math.max(aspect, 0.65));
+    const dist = Math.max(35.5, neededDist);
+    const ratio = dist / 26.8;
+
+    return {
+      x: 0,
+      y: 4.4 * ratio * 0.92,
+      z: dist,
+      lookY: -0.35
+    };
+  }
+
+  function applyCameraConfig() {
+    if (!camera) return;
+    const cfg = getOptimalCameraConfig();
+    camera.position.set(cfg.x, cfg.y, cfg.z);
+    camera.lookAt(0, cfg.lookY, 0);
+  }
+
+  // =========================================================================
   // 3. INITIALIZATION, LIGHTING & HIGH-CONTRAST MATERIALS
   // =========================================================================
   function init3D() {
@@ -143,8 +186,7 @@
     const width = container.clientWidth || 800;
     const height = container.clientHeight || 500;
     camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 200);
-    camera.position.set(0, 4.4, 26.8);
-    camera.lookAt(0, 0.1, 0);
+    applyCameraConfig();
 
     renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -1322,8 +1364,7 @@
       btnResetView.addEventListener('click', () => {
         if (!modelRoot || !camera) return;
         modelRoot.rotation.set(DEFAULT_MODEL_ROT.x, DEFAULT_MODEL_ROT.y, 0);
-        camera.position.set(0, 4.4, 26.8);
-        camera.lookAt(0, 0.1, 0);
+        applyCameraConfig();
       });
     }
 
@@ -1397,6 +1438,7 @@
     if (w <= 0 || h <= 0) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    applyCameraConfig();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.setSize(w, h);
   }

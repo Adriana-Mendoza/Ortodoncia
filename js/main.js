@@ -1,12 +1,28 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
- * Global Navigation, Mobile Menu, Map & Accordion Interactivity
+ * Global Navigation, Shared Footer Loader, Mobile Menu, Map & Accordion Interactivity
  */
 
 (function () {
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
+    // 0. Load Shared Footer (footer.html)
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+      fetch('footer.html')
+        .then((response) => {
+          if (!response.ok) throw new Error('Error al cargar footer.html');
+          return response.text();
+        })
+        .then((html) => {
+          footerPlaceholder.outerHTML = html;
+        })
+        .catch((err) => {
+          console.error('No se pudo cargar el pie de página común:', err);
+        });
+    }
+
     // 1. Mobile Menu Toggle
     const mobileToggle = document.getElementById('mobileMenuToggle');
     const mobileDrawer = document.getElementById('mobileNavDrawer') || document.getElementById('mobileDrawer');

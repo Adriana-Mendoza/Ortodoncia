@@ -197,11 +197,25 @@ button {
   max-width: 680px;
 }
 
+.h3-title {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text-main);
+  margin-bottom: 0.75rem;
+}
+
 @media (max-width: 768px) {
   .h2-title,
   .tp-title {
-    font-size: clamp(30px, 7.5vw, 40px);
+    font-size: clamp(28px, 7vw, 40px);
     line-height: 1.2;
+    text-wrap: balance;
+  }
+  .h3-title {
+    font-size: 1.45rem;
+    text-wrap: balance;
   }
   .lead-text,
   .tp-subtitle {
@@ -218,19 +232,6 @@ button {
     letter-spacing: 0.22em;
     word-spacing: 0.2em;
   }
-}
-
-.h3-title {
-  font-family: var(--font-serif);
-  font-size: 1.65rem;
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--color-text-main);
-  margin-bottom: 0.75rem;
-}
-
-@media (max-width: 768px) {
-  .h3-title { font-size: 1.45rem; }
 }
 
 /* ==========================================================================
@@ -540,7 +541,7 @@ button {
 }
 
 .hero-brand-emblem {
-  width: 273px;
+  width: 355px;
   height: auto;
   margin: 0 auto 1.6rem;
   filter: drop-shadow(0 2px 8px rgba(168, 131, 66, 0.12));
@@ -552,16 +553,19 @@ button {
   font-weight: 400;
   line-height: 1.15;
   color: var(--color-text-main);
+  text-align: center;
+  text-wrap: balance;
   margin-bottom: 0.55rem;
   letter-spacing: -0.01em;
 }
 
 .hero-subtitle-single {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
   font-weight: 400;
   line-height: 1.25;
   color: var(--color-text-main);
+  text-align: center;
   margin-bottom: 1.35rem;
   white-space: nowrap;
   letter-spacing: 0.005em;
@@ -580,10 +584,16 @@ button {
 .hero-buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.15rem;
   margin-top: auto;
   margin-bottom: 0;
   flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  width: 255px;
+  max-width: 100%;
 }
 
 .hero-image-wrap {
@@ -646,7 +656,10 @@ button {
     gap: 2.5rem;
   }
   .hero-brand-emblem {
-    width: 234px;
+    width: 304px;
+  }
+  .hero-buttons .btn {
+    width: 235px;
   }
 }
 
@@ -679,15 +692,16 @@ button {
     margin-bottom: 1rem;
   }
   .hero-brand-emblem {
-    width: 202px;
+    width: 262px;
     margin-bottom: 1.25rem;
   }
   .hero-h2-slogan {
-    font-size: 1.95rem;
+    font-size: clamp(1.28rem, 5.4vw, 1.65rem);
+    white-space: nowrap;
   }
   .hero-subtitle-single {
     white-space: normal;
-    font-size: 1.32rem;
+    font-size: clamp(1.08rem, 4.4vw, 1.32rem);
   }
   .hero-desc {
     font-size: 0.96rem;
@@ -695,7 +709,7 @@ button {
   }
   .hero-buttons {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0.85rem;
   }
   .hero-buttons .btn {
@@ -1344,7 +1358,7 @@ button {
 .footer-large-logo {
   width: 175px;
   height: auto;
-  margin-bottom: 0.85rem;
+  margin: 0 auto 0.85rem;
 }
 
 .footer-headline {
@@ -1354,12 +1368,14 @@ button {
   color: var(--color-text-main);
   margin-bottom: 0.2rem;
   line-height: 1.25;
+  text-align: center;
 }
 
 .footer-subheadline {
   font-size: 0.9rem;
   color: var(--color-text-muted);
   margin-bottom: 0.85rem;
+  text-align: center;
 }
 
 .footer-address {

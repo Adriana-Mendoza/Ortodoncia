@@ -636,15 +636,15 @@ button {
 /* PC: Título principal centrado abarcando ambas columnas */
 .hero-seo-h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.55vw, 2.95rem);
+  font-size: clamp(2.05rem, 3.6vw, 3.1rem);
   font-weight: 500;
   line-height: 1.18;
   letter-spacing: 0.025em;
   color: var(--color-text-main);
   text-align: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 3.5rem;
   position: relative;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.75rem;
 }
 
 .hero-seo-h1::after {

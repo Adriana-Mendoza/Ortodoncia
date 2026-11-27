@@ -1,7 +1,8 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
  * 3D Interactive Dental Arch, Brackets & Aligner Simulation (Three.js)
- * Optimized Zero-Allocation Wire Updates, Shared Geometries, Auto-Pause, Responsive Mobile Framing & WebGL Recovery.
+ * Optimized Zero-Allocation Wire Updates, Shared Geometries, Auto-Pause, Responsive Mobile Framing,
+ * No Cast Shadows & Touch Scroll Lock on Canvas.
  */
 
 (function () {
@@ -16,7 +17,7 @@
   if (!container || typeof THREE === 'undefined') return;
 
   // =========================================================================
-  // 1. HIGH-RESOLUTION GEOMETRY CONFIGURATION (Balanceado para estabilidad GPU)
+  // 1. HIGH-RESOLUTION GEOMETRY CONFIGURATION
   // =========================================================================
   const DETAIL = {
     toothU: 26,
@@ -25,8 +26,7 @@
     gumProfile: 16,
     wireSegs: 64,
     wireRadialSegs: 6,
-    wireRadius: 0.048,
-    shadowMap: 1024
+    wireRadius: 0.048
   };
 
   // Color Palettes for User Customization
@@ -138,7 +138,6 @@
     const h = container.clientHeight || 500;
     const aspect = w / h;
 
-    // En PC se mantiene exactamente igual que el original
     if (window.innerWidth >= 768 && w >= 600) {
       return {
         x: 0,
@@ -148,9 +147,6 @@
       };
     }
 
-    // En Móvil: calculamos la distancia óptima para que el ancho rotado (~13u)
-    // ocupe ~57% del lienzo (~30-35% más pequeño que antes) sin tocar bordes
-    // ni quedar tapado por la barra inferior de colores.
     const vFovRad = THREE.MathUtils.degToRad(35);
     const tanHalfFov = Math.tan(vFovRad / 2);
     const targetHorizontalSpan = 22.8;
@@ -174,7 +170,7 @@
   }
 
   // =========================================================================
-  // 3. INITIALIZATION, LIGHTING & HIGH-CONTRAST MATERIALS
+  // 3. INITIALIZATION, LIGHTING & HIGH-CONTRAST MATERIALS (SIN SOMBRAS)
   // =========================================================================
   function init3D() {
     if (getComputedStyle(container).position === 'static') {
@@ -195,8 +191,7 @@
     });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.enabled = false;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 0.94;
 
@@ -206,7 +201,6 @@
       renderer.outputEncoding = THREE.sRGBEncoding;
     }
 
-    // Handle WebGL Context Loss & Restore cleanly
     renderer.domElement.addEventListener('webglcontextlost', onContextLost, false);
     renderer.domElement.addEventListener('webglcontextrestored', onContextRestored, false);
 
@@ -314,24 +308,15 @@
   }
 
   function setupLighting() {
-    const hemiLight = new THREE.HemisphereLight(0xFFFDF8, 0x8A7A6B, 0.28);
+    const hemiLight = new THREE.HemisphereLight(0xFFFDF8, 0x8A7A6B, 0.34);
     scene.add(hemiLight);
 
-    keyLight = new THREE.DirectionalLight(0xFFF8EC, 1.25);
+    keyLight = new THREE.DirectionalLight(0xFFF8EC, 1.22);
     keyLight.position.set(10, 15, 13);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(DETAIL.shadowMap, DETAIL.shadowMap);
-    keyLight.shadow.camera.near = 2;
-    keyLight.shadow.camera.far = 46;
-    keyLight.shadow.camera.left = -12;
-    keyLight.shadow.camera.right = 12;
-    keyLight.shadow.camera.top = 12;
-    keyLight.shadow.camera.bottom = -12;
-    keyLight.shadow.bias = -0.0005;
-    keyLight.shadow.normalBias = 0.02;
+    keyLight.castShadow = false;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(0xCBE2F5, 0.36);
+    const fillLight = new THREE.DirectionalLight(0xCBE2F5, 0.40);
     fillLight.position.set(-14, 5, 7);
     scene.add(fillLight);
 
@@ -763,7 +748,6 @@
     geom.setAttribute('position', posAttr);
     geom.setAttribute('normal', normAttr);
     geom.setIndex(indices);
-    // Generous static bounding sphere so frustum culling never drops the wire
     geom.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1.5, 0), 12);
     return geom;
   }
@@ -828,20 +812,11 @@
   }
 
   // =========================================================================
-  // 8. BUILD COMPLETE MODEL
+  // 8. BUILD COMPLETE MODEL (SIN PLANO DE SOMBRAS)
   // =========================================================================
   function buildTypodontModel() {
     modelRoot = new THREE.Group();
     scene.add(modelRoot);
-
-    const shadowPlane = new THREE.Mesh(
-      new THREE.PlaneGeometry(40, 40),
-      new THREE.ShadowMaterial({ opacity: 0.13 })
-    );
-    shadowPlane.rotation.x = -Math.PI / 2;
-    shadowPlane.position.y = -4.25;
-    shadowPlane.receiveShadow = true;
-    scene.add(shadowPlane);
 
     buildToothGeometryCache();
 
@@ -863,26 +838,17 @@
     const upperToothS = buildArchSide(upperJawGroup, true, 1.04);
 
     lowerGumMesh = new THREE.Mesh(createSculptedGumGeometry(0.96, lowerToothS), gumMat);
-    lowerGumMesh.castShadow = true;
-    lowerGumMesh.receiveShadow = true;
     lowerJawGroup.add(lowerGumMesh);
 
     upperGumMesh = new THREE.Mesh(createSculptedGumGeometry(1.04, upperToothS), gumMat);
-    upperGumMesh.castShadow = true;
-    upperGumMesh.receiveShadow = true;
     upperJawGroup.add(upperGumMesh);
 
     const lowerBase = new THREE.Mesh(createAcrylicBaseGeometry(0.96), acrylicMat);
-    lowerBase.castShadow = true;
-    lowerBase.receiveShadow = true;
     lowerJawGroup.add(lowerBase);
 
     const upperBase = new THREE.Mesh(createAcrylicBaseGeometry(1.04), acrylicMat);
-    upperBase.castShadow = true;
-    upperBase.receiveShadow = true;
     upperJawGroup.add(upperBase);
 
-    // Pre-allocated Dynamic Orthodontic Archwires (Zero per-frame buffer allocation)
     lowerWireMesh = new THREE.Mesh(createReusableWireGeometry(), wireMat);
     lowerWireMesh.frustumCulled = false;
     lowerJawGroup.add(lowerWireMesh);
@@ -926,8 +892,6 @@
       toothSValues.push(sample.s);
 
       const mesh = new THREE.Mesh(toothGeometryCache[spec.type], enamelMat);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
 
       const sx = spec.width * 0.52 * archScale;
       const sy = spec.height * 1.18;
@@ -1291,7 +1255,7 @@
   }
 
   // =========================================================================
-  // 11. TIMELINE (5s AUTO-RESUME), DRAG & RESIZE EVENTS
+  // 11. TIMELINE (5s AUTO-RESUME), DRAG & SCROLL LOCK ON MOBILE
   // =========================================================================
   function scheduleTimelineResume() {
     clearTimeout(resumeTimeout);
@@ -1370,6 +1334,7 @@
 
     const dom = renderer.domElement;
     dom.style.cursor = 'grab';
+    dom.style.touchAction = 'none'; // Bloquea el scroll de la página dentro del lienzo 3D en móvil
 
     dom.addEventListener('mousedown', (e) => {
       isDragging = true;
@@ -1402,11 +1367,12 @@
 
     dom.addEventListener('touchstart', (e) => {
       if (e.touches.length === 1) {
+        e.preventDefault();
         isDragging = true;
         isUserRotating = true;
         previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       }
-    }, { passive: true });
+    }, { passive: false });
 
     window.addEventListener('touchend', () => {
       isDragging = false;
@@ -1418,6 +1384,7 @@
 
     dom.addEventListener('touchmove', (e) => {
       if (!isDragging || e.touches.length !== 1 || !modelRoot) return;
+      e.preventDefault();
       const dx = e.touches[0].clientX - previousMousePosition.x;
       const dy = e.touches[0].clientY - previousMousePosition.y;
 
@@ -1426,7 +1393,7 @@
       modelRoot.rotation.x = THREE.MathUtils.clamp(modelRoot.rotation.x, -0.45, 0.95);
 
       previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    }, { passive: true });
+    }, { passive: false });
 
     window.addEventListener('resize', onWindowResize);
   }
@@ -1494,7 +1461,6 @@
       renderer.render(scene, camera);
       scheduleNextFrame();
     } catch (err) {
-      // Stop loop cleanly instead of freezing the tab with infinite exceptions
       console.error('Ortho3D render error:', err);
     }
   }

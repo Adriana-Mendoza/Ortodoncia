@@ -1,10 +1,21 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
- * Global Navigation, Shared Footer Loader, Mobile Menu, Map, Accordion & Image Protection
+ * Global Navigation, Shared Footer Loader, Mobile Menu, Map, Accordion & Full Image Protection
  */
 
 (function () {
   'use strict';
+
+  function applyMediaProtection(root) {
+    const scope = root || document;
+    scope.querySelectorAll('img, canvas').forEach((el) => {
+      el.setAttribute('draggable', 'false');
+      el.style.userSelect = 'none';
+      el.style.webkitUserSelect = 'none';
+      el.style.webkitUserDrag = 'none';
+      el.style.webkitTouchCallout = 'none';
+    });
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     // 0. Load Shared Footer (footer.html)
@@ -17,6 +28,8 @@
         })
         .then((html) => {
           footerPlaceholder.outerHTML = html;
+          const loadedFooter = document.querySelector('footer.site-footer');
+          if (loadedFooter) applyMediaProtection(loadedFooter);
         })
         .catch((err) => {
           console.error('No se pudo cargar el pie de página común:', err);
@@ -83,7 +96,9 @@
       });
     });
 
-    // 4. Protección disuasoria de imágenes, logos y lienzo 3D (Clic derecho y arrastre)
+    // 4. Protección total de imágenes, logos y lienzo 3D por coordenadas (PC y Móvil)
+    applyMediaProtection(document);
+
     const protectedContainers = [
       'img',
       'canvas',
@@ -99,6 +114,25 @@
     document.addEventListener('contextmenu', (e) => {
       if (e.target && e.target.closest && e.target.closest(protectedContainers)) {
         e.preventDefault();
+        return;
+      }
+
+      const x = e.clientX;
+      const y = e.clientY;
+      const mediaElements = document.querySelectorAll('img, canvas');
+      for (let i = 0; i < mediaElements.length; i++) {
+        const el = mediaElements[i];
+        const style = window.getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+          continue;
+        }
+        const rect = el.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0 &&
+            x >= rect.left && x <= rect.right &&
+            y >= rect.top && y <= rect.bottom) {
+          e.preventDefault();
+          return;
+        }
       }
     });
 

@@ -1,6 +1,6 @@
 /**
  * Dra. Adriana Mendoza Orozco · Ortodoncia en Madrid
- * Global Navigation, Shared Footer Loader, Mobile Menu, Map & Accordion Interactivity
+ * Global Navigation, Shared Footer Loader, Mobile Menu, Map, Accordion & Image Protection
  */
 
 (function () {
@@ -71,7 +71,6 @@
         const icon = btn.querySelector('.faq-icon-sign');
         const isOpen = body.classList.contains('is-open');
 
-        // Toggle state
         if (isOpen) {
           body.classList.remove('is-open');
           btn.setAttribute('aria-expanded', 'false');
@@ -82,6 +81,31 @@
           if (icon) icon.textContent = '－';
         }
       });
+    });
+
+    // 4. Protección disuasoria de imágenes, logos y lienzo 3D (Clic derecho y arrastre)
+    const protectedContainers = [
+      'img',
+      'canvas',
+      '.header-brand',
+      '.hero-image-wrap',
+      '.treatment-card-img-wrap',
+      '.ba-slider-container',
+      '.canvas-3d-container',
+      '.facility-vertical-card',
+      '.footer-brand-col'
+    ].join(', ');
+
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target && e.target.closest && e.target.closest(protectedContainers)) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('dragstart', (e) => {
+      if (e.target && (e.target.tagName === 'IMG' || e.target.tagName === 'CANVAS')) {
+        e.preventDefault();
+      }
     });
   });
 })();
